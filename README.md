@@ -19,8 +19,9 @@ This project enhances your Zsh terminal by allowing you to input natural languag
 
 ## 🎮 Demo
 
+
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/b73525bf-9e58-4722-b393-96a6b29b5036" alt="Demo"/>
+  <img src="https://github.com/user-attachments/assets/a77bf697-762b-46af-be08-7ae9eb7e3d32" alt="Demo"/>
 </div>
 
 > 💡 Simply type your question and press `Ctrl+B` to get the command you need!
