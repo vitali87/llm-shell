@@ -272,75 +272,71 @@ Place the Ollama Command Helper configuration after Powerlevel10k initialization
 
 Alternatively, disable the instant prompt feature in Powerlevel10k.
 
-## TODO
+## 📋 Roadmap & TODO
 
-### Planned Features
+<div align="center">
 
-#### User Feedback Integration
-- [ ] Collect user feedback on generated commands
-- [ ] Store feedback data for model improvement
-- [ ] Implement feedback submission mechanism
-- [ ] Create feedback analysis pipeline
-- [ ] Periodically retrain model with user feedback
-- [ ] Add command rating system (thumbs up/down)
+![Progress](https://img.shields.io/badge/Progress-20%25-brightgreen)
+
+</div>
+
+### 🚀 Upcoming Features
+
+#### User Experience
+- [ ] 🎨 Add color themes support
+  - [ ] Dark mode
+  - [ ] Light mode
+  - [ ] Terminal-native theme
+- [ ] ⌨️ Customizable keyboard shortcuts
+- [ ] 💾 Command history with search functionality
+- [ ] 🔍 Auto-completion suggestions
+
+#### AI/ML Enhancements
+- [ ] 🧠 Context-aware command suggestions
+- [ ] 📊 Learning from user corrections
+
+
+#### Performance & Integration
+- [ ] ⚡ Improve response time
+- [ ] 🔌 Plugin system for extensions
+- [ ] 📦 Package for different package managers
+  - [ ] Homebrew
+  - [ ] apt
+  - [ ] pip
+
+### 🔄 In Progress
+
+#### User Feedback System
+- [x] Basic feedback collection
+- [ ] 👍 Command rating system (thumbs up/down)
+- [ ] 📝 Feedback submission UI
+- [ ] 📊 Analytics dashboard for feedback
 
 #### Command History Enhancement
-- [ ] Store history of queries and generated commands
-- [ ] Implement context-aware command generation
-- [ ] Add command suggestions based on previous usage
-- [ ] Create searchable command history
-- [ ] Save user modifications to generated commands
-- [ ] Implement command success/failure tracking
+- [x] Basic history storage
+- [ ] 🔍 Searchable command history
+- [ ] 📈 Usage statistics
+- [ ] 🎯 Success/failure tracking
 
-### Implementation Details
+### 🎯 Future Goals
 
-#### Feedback System
-- Store user feedback in `~/.config/zsh/ollama_feedback.jsonl`
-- Track:
-  - Original query
-  - Generated command
-  - User modifications (if any)
-  - Execution success/failure
-  - User rating
-  - Timestamp
+#### Community Features
+- [ ] 👥 Command sharing platform
+- [ ] 🌟 Popular commands repository
+- [ ] 🤝 Community contributions system
 
-#### Command History
-- Store command history in `~/.config/zsh/ollama_history.jsonl`
-- Include:
-  - Query-command pairs
-  - Execution context
-  - Success rate
-  - Usage frequency
-  - Related commands
+#### Documentation
+- [ ] 📚 API documentation
+- [ ] 🎥 Video tutorials
+- [ ] 👩‍💻 Developer guide
+- [ ] 🌍 Internationalization
 
-## License 
+### ✅ Completed
+- [x] Basic command generation
+- [x] Model selection interface
+- [x] Installation script
+- [x] Basic error handling
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-
-This project is licensed under the MIT License.
-
-
----
-
-Note: Replace `vitali87/shell-commands` with the name of your finetuned Ollama model if it's different.
-
-## Additional Information
-
-### Verifying Ollama is Running 
-
-To ensure that Ollama is running and necessary models are available:
-
-```bash 
-ollama list 
-```
-
-#### Example Output:
-
-```bash  
-NAME                        ID              SIZE      MODIFIED  
-vitali87/shell-commands       abcdef123456     5.4 GB   2 days ago  
-qwen2.5-coder:latest       123456abcdef     4.7 GB   3 weeks ago  
-```
 
 ## Acknowledgments 
 
