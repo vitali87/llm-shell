@@ -1,8 +1,29 @@
 # Zsh Ollama Command Helper
 
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/vitali87/llm-shell)](https://github.com/vitali87/llm-shell/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/vitali87/llm-shell)](https://github.com/vitali87/llm-shell/issues)
+[![GitHub forks](https://img.shields.io/github/forks/vitali87/llm-shell)](https://github.com/vitali87/llm-shell/network)
+[![Contributors](https://img.shields.io/github/contributors/vitali87/llm-shell)](https://github.com/vitali87/llm-shell/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/vitali87/llm-shell)](https://github.com/vitali87/llm-shell/commits/main)
+[![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+<a href="https://github.com/vitali87/llm-shell/stargazers"><img src="https://reporoster.com/stars/vitali87/llm-shell" alt="Stargazers"></a>
+
+</div>
+
 This project enhances your Zsh terminal by allowing you to input natural language queries for shell commands you can't remember. By pressing `Ctrl+B`, your query is sent to an Ollama model, which generates the appropriate command. The command is displayed, and you're prompted to execute it or not (`y/n`).
 
-https://github.com/user-attachments/assets/e3adf6ce-9c2e-4c07-9ae8-326f6380ff97
+## 🎮 Demo
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/b73525bf-9e58-4722-b393-96a6b29b5036" alt="Demo"/>
+</div>
+
+> 💡 Simply type your question and press `Ctrl+B` to get the command you need!
 
 ## Table of Contents
 - [Features](#features)
@@ -15,12 +36,36 @@ https://github.com/user-attachments/assets/e3adf6ce-9c2e-4c07-9ae8-326f6380ff97
 - [TODO](#todo)
 - [License](#license)
 
-## Features
-- **Natural Language Queries**: Ask questions in plain English about shell commands.
-- **Model Integration**: Uses your locally running Ollama instance with a finetuned model.
-- **Command Execution**: Shows the generated command and prompts you to execute it.
-- **Model Selection**: Easily switch between different Ollama models.
-- **Customizable**: Adjust colors and default settings to your preference.
+## ✨ Features
+
+<table>
+<tr>
+<td>
+
+### 🗣️ Natural Language Queries
+Ask questions in plain English about shell commands
+  
+### 🤖 Model Integration
+Uses your locally running Ollama instance with a finetuned model
+  
+### ⚡ Command Execution
+Shows the generated command and prompts you to execute it
+
+</td>
+<td>
+
+### 🔄 Model Selection
+Easily switch between different Ollama models
+  
+### 🎨 Customizable
+Adjust colors and default settings to your preference
+  
+### 🔒 Privacy-Focused
+100% local execution - your queries never leave your machine
+
+</td>
+</tr>
+</table>
 
 ## Prerequisites
 - **Operating System**: Unix-like system (Linux, macOS).
@@ -268,7 +313,10 @@ Alternatively, disable the instant prompt feature in Powerlevel10k.
 
 ## License 
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 This project is licensed under the MIT License.
+
 
 ---
 
@@ -300,5 +348,37 @@ OpenAI for the openai Python package.
 
 Feel free to contribute to this project by submitting issues or pull requests.
 
+## 📊 Project Stats
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=vitali87&repo=llm-shell&theme=dark" alt="Repo Card"/>
+  
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=vitali87&theme=dark" alt="Profile Details"/>
+</div>
+
+## 👥 Contributors
+
+<a href="https://github.com/vitali87/llm-shell/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=vitali87/llm-shell" />
+</a>
 
 
+## 🛠️ Built With
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="Shell"/>
+  <img src="https://img.shields.io/badge/Zsh-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="Zsh"/>
+</p>
+
+## 🌟 Show your support
+
+Give a ⭐️ if this project helped you!
+
+<a href="https://buymeacoffee.com/vitali87">
+  <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=vitali87&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
+</a>
+
+<div align="center">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=vitali87.llm-shell" alt="visitors"/>
+</div>
