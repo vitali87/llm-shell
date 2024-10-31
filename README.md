@@ -19,10 +19,7 @@ This project enhances your Zsh terminal by allowing you to input natural languag
 
 ## 🎮 Demo
 
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/a77bf697-762b-46af-be08-7ae9eb7e3d32" alt="Demo"/>
-</div>
+https://github.com/vitali87/llm-shell/assets/YOUR_USER_ID/demo.mp4
 
 > 💡 Simply type your question and press `Ctrl+B` to get the command you need!
 
