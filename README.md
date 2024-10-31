@@ -10,6 +10,7 @@ This project enhances your Zsh terminal by allowing you to input natural languag
 - [Usage](#usage)
 - [Customization](#customization)
 - [Troubleshooting](#troubleshooting)
+- [TODO](#todo)
 - [License](#license)
 
 ## Features
@@ -217,6 +218,47 @@ If you see a warning related to Powerlevel10k's instant prompt:
 Place the Ollama Command Helper configuration after Powerlevel10k initialization in your `~/.zshrc`.
 
 Alternatively, disable the instant prompt feature in Powerlevel10k.
+
+## TODO
+
+### Planned Features
+
+#### User Feedback Integration
+- [ ] Collect user feedback on generated commands
+- [ ] Store feedback data for model improvement
+- [ ] Implement feedback submission mechanism
+- [ ] Create feedback analysis pipeline
+- [ ] Periodically retrain model with user feedback
+- [ ] Add command rating system (thumbs up/down)
+
+#### Command History Enhancement
+- [ ] Store history of queries and generated commands
+- [ ] Implement context-aware command generation
+- [ ] Add command suggestions based on previous usage
+- [ ] Create searchable command history
+- [ ] Save user modifications to generated commands
+- [ ] Implement command success/failure tracking
+
+### Implementation Details
+
+#### Feedback System
+- Store user feedback in `~/.config/zsh/ollama_feedback.jsonl`
+- Track:
+  - Original query
+  - Generated command
+  - User modifications (if any)
+  - Execution success/failure
+  - User rating
+  - Timestamp
+
+#### Command History
+- Store command history in `~/.config/zsh/ollama_history.jsonl`
+- Include:
+  - Query-command pairs
+  - Execution context
+  - Success rate
+  - Usage frequency
+  - Related commands
 
 ## License 
 
