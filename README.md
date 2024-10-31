@@ -2,7 +2,7 @@
 
 This project enhances your Zsh terminal by allowing you to input natural language queries for shell commands you can't remember. By pressing `Ctrl+B`, your query is sent to an Ollama model, which generates the appropriate command. The command is displayed, and you're prompted to execute it or not (`y/n`).
 
-https://github.com/user-attachments/assets/b73525bf-9e58-4722-b393-96a6b29b5036
+https://github.com/user-attachments/assets/e3adf6ce-9c2e-4c07-9ae8-326f6380ff97
 
 ## Table of Contents
 - [Features](#features)
