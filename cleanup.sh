@@ -7,7 +7,7 @@ from trl import SFTTrainer
 # Load model and tokenizer with 4-bit quantization
 model, tokenizer = FastLanguageModel.from_pretrained(
     "Qwen/Qwen2-1.5B",
-    max_seq_length=2048,
+    max_seq_length=1024,
     load_in_4bit=True,
 )
 
