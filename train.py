@@ -27,7 +27,8 @@ model = FastLanguageModel.get_peft_model(
 )
 
 # Load dataset
-dataset = load_dataset('json', data_files='data.jsonl', split='train')
+# dataset = load_dataset('json', data_files='data.jsonl', split='train')
+dataset = load_dataset('json', data_files='commands.jsonl', split='train')
 
 # Prepare dataset for training with chat format
 def preprocess_function(example):
@@ -99,8 +100,4 @@ trainer = SFTTrainer(
 
 print("Starting training...")
 trainer.train()
-
-# Save the model
-print("Saving model...")
-model.save_pretrained_gguf("shell-commands", tokenizer)
-print("Training completed!")
+model.save_pretrained_gguf("shell-commands-qwen2-1.5b", tokenizer)
