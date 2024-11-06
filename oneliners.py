@@ -17,16 +17,19 @@ def process_file(content):
         if len(lines) < 2:
             continue
             
-        # The first line is the description
-        description = lines[0].strip()
+        # The first line is the instruction (description)
+        instruction = lines[0].strip()
         
-        # The second line is the command, remove leading '$ ' if present
-        command = lines[1].strip()
-        if command.startswith('$ '):
-            command = command[2:]
+        # The second line is the command (output), remove leading '$ ' if present
+        output = lines[1].strip()
+        if output.startswith('$ '):
+            output = output[2:]
             
-        # Create a dictionary with description as key and command as value
-        command_dict = {description: command}
+        # Create a dictionary in the requested format
+        command_dict = {
+            "instruction": instruction,
+            "output": output
+        }
         command_pairs.append(command_dict)
     
     return command_pairs
