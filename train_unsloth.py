@@ -100,3 +100,4 @@ trainer = SFTTrainer(
 print("Starting training...")
 trainer.train()
 model.save_pretrained_gguf("shell-commands-qwen2-1.5b", tokenizer)
+

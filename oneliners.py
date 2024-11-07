@@ -36,7 +36,7 @@ def process_file(content):
 
 def main():
     # Read input from file
-    with open('paste.txt', 'r', encoding='utf-8') as file:
+    with open('oneliners.txt', 'r', encoding='utf-8') as file:
         content = file.read()
     
     # Process the content

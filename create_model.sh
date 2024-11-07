@@ -3,18 +3,20 @@
 # Exit on any error
 set -e
 
-# Check if directory path is provided as argument
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <directory_path>"
-    echo "Example: $0 /path/to/shell-commands"
+# Check if directory path and GGUF file name are provided as arguments
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <directory_path> <gguf_file_name>"
+    echo "Example: $0 /path/to/shell-commands unsloth.Q8_0.gguf"
     exit 1
 fi
 
-# Define paths using provided directory
+# Define paths using provided directory and file name
 SCRIPT_DIR="$1"
+GGUF_FILE="$2"
+
 # Get just the last part of the path
 MODEL_NAME=$(basename "$SCRIPT_DIR")
-MODEL_FILE="${SCRIPT_DIR}/unsloth.Q8_0.gguf"
+MODEL_FILE="${SCRIPT_DIR}/${GGUF_FILE}"
 MODELFILE_PATH="${SCRIPT_DIR}/Modelfile"
 
 # Check if directory exists

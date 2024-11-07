@@ -2,4 +2,5 @@ venv
 llama.cpp
 outputs
 shell-commands*
+merged_model
 _unsloth_sentencepiece_temp
