@@ -1,0 +1,100 @@
+List all files in the current folder
+Show hidden files here
+Find all text files in this directory
+Copy file1 to the folder docs
+Move all .jpg files to images directory
+Remove the file named temp.txt
+Rename file oldname.txt to newname.txt
+Count lines in myfile.txt
+Display the first 10 lines of log.txt
+Display the last 20 lines of errors.log
+Search for “error” in log.txt
+Find all folders named “backup”
+Delete all .log files older than 30 days
+List all running processes
+Kill process with ID 1234
+Show disk usage in human-readable format
+Show available memory
+Create a new directory called projects
+Compress the folder photos to photos.zip
+Unzip archive.zip into the current folder
+Extract all .tar.gz files in downloads
+Show IP address of this machine
+List open network connections
+Show system information
+Check system uptime
+Print calendar for the month
+Check the date and time
+Add a user named “john”
+Change password for user john
+Delete user jane
+Make a backup of myfile.txt
+Append text “hello world” to greetings.txt
+Replace “foo” with “bar” in data.txt
+Count words in story.txt
+List all installed packages
+Install package curl
+Remove package wget
+Update package list
+Upgrade all packages
+Open nano editor with myfile.txt
+Open vi editor for script.sh
+Edit file as root
+Run command as admin
+Switch to user john
+Find files larger than 100MB
+List all files modified in last 7 days
+Show path to python binary
+Show version of node
+Start apache server
+Stop mysql service
+Restart nginx
+Check status of docker
+Clear terminal screen
+Print working directory path
+Show environment variables
+Set environment variable PATH
+Save terminal output to file output.log
+Run script.sh in background
+Show active network interfaces
+Display routing table
+Test connection to google.com
+Ping 192.168.1.1
+Run traceroute to example.com
+Fetch website headers from example.com
+Create symbolic link for myfile.txt
+Change permissions of file to read-only
+Make file executable
+View file permissions for notes.txt
+Set owner of file to user john
+Change group ownership of data.txt
+Set permissions recursively in dir
+Mount external drive
+Unmount usb
+Check disk space usage on /home
+Show detailed list of files in folder
+Create an alias for listing files
+Remove alias ls
+Show aliases configured
+Display history of commands
+Clear command history
+Copy ssh key to remote server
+Connect to server via ssh
+Show last 100 system logs
+Display kernel messages
+Find CPU usage
+Find which process uses most memory
+Set hostname to “mycomputer”
+Update system clock
+Download file from URL
+Upload file to server
+Create empty file named newfile
+Duplicate file1.txt to copy.txt
+Show which packages need update
+List all cron jobs
+Schedule task to run every day
+Remove all docker containers
+Show docker images
+Start docker container named app
+Commit changes to git repo
+Merge branch feature into main
