@@ -27,8 +27,7 @@ model = FastLanguageModel.get_peft_model(
 )
 
 # Load dataset
-# dataset = load_dataset('json', data_files='data.jsonl', split='train')
-dataset = load_dataset('json', data_files='commands.jsonl', split='train')
+dataset = load_dataset('json', data_files='data.jsonl', split='train')
 
 # Prepare dataset for training with chat format
 def preprocess_function(example):
@@ -72,7 +71,7 @@ processed_dataset = dataset.map(
 # Update training arguments
 training_arguments = TrainingArguments(
     output_dir="outputs",
-    num_train_epochs=3,
+    num_train_epochs=10,
     per_device_train_batch_size=1,
     gradient_accumulation_steps=8,
     learning_rate=1e-4,

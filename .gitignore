@@ -1,5 +1,5 @@
 venv
 llama.cpp
 outputs
-shell-commands
+shell-commands*
 _unsloth_sentencepiece_temp
