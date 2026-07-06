@@ -1,6 +1,10 @@
 venv
+.venv
+__pycache__
 llama.cpp
 outputs
+logs
+final_model_lora
 shell-commands*
 merged_model
 _unsloth_sentencepiece_temp

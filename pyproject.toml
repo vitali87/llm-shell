@@ -1,0 +1,45 @@
+[project]
+name = "llm-shell"
+version = "0.1.0"
+description = "Zsh Ollama command helper with a Qwen2 fine-tuning pipeline"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests",
+]
+
+[project.optional-dependencies]
+# Training/quantization stack. CUDA + Linux only; install on the GPU box with
+# `uv sync --extra train`.
+train = [
+    "torch",
+    "transformers",
+    "datasets",
+    "trl",
+    "peft",
+    "deepspeed",
+    "unsloth[cu124-torch250] @ git+https://github.com/unslothai/unsloth.git",
+]
+dev = [
+    "ruff",
+    "ty",
+]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.ty.environment]
+python-version = "3.11"
+
+[tool.uv]
+# The training extra pulls CUDA wheels that do not resolve on macOS; keep it
+# opt-in so `uv sync --extra dev` works everywhere. Restrict resolution to the
+# platforms we build on (Linux for CUDA training, macOS for dev); this also
+# drops unsloth's conflicting Windows xformers URL.
+environments = [
+    "sys_platform == 'linux'",
+    "sys_platform == 'darwin'",
+]
