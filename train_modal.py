@@ -27,7 +27,10 @@ image = (
     modal.Image.from_registry("nvidia/cuda:12.8.1-devel-ubuntu22.04", add_python="3.12")
     .env(
         {
-            "PATH": "/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "PATH": (
+                "/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin"
+                ":/usr/sbin:/usr/bin:/sbin:/bin"
+            ),
             "LD_LIBRARY_PATH": "/usr/local/cuda/lib64",
             "HF_HOME": "/cache",
             "HF_HUB_ENABLE_HF_TRANSFER": "1",
@@ -55,7 +58,8 @@ vol = modal.Volume.from_name("llm-shell-hf-cache", create_if_missing=True)
 
 
 @app.function(
-    gpu="RTX-PRO-6000",  # quadbit's standard GPU; oversized for 2B (~5GB), swap to L40S to save credits
+    # quadbit's standard GPU; oversized for 2B (~5GB), swap to L40S to save credits
+    gpu="RTX-PRO-6000",
     timeout=86400,
     volumes={"/cache": vol},
     secrets=[modal.Secret.from_name("huggingface")],
@@ -166,6 +170,10 @@ def run(epochs: int = 3, max_seq_length: int = 1024, quant: str = "q8_0") -> str
         "{{ .System }}<|im_end|>{{ end }}<|im_start|>user\n"
         "{{ .Prompt }}<|im_end|>\n"
         "<|im_start|>assistant\n"
+        "<think>\n"
+        "\n"
+        "</think>\n"
+        "\n"
         '"""\n'
     )
     vol.commit()
@@ -178,4 +186,5 @@ def main(epochs: int = 3, max_seq_length: int = 1024, quant: str = "q8_0") -> No
     # spawn (not remote): the run survives a local-client disconnect.
     call = run.spawn(epochs=epochs, max_seq_length=max_seq_length, quant=quant)
     print(f"SPAWN_ID {call.object_id}", flush=True)
-    print(f"RESULT {call.get()}", flush=True)  # blocks; recover via SPAWN_ID if this waiter dies
+    # call.get() blocks; if this waiter dies, recover the result via SPAWN_ID.
+    print(f"RESULT {call.get()}", flush=True)

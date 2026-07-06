@@ -6,7 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 def merge_and_save_model(
-    base_model_name="Qwen/Qwen2-1.5B",
+    base_model_name="Qwen/Qwen3.5-2B",
     lora_weights="final_model_lora",  # Default to the new path
     output_dir="merged_model",
 ):
@@ -43,6 +43,12 @@ def merge_and_save_model(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--base_model",
+        type=str,
+        default="Qwen/Qwen3.5-2B",
+        help="Base model to merge the LoRA weights onto (default: Qwen/Qwen3.5-2B)",
+    )
+    parser.add_argument(
         "--lora_weights",
         type=str,
         default="final_model_lora",
@@ -50,4 +56,6 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    merge_and_save_model(lora_weights=args.lora_weights)
+    merge_and_save_model(
+        base_model_name=args.base_model, lora_weights=args.lora_weights
+    )

@@ -82,11 +82,11 @@ class OllamaBatchProcessor:
                 "command": result["message"]["content"].strip(),
             }
 
-        except (requests.RequestException, json.JSONDecodeError):
+        except (requests.RequestException, json.JSONDecodeError) as e:
             if attempt < self.max_retries:
                 logger.warning(
                     f"Retry {attempt + 1}/{self.max_retries} "
-                    f"for prompt: {prompt[:50]}..."
+                    f"for prompt: {prompt[:50]}... ({e})"
                 )
                 time.sleep(self.retry_delay)
                 return self.process_single_prompt(prompt, attempt + 1)
