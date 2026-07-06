@@ -1,14 +1,13 @@
-from unsloth import FastLanguageModel, apply_chat_template
-import torch
 from datasets import load_dataset
 from transformers import TrainingArguments
 from trl import SFTTrainer
+from unsloth import FastLanguageModel
 
 # Load model and tokenizer with 4-bit quantization
 model, tokenizer = FastLanguageModel.from_pretrained(
-    "Qwen/Qwen2-1.5B",
+    "Qwen/Qwen3.5-2B",
     max_seq_length=2048,
-    load_in_4bit=True,
+    load_in_4bit=False,  # unsloth advises against 4-bit QLoRA for Qwen3.5; use bf16
 )
 
 # Configure tokenizer
@@ -19,47 +18,58 @@ tokenizer.padding_side = "right"
 model = FastLanguageModel.get_peft_model(
     model,
     r=8,
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj", 
-                   "gate_proj", "up_proj", "down_proj"],
+    target_modules=[
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj",
+    ],
     lora_alpha=16,
     lora_dropout=0,
     use_gradient_checkpointing=True,
 )
 
 # Load dataset
-dataset = load_dataset('json', data_files='data.jsonl', split='train')
+dataset = load_dataset("json", data_files="data.jsonl", split="train")
+
 
 # Prepare dataset for training with chat format
 def preprocess_function(example):
     # Format chat messages
     messages = [
-        {"role": "user", "content": example['instruction']},
-        {"role": "assistant", "content": example['output']}
+        {"role": "user", "content": example["instruction"]},
+        {"role": "assistant", "content": example["output"]},
     ]
-    
+
     # Apply chat template
     prompt = tokenizer.apply_chat_template(
-        messages,
-        tokenize=False,
-        add_generation_prompt=False
+        messages, tokenize=False, add_generation_prompt=False
     )
-    
+
     # Add EOS token explicitly
     prompt = prompt + tokenizer.eos_token
-    
+
     # Tokenize with padding and truncation
     tokenized = tokenizer(
         prompt,
         truncation=True,
         max_length=2048,
-        padding='max_length',
+        padding="max_length",
         return_tensors=None,
     )
-    
-    # Add labels for supervised fine-tuning
-    tokenized["labels"] = tokenized["input_ids"].copy()
-    
+
+    # Add labels for supervised fine-tuning, masking padding so the loss
+    # ignores the pad tokens that fill each example up to max_length.
+    tokenized["labels"] = [
+        token if mask == 1 else -100
+        for token, mask in zip(tokenized["input_ids"], tokenized["attention_mask"])
+    ]
+
     return tokenized
+
 
 # Process the dataset
 processed_dataset = dataset.map(
@@ -99,5 +109,4 @@ trainer = SFTTrainer(
 
 print("Starting training...")
 trainer.train()
-model.save_pretrained_gguf("shell-commands-qwen2-1.5b", tokenizer)
-
+model.save_pretrained_gguf("shell-commands-qwen3.5-2b", tokenizer)
