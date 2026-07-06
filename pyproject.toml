@@ -20,6 +20,11 @@ train = [
     "deepspeed",
     "unsloth[cu124-torch250] @ git+https://github.com/unslothai/unsloth.git",
 ]
+# Modal cloud training path (train_modal.py). The heavy CUDA stack installs
+# inside the Modal image; locally you only need the modal client/CLI.
+modal = [
+    "modal",
+]
 # Apple-Silicon training path (train_mlx.py); install with `uv sync --extra mlx`.
 mlx = [
     "mlx-lm",

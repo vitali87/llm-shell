@@ -1,35 +1,36 @@
 from datasets import load_dataset
 from transformers import TrainingArguments
 from trl import SFTTrainer
-from unsloth import FastLanguageModel
+from unsloth import FastModel
 
-# Load model and tokenizer with 4-bit quantization
-model, tokenizer = FastLanguageModel.from_pretrained(
+# Qwen3.5 is a vision-language model: it MUST be loaded with FastModel (not
+# FastLanguageModel, which mis-patches the GatedDeltaNet layer), and the text
+# tokenizer extracted via processor.tokenizer.
+model, processor = FastModel.from_pretrained(
     "Qwen/Qwen3.5-2B",
     max_seq_length=2048,
     load_in_4bit=False,  # unsloth advises against 4-bit QLoRA for Qwen3.5; use bf16
+    load_in_16bit=True,
+    full_finetuning=False,
 )
+tokenizer = getattr(processor, "tokenizer", processor)
 
 # Configure tokenizer
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.padding_side = "right"
 
-# Add LoRA adapters
-model = FastLanguageModel.get_peft_model(
+# Add LoRA adapters (text-only task: language layers, skip the vision tower)
+model = FastModel.get_peft_model(
     model,
     r=8,
-    target_modules=[
-        "q_proj",
-        "k_proj",
-        "v_proj",
-        "o_proj",
-        "gate_proj",
-        "up_proj",
-        "down_proj",
-    ],
     lora_alpha=16,
     lora_dropout=0,
-    use_gradient_checkpointing=True,
+    bias="none",
+    finetune_vision_layers=False,
+    finetune_language_layers=True,
+    finetune_attention_modules=True,
+    finetune_mlp_modules=True,
+    use_gradient_checkpointing="unsloth",
 )
 
 # Load dataset
