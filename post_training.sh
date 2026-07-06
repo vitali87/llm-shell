@@ -26,7 +26,9 @@ python merge_and_save.py --lora_weights "$LORA_WEIGHTS"
 
 # Step 2: Convert to GGUF format
 echo "Step 2: Converting to GGUF format..."
-python llama.cpp/convert_hf_to_gguf.py merged_model --outfile "$MODEL_NAME/model.q8_0.gguf"
+# --no-mtp skips Qwen3.5's MTP eh_proj tensor, which the converter cannot map.
+python llama.cpp/convert_hf_to_gguf.py merged_model \
+    --outfile "$MODEL_NAME/model.q8_0.gguf" --outtype q8_0 --no-mtp
 
 # Step 3: Create Modelfile
 echo "Step 3: Creating Modelfile..."
