@@ -68,6 +68,14 @@ def preprocess_function(example):
         for token, mask in zip(tokenized["input_ids"], tokenized["attention_mask"])
     ]
 
+    # Also mask the prompt prefix so the loss trains only on the response.
+    prompt_only = tokenizer.apply_chat_template(
+        messages[:1], tokenize=False, add_generation_prompt=True
+    )
+    prompt_len = len(tokenizer(prompt_only, add_special_tokens=False).input_ids)
+    for i in range(min(prompt_len, len(tokenized["labels"]))):
+        tokenized["labels"][i] = -100
+
     return tokenized
 
 

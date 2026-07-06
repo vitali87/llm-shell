@@ -151,6 +151,10 @@ def run(epochs: int = 3, max_seq_length: int = 1024, quant: str = "q8_0") -> str
                 opt.zero_grad()
             if step % 100 == 0:
                 print(f"epoch {epoch} step {step} loss {loss.item():.4f}", flush=True)
+    # Flush any gradients left over when the example count is not a multiple of accum.
+    if step % accum != 0:
+        torch.nn.utils.clip_grad_norm_(trainable, 1.0)
+        opt.step()
     opt.zero_grad()
     print("Training done.", flush=True)
 
@@ -159,7 +163,10 @@ def run(epochs: int = 3, max_seq_length: int = 1024, quant: str = "q8_0") -> str
     model.save_pretrained_gguf(out_dir, tokenizer, quantization_method=quant)
 
     # Ollama Modelfile (ChatML), matching create_model.sh.
-    gguf = next(Path(out_dir).glob("*.gguf"))
+    ggufs = list(Path(out_dir).glob("*.gguf"))
+    if not ggufs:
+        raise FileNotFoundError(f"No .gguf file was produced in {out_dir}")
+    gguf = ggufs[0]
     Path(out_dir, "Modelfile").write_text(
         f"FROM ./{gguf.name}\n\n"
         "PARAMETER temperature 0\n"
