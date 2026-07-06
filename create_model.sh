@@ -45,6 +45,10 @@ TEMPLATE """
 {{ .System }}<|im_end|>{{ end }}<|im_start|>user
 {{ .Prompt }}<|im_end|>
 <|im_start|>assistant
+<think>
+
+</think>
+
 """
 EOL
 

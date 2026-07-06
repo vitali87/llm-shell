@@ -1,45 +1,42 @@
 import os
+
 import torch
 import torch.distributed as dist
 from datasets import load_dataset
+from peft import LoraConfig, TaskType, get_peft_model, prepare_model_for_kbit_training
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
     TrainingArguments,
 )
-from peft import (
-    LoraConfig,
-    get_peft_model,
-    prepare_model_for_kbit_training,
-    TaskType
-)
 from trl import SFTTrainer
+
 
 def setup_distributed():
     """Set up distributed training."""
     if int(os.environ.get("LOCAL_RANK", -1)) != -1:
         torch.cuda.set_device(int(os.environ["LOCAL_RANK"]))
-        dist.init_process_group(backend='nccl')
+        dist.init_process_group(backend="nccl")
+
 
 def load_model_and_tokenizer(model_name, local_rank):
     """Load and configure the model and tokenizer."""
     # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(
-        model_name,
-        trust_remote_code=True,
-        padding_side="right"
+        model_name, trust_remote_code=True, padding_side="right"
     )
     tokenizer.pad_token = tokenizer.eos_token
-    
+
     # Load model with specific configuration
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         trust_remote_code=True,
         torch_dtype=torch.bfloat16,
-        device_map={"": local_rank} if torch.cuda.is_available() else "cpu"
+        device_map={"": local_rank} if torch.cuda.is_available() else "cpu",
     )
-    
+
     return model, tokenizer
+
 
 def prepare_model_for_training(model, local_rank):
     """Prepare the model for training with LoRA."""
@@ -47,67 +44,85 @@ def prepare_model_for_training(model, local_rank):
     model = prepare_model_for_kbit_training(
         model,
         use_gradient_checkpointing=True,
-        gradient_checkpointing_kwargs={"use_reentrant": False}
+        gradient_checkpointing_kwargs={"use_reentrant": False},
     )
 
-    # THEN configure and apply LoRA 
+    # THEN configure and apply LoRA
     lora_config = LoraConfig(
         r=8,
         lora_alpha=16,
         target_modules=[
-            "q_proj", "k_proj", "v_proj", "o_proj",
-            "gate_proj", "up_proj", "down_proj"
+            "q_proj",
+            "k_proj",
+            "v_proj",
+            "o_proj",
+            "gate_proj",
+            "up_proj",
+            "down_proj",
         ],
         lora_dropout=0,
         bias="none",
-        task_type=TaskType.CAUSAL_LM
+        task_type=TaskType.CAUSAL_LM,
     )
-    
+
     model = get_peft_model(model, lora_config)
-    
+
     # Enable input requires grad
     model.enable_input_require_grads()
-    
+
     # Disable the cache to save memory
     model.config.use_cache = False
-    
+
     model.train()  # Add this
-    
+
     # Log trainable parameters
     if local_rank <= 0:
         model.print_trainable_parameters()
-    
+
     return model
+
+
 def preprocess_dataset(dataset, tokenizer, max_length=2048):
     """Preprocess the dataset with chat template."""
+
     def preprocess_function(example):
         # Create chat messages
         messages = [
-            {"role": "user", "content": example['instruction']},
-            {"role": "assistant", "content": example['output']}
+            {"role": "user", "content": example["instruction"]},
+            {"role": "assistant", "content": example["output"]},
         ]
-        
+
         # Apply chat template
         prompt = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=False
+            messages, tokenize=False, add_generation_prompt=False
         )
-        
+
         # Add EOS token
         prompt = prompt + tokenizer.eos_token
-        
+
         # Tokenize
         tokenized = tokenizer(
             prompt,
             truncation=True,
             max_length=max_length,
-            padding='max_length',
+            padding="max_length",
             return_tensors=None,
         )
-        
-        # Set labels
-        tokenized["labels"] = tokenized["input_ids"].copy()
+
+        # Set labels, masking padding so the loss ignores the pad tokens
+        # that fill each example up to max_length.
+        tokenized["labels"] = [
+            token if mask == 1 else -100
+            for token, mask in zip(tokenized["input_ids"], tokenized["attention_mask"])
+        ]
+
+        # Also mask the prompt prefix so the loss trains only on the response.
+        prompt_only = tokenizer.apply_chat_template(
+            messages[:1], tokenize=False, add_generation_prompt=True
+        )
+        prompt_len = len(tokenizer(prompt_only, add_special_tokens=False).input_ids)
+        for i in range(min(prompt_len, len(tokenized["labels"]))):
+            tokenized["labels"][i] = -100
         return tokenized
 
     # Process the entire dataset
@@ -118,6 +133,7 @@ def preprocess_dataset(dataset, tokenizer, max_length=2048):
     )
 
     return processed_dataset
+
 
 def get_training_arguments(local_rank):
     """Configure training arguments."""
@@ -146,24 +162,25 @@ def get_training_arguments(local_rank):
         torch_compile=False,
     )
 
+
 def main():
     # Set up distributed training
     setup_distributed()
     local_rank = int(os.environ.get("LOCAL_RANK", -1))
-    
+
     # Configuration
-    model_name = "Qwen/Qwen2-1.5B"
+    model_name = "Qwen/Qwen3.5-2B"
     max_seq_length = 2048
-    dataset_path = 'data.jsonl'
-    
+    dataset_path = "data.jsonl"
+
     # Load model and tokenizer
     model, tokenizer = load_model_and_tokenizer(model_name, local_rank)
-    
+
     # Prepare model for training (LoRA + optimization settings)
     model = prepare_model_for_training(model, local_rank)
 
     # Load and preprocess dataset
-    dataset = load_dataset('json', data_files=dataset_path, split='train')
+    dataset = load_dataset("json", data_files=dataset_path, split="train")
     processed_dataset = preprocess_dataset(dataset, tokenizer, max_seq_length)
 
     # Get training arguments
@@ -193,10 +210,11 @@ def main():
         print("Model saved to final_model_lora/")
 
     dist.destroy_process_group()  # Add this line
-    
+
     # Optional: Clear CUDA cache
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
+
 
 if __name__ == "__main__":
     main()

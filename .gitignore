@@ -1,6 +1,13 @@
 venv
+.venv
+__pycache__
 llama.cpp
 outputs
+logs
+final_model_lora
 shell-commands*
 merged_model
 _unsloth_sentencepiece_temp
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat

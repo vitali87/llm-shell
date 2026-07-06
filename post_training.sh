@@ -6,8 +6,8 @@ set -e
 # Check if a model name is provided
 if [ $# -lt 1 ] || [ $# -gt 2 ]; then
     echo "Usage: $0 <model_name> [lora_weights_path]"
-    echo "Example: $0 shell-commands-qwen2-1.5b"
-    echo "Example with custom weights: $0 shell-commands-qwen2-1.5b outputs/checkpoint-1100"
+    echo "Example: $0 shell-commands-qwen3.5-2b"
+    echo "Example with custom weights: $0 shell-commands-qwen3.5-2b outputs/checkpoint-1100"
     exit 1
 fi
 
@@ -22,11 +22,13 @@ mkdir -p "$MODEL_NAME"
 
 # Step 1: Merge LoRA weights with base model
 echo "Step 1: Merging LoRA weights with base model..."
-python merge_and_save_model.py --lora_weights "$LORA_WEIGHTS"
+python merge_and_save.py --lora_weights "$LORA_WEIGHTS"
 
 # Step 2: Convert to GGUF format
 echo "Step 2: Converting to GGUF format..."
-python llama.cpp/convert_hf_to_gguf.py merged_model --outfile "$MODEL_NAME/model.q8_0.gguf"
+# --no-mtp skips Qwen3.5's MTP eh_proj tensor, which the converter cannot map.
+python llama.cpp/convert_hf_to_gguf.py merged_model \
+    --outfile "$MODEL_NAME/model.q8_0.gguf" --outtype q8_0 --no-mtp
 
 # Step 3: Create Modelfile
 echo "Step 3: Creating Modelfile..."
@@ -35,11 +37,18 @@ FROM ./model.q8_0.gguf
 
 PARAMETER temperature 0
 PARAMETER top_p 0.7
+PARAMETER stop "<|im_end|>"
 
 TEMPLATE """
-{{ if .System }}system: {{ .System }}{{ end }}
-user: {{ .Prompt }}
-assistant: """
+{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>{{ end }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+"""
 EOL
 
 # Step 4: Create Ollama model
